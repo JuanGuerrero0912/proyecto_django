@@ -1,0 +1,398 @@
+{% extends "plantilla/plantilla.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+        <div class="row align-items-center px-3">
+            <div class="col-lg-6 text-center">
+                <h1 class="display-3 font-weight-bold text-white">
+                ¡Bienvenidos!
+                </h1>
+                <p class="text-white mb-4 large">
+                Date la oportuidad de conocer al proximo miembro de tu familia,
+                brindale la oportunidad de tener un nuevo hogar a alguno de
+                nuestros peluditos.
+                </p>
+                <a href="{% url "Nosotros" %}" class="btn btn-secondary mt-1 py-3 px-5 ">Nosotros</a>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <img class="img-fluid mt-5" src=" {% static 'inicio/img/PosibleHeader.png' %}" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 text-center">
+                    <img
+                    class="img-fluid rounded mb-5 mb-lg-0"
+                    src="{% static 'inicio/img/Cartel1.png'%}"
+                    alt=""
+                    />
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-title pr-5">
+                        <span class="pr-2">¿Quieres adoptar?</span>
+                    </p>
+                    <h1 class="mb-4">Date la oportinidad</h1>
+                    <p class="text-center">
+                        De conocer al próximo miembro de tu familia,
+                        adopta a uno de nuestros peluditos y lleva alegría
+                        a tu casa. Sigue los pasos y podrás encontrar a tú
+                        mejor compañía. No esperes más.
+                    </p>
+                    <div class="pt-2 pb-4 text-center">
+                        <div class="">
+                            <ul class="list-inline ">
+                                <li class="py-2 border-top border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Regístrate en nuestra página web
+                                </li>
+                                <li class="py-2 border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Ingresa y busca a tu peludito
+                                </li>
+                                <li class="py-2 border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Realiza la solicitud de adopción
+                                </li>
+                                <li class="py-2 border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>La fundación se comunicará contigo para hacer el seguimiento del proceso
+                                </li>
+                                <li class="py-2 border-bottom">
+                                    <i class="fa fa-check text-primary mr-3"></i>Lleva a tu peludito a conocer su nuevo hogar
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="{% url "Registro" %}" class="btn btn-primary mt-1 py-3 px-5">Regístrate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Class Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                    <span class="px-2">Conocelos</span>
+                </p>
+                <h1 class="mb-4">Peluditos que buscan un hogar</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{% static 'inicio/img/labrador1.png'%}" alt="" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Pepe</h4>
+                            <p class="card-text">
+                                Este peludito lo encontramos en un barrio del centro, 
+                                es muy cariñoso y le encanta que lo acaricien en todo momento. 
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Edad</strong>
+                                </div>
+                                <div class="col-6 py-1">4 años</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Raza</strong>
+                                </div>
+                                <div class="col-6 py-1">Labrador</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Genero</strong>
+                                </div>
+                                <div class="col-6 py-1">Macho</div>
+                            </div>
+                        </div>
+                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{% static 'inicio/img/Criollo1.png'%}" alt="" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Koco</h4>
+                            <p class="card-text">
+                                Este peludito lo encontramos cerca a la fundación, 
+                                juguetón, travieso, divertido y muy amoroso.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Edad</strong>
+                                </div>
+                                <div class="col-6 py-1">6 años</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Raza</strong>
+                                </div>
+                                <div class="col-6 py-1">Criollo</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Genero</strong>
+                                </div>
+                                <div class="col-6 py-1">Macho</div>
+                            </div>
+                        </div>
+                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card border-0 bg-light shadow-sm pb-2">
+                        <img class="card-img-top mb-2" src="{% static 'inicio/img/Criollo2.png' %}" alt="" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Linda</h4>
+                            <p class="card-text">
+                                Encontrada por uno de nuestros colaboradores, 
+                                calmada, atenta, defensora y fiel compañía.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Edad</strong>
+                                </div>
+                                <div class="col-6 py-1">4 años</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Raza</strong>
+                                </div>
+                                <div class="col-6 py-1">Criollo</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Genero</strong>
+                                </div>
+                                <div class="col-6 py-1">Hembra</div>
+                            </div>
+                        </div>
+                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Class End -->
+
+    <!-- Blog Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                    <span class="px-2">Siempre informado</span>
+                </p>
+                <h1 class="mb-4">Noticias</h1>
+            </div>
+            <div class="row pb-3">
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src=" {% static 'inicio/img/noticia2.png' %}" alt="" />
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Dia del perro</h4>
+                            <p>
+                                Cada 21 de julio homenajeamos a un animal de cuatro patas fiel e incondicional,
+                                considerado el mejor amigo del hombre. Te invitamos a participar en las
+                                actividades propuestas por la fundación.
+                            </p>
+                            <a href="{% url "Noticias" %}" class="btn btn-primary px-4 mx-auto my-2">
+                                Más Noticias
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src="{% static 'inicio/img/noticia1.png'%}" alt="" />
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Amor canino</h4>
+                            <p>
+                                El pasado viernes 16 de junio dio inicio la campaña de AMOR CANINO, que busca
+                                fomentar la adopción de más perritos, esta campaña durara 20 días y se espera
+                                encontrarle hogar a más de 30 perritos cariñosos y juguetones.
+                            </p>
+                            <a href="{% url "Noticias" %}" class="btn btn-primary px-4 mx-auto my-2">
+                                Más Noticias
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm mb-2">
+                        <img class="card-img-top mb-2" src="{% static 'inicio/img/noticia3.png'%}" alt="" />
+                        <div class="card-body bg-light text-center p-4">
+                            <h4 class="">Te invitamos a donar</h4>
+                            <p>
+                                Se tiene estipulado que para el próximo sábado 24 de junio, se organice una
+                                actividad para obtener donaciones de accesorios para los perritos, te invitamos
+                                a participar y si puedes contribuir, no te lo pierdas. 
+                            </p>
+                            <a href="{% url "Noticias" %}" class="btn btn-primary px-4 mx-auto my-2">
+                                Más Noticias
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+    <!-- Registration Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0 text-center">
+                    <p class="section-title pr-5">
+                        <span class="pr-2">Ayúdanos</span>
+                    </p>
+                    <h1 class="mb-4">Puedes donar a la fundación </h1>
+                    <p class="text-center">
+                        Si quieres contribuir a la fundación con un aporte para el sostenimiento 
+                        de los perros rescatados, puedes hacerlo registrándote en la página web. 
+                        Vas al apartado de donaciones y eliges el tipo de donación que quieres hacer.
+                    </p>
+                    </br>
+                    </br>
+                    <h2 class=""> Tipos de donaciones</h2>
+                    <ul class="list-inline m-0">
+                        <li class="py-2">
+                            <i class="fa fa-check text-primary mr-3"></i>En insumos: accesorios, comida, platos, juguetes, etc...
+                        </li>
+                        <li class="py-2">
+                            <i class="fa fa-check text-primary mr-3"></i>En dinero
+                        </li>
+                        <a href="{% url "Trabaja" %}" class="btn btn-primary px-4 mx-auto my-2">
+                            Trabaja con Nosotros
+                        </a>
+                    </ul>
+                    
+                </div>
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-header bg-secondary text-center p-4">
+                            <h1 class="text-white m-0">¿Quieres trabajar con nosotros?</h1>
+                        </div>
+                    <div class="card-body rounded-bottom bg-primary p-5">
+                    <form>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                class="form-control border-0 p-4"
+                                placeholder="Nombre"
+                                required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                class="form-control border-0 p-4"
+                                placeholder="Correo"
+                                required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                type="email"
+                                class="form-control border-0 p-4"
+                                placeholder="Motivo"
+                                required="required"/>
+                        </div>
+                        <div>
+                            <button
+                                class="btn btn-secondary btn-block border-0 py-3"
+                                type="submit">Enviar
+                            </button>
+                            <a href="{% url "Login" %}" class="btn btn-secondary btn-block border-0 py-3">Ingresar </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Registration End -->
+
+    <!-- Team Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                    <span class="px-2">Nuestra labor</span>
+                </p>
+                <h1 class="mb-4">Registros de rescate y adopciones</h1>
+                </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 text-center team mb-5">
+                            <div
+                            class="position-relative overflow-hidden mb-4"
+                            style="border-radius: 100%">
+                                <img class="img-fluid w-100" src="{% static 'inicio/img/Rescatados.png'%}" alt="" />
+                                <div
+                                class="team-social d-flex align-items-center 
+                                justify-content-center w-100 h-100 position-absolute">
+                                    <a
+                                    class="btn btn-outline-light text-center mr-2 px-0 "
+                                    style="width: 100px; height: 100px"
+                                    href="#">
+                                        <h2 class="mb-4 p-4">81</h2>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4>Perros rescatados</h4>
+                        </div>
+                        <div class="col-md-6 col-lg-4 text-center team mb-5">
+                            <div
+                            class="position-relative overflow-hidden mb-4"
+                            style="border-radius: 100%">
+                                <img class="img-fluid w-100" src="{% static 'inicio/img/Adoptados.png'%}" alt="" />
+                                <div
+                                class="team-social d-flex align-items-center 
+                                justify-content-center w-100 h-100 position-absolute">
+                                    <a
+                                    class="btn btn-outline-light text-center mr-2 px-0 "
+                                    style="width: 100px; height: 100px"
+                                    href="#">
+                                        <h2 class="mb-4 p-4">27</h2>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4>Perros adoptados</h4>
+                        </div>
+                        <div class="col-md-6 col-lg-4 text-center team mb-5">
+                            <div
+                            class="position-relative overflow-hidden mb-4"
+                            style="border-radius: 100%">
+                                <img class="img-fluid w-100" src="{% static 'inicio/img/porAdoptar.png' %}" alt="" />
+                                <div
+                                class="team-social d-flex align-items-center 
+                                justify-content-center w-100 h-100 position-absolute">
+                                    <a
+                                    class="btn btn-outline-light text-center mr-2 px-0 "
+                                    style="width: 100px; height: 100px"
+                                    href="#">
+                                        <h2 class="mb-4 p-4">54</h2>
+                                    </a>
+                                </div>
+                            </div>
+                            <h4>Perros por adoptar</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- Team End -->
+
+{% endblock contenido %}

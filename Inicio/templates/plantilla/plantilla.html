@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Doggy At Home</title>
+    <link rel="website icon" type="png" href="{% static 'inicio/img/DoggyAtHome (1).jpg' %}">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
+
+    <!-- Favicon -->
+    <link href="{% static 'inicio/img/favicon.ico' %}" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Flaticon Font -->
+    <link href="{% static 'inicio/lib/flaticon/font/flaticon.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'inicio/css/style.css' %}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+  <body>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light position-relative shadow">
+      <nav
+        class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5"
+      >
+        <a
+          href="{% url "Inicio" %}"
+          class="navbar-brand font-weight-bold text-secondary"
+          style="font-size: 50px"
+        >
+        <i class=""> <img src="{% static 'inicio/img/DoggyAtHome (1).jpg' %}" alt="" height="70px" width="80px"></i>
+        <span class="text-primary">Doggy At Home</span>
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarCollapse"
+        >
+          <div class="navbar-nav font-weight-bold mx-auto py-0">
+            <a href="{% url "Inicio" %}" class="nav-item nav-link {% if request.path == '/'%} active {% endif %}">Inicio</a>
+            <a href="{% url "Nosotros" %}" class="nav-item nav-link {% if request.path == '/nosotros'%} active {% endif %}">Nosotros</a>
+            <a href="{% url "Perritos" %}" class="nav-item nav-link {% if request.path == '/perritos'%} active {% endif %}">Perritos</a>
+            <a href="{% url "Noticias" %}" class="nav-item nav-link {% if request.path == '/noticias'%} active {% endif %}">Noticias</a>
+            <a href="{% url "Donaciones" %}" class="nav-item nav-link {% if request.path == '/donaciones'%} active {% endif %}">Donaciones</a>
+            <a href="{% url "Trabaja" %}" class="nav-item nav-link {% if request.path == '/trabaja_con_nosotros'%} active {% endif %}">Trabaja con nosotros</a>
+          </div>
+          <a href="{% url "Login" %}" class="btn btn-primary px-4">Ingresar</a>
+        </div>
+      </nav>
+    </div>
+    <!-- Navbar End -->
+
+    {% block contenido %}
+    
+    {% endblock contenido %}
+
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
+    >
+      <div class="row pt-5">
+        <div class="col-lg-4 col-md-6 mb-5 form">
+          <a
+            href="{% url "Inicio" %}" style="text-center"
+          >
+            <!--<span class="text-primary mb-4 text-center">Doggy At Home</span>-->
+            <h3 class="text-primary mb-4 text-center">Doggy At Home</h3>
+          </a>
+          <p class="text-center">
+            Aquí encontrarás los medios por los cuales te podrás comunicar con la fundación, siguenos en nuestras redes sociales donde se estará publicando la información más relevante acerca de nuevos eventos, campañas, entre otros.
+          </p>
+        </div>  
+        <div class="col-lg-4 col-md-6 mb-5 form">
+          <h3 class="text-primary mb-4 text-center">Contactos</h3>
+          <div>
+            <div style="align-items: center;">
+              <h5 class="text-white text-center">Nos encuentras en</h5>
+              <p class="text-center">Calle 40e sur #1-28</p>
+            </div>
+          </div>
+          <div>
+            <div style="align-items: center;">
+              <h5 class="text-white text-center ">Correo</h5>
+              <p class="text-center">doggyathomecp@gmail.com</p>
+            </div>
+          </div>
+          <div>
+            <div style="align-items: center;">
+              <h5 class="text-white text-center">Telefono</h5>
+              <p class="text-center">322 458 7948</p>
+              <p class="text-center">641 7484</p>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-4 col-md-6 mb-5 form">
+          <h3 class="text-primary mb-4 text-center">Enlaces rapidos</h3>
+          <div class="d-flex flex-column justify-content-start align-items-center">
+            <a class="text-white mb-2" href="{% url "Inicio" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Inicio</a
+            >
+            <a class="text-white mb-2" href="{% url "Nosotros" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Nosotros</a
+            >
+            <a class="text-white mb-2" href="{% url "Perritos" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Perritos</a
+            >
+            <a class="text-white mb-2" href="{% url "Noticias" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Noticias</a
+            >
+            <a class="text-white mb-2" href="{% url "Donaciones" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Donaciones</a
+            >
+            <a class="text-white mb-2" href="{% url "Trabaja" %}"
+              ><i class="fa fa-angle-right mr-2"></i>Trabaja con nosotros</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="container-fluid pt-5"
+        style="border-top: 1px solid rgba(23, 162, 184, 0.2) ;"
+      >
+
+        <p class="m-0 text-center text-white">
+          &copy;
+          <a class="text-primary font-weight-bold" href="#">Doggy At Home</a>.
+          All Rights Reserved.
+        </p>
+      </div>
+      
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'inicio/js/main.js' %} "></script>
+  </body>
+</html>
