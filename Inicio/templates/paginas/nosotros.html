@@ -1,3 +1,173 @@
 {% extends "plantilla/plantilla.html" %}
-
 {% load static %}
+
+{% block contenido %}
+
+<!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-3 font-weight-bold text-white">Conoce sobre nosotros</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0"><a class="text-white" href="{% url "Inicio" %}">Inicio</a></p>
+                    <p class="m-0 px-2">/</p>
+                    <p class="m-0">Nosotros</p>
+                </div>
+        </div>
+    </div>
+<!-- Header End -->
+
+<!--mision-->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                <img
+                    class="img-fluid rounded mb-5 mb-lg-0"
+                    src="{% static 'inicio/img/perritoMision.jpeg'%}"
+                    alt=""
+                    />
+                </div>
+                <div class="col-lg-7">
+                    <h1  class="mb-4">Nuestra Misión</h1>
+                    <div>
+                        <p style="text-align: justify;">
+                        Nuestra misión es salvaguardar y mejorar la vida de los perros en situación
+                        de abandono, proporcionándoles refugio seguro, atención médica adecuada y
+                        la oportunidad de encontrar un hogar amoroso y permanente.
+                        Además, nos esforzamos por encontrar hogares responsables y amorosos
+                        para cada uno de nuestros perros rescatados. <br><br> Realizamos un riguroso proceso
+                        de adopción, que incluye entrevistas, visitas domiciliarias y
+                        seguimiento posterior, para asegurarnos de que los perros sean ubicados
+                        en entornos seguros y adecuados para sus necesidades individuales. <br><br> En paralelo,
+                        llevamos a cabo programas de concientización y educación comunitaria para promover
+                        la tenencia responsable de mascotas, la importancia de la esterilización y el cuidado
+                        adecuado de los perros. A través de la sensibilización, buscamos fomentar un cambio
+                        cultural que valore y respete a los animales, contribuyendo así a reducir el abandono y
+                        el maltrato animal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--mision end-->
+
+<!--vision-->
+<div class="container-fluid py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5">
+          
+          <img
+              class="img-fluid rounded mb-5 mb-lg-0"
+              src="{% static 'inicio/img/perritoVision.jpeg'%}"
+              alt=""
+            />
+        </div>
+
+        <div class="col-lg-7">
+          <h1 class="mb-4">Nuestra Visión</h1>
+          <div>
+            <p style="text-align: justify;">
+              Nuestra visión es crear una sociedad donde todos los perros sean valorados, respetados y tengan la
+              oportunidad de vivir una vida plena y feliz en un entorno amoroso y seguro.<br><br>
+
+              Deseamos ser reconocidos como líderes en el rescate y cuidado de perros, estableciendo estándares de
+              excelencia en el bienestar animal. Nos esforzamos por ser una organización modelo, tanto en la calidad de
+              nuestra atención a los perros como en nuestros programas de concientización y educación.<br><br>
+
+              Aspiramos a reducir significativamente el número de perros abandonados y maltratados, trabajando en
+              colaboración con otras instituciones y organizaciones, así como con la comunidad en general, para promover
+              la adopción responsable, la esterilización y el respeto hacia todos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--mision end-->
+<!--valores-->
+<div class="container-fluid pt-5">
+    <div class="container pb-3">
+      <h1  class="mb-4">Nuestros Valores</h1>
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6 pb-1">
+            <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+              <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
+              <div class="pl-4">
+                <h4>compasión</h4>
+                <p class="m-0">
+                    Valoramos y promovemos la compasión hacia todos los seres vivos, reconociendo la importancia de brindar
+                    cuidado y protección a los perros en situación de vulnerabilidad
+                </p>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-4 col-md-6 pb-1">
+          <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+            <i class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"></i>
+            <div class="pl-4">
+              <h4>Respeto</h4>
+              <p class="m-0">
+                Creemos en el respeto hacia los perros como seres sintientes y en la importancia de tratarlos con
+                dignidad, independientemente de su origen, raza o condición. <br><br>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 pb-1">
+          <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+            <i class="flaticon-030-crayons h1 font-weight-normal text-primary mb-3"></i>
+            <div class="pl-4">
+              <h4>Integridad</h4>
+              <p class="m-0">
+                Nos comprometemos a actuar con integridad en todas nuestras acciones y decisiones, manteniendo altos
+                estándares éticos y siendo transparentes en nuestra gestión y uso de recursos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 pb-1">
+          <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+            <i class="flaticon-017-toy-car h1 font-weight-normal text-primary mb-3"></i>
+            <div class="pl-4">
+              <h4>Colaboración</h4>
+              <p class="m-0">
+                Valoramos la colaboración y trabajamos en estrecha cooperación con otras organizaciones, instituciones,
+                voluntarios y la comunidad en general para lograr un impacto positivo en la vida de los perros <br><br>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 pb-1">
+          <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+            <i class="flaticon-025-sandwich h1 font-weight-normal text-primary mb-3"></i>
+            <div class="pl-4">
+              <h4>Compromiso</h4>
+              <p class="m-0">
+                Nos comprometemos a dedicar nuestros esfuerzos y recursos para rescatar, rehabilitar y reubicar a los
+                perros en situación de necesidad, y a promover la adopción responsable y la tenencia adecuada de
+                mascotas.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 pb-1">
+          <div class="d-flex bg-light shadow-sm border-top rounded mb-4" style="padding: 30px">
+            <i class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"></i>
+            <div class="pl-4">
+              <h4>Excelencia</h4>
+              <p class="m-0">
+                Buscamos la excelencia en todo lo que hacemos, desde la atención médica y el cuidado de los perros hasta
+                la implementación de programas de concientización y educación, con el objetivo de lograr el mayor
+                impacto positivo posible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--valores end-->
+{% endblock contenido %}

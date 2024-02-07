@@ -1,3 +1,109 @@
 {% extends "plantilla/plantilla.html" %}
-
 {% load static %}
+{% block contenido %}
+<!--titulo -->
+    <div class="container-fluid bg-primary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center"style="min-height: 400px">
+            <h3 class="display-3 font-weight-bold text-white">Donaciones</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="{% url "Inicio" %}">Inicio</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">Donaciones</p>
+            </div>
+        </div>
+    </div>
+<!--titulo end -->
+<!--donaciones dinero -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <h2 class="mb-4">En la Fundación, estamos comprometidos con la protección, el cuidado y el bienestar de los perros en situación de vulnerabilidad.</h2>
+                <h2 class="mb-4">¡Únete a nuestra causa y ayuda a hacer la diferencia en la vida de nuestros peluditos!
+                </h2>
+            </div>
+            <br><br>
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                <span class="px-2">Donaciones monetarias</span>
+                </p>
+                <h4>Para realizar donaciones monetarias puedes hacerlo por los siguientes medios:</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Realiza una transferencia o consignación:</h4>
+                            <br><br>
+                            <img class="card-img-top mb-2" src="{% static 'inicio/img/Bancolombia.png'%}" alt="">
+                            <br><br>
+                            <p class="card-text">
+                            <strong>Cuenta de ahorros Bancolombia
+                            Fundación Doggy At Home Bogotá:
+                            <br> 246-000219-83
+                            <br>
+                            NIT: 901.060.420-4</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-lg-4 mb-5">
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <div class="card-body text-center">
+                            <h4 class="card-title"> Por Nequi o Daviplata al número: <br><br> 3205657710</h4>
+                            <br><br>
+                            <img class="card-img-top mb-2" src="{% static 'inicio/img/Nequi.png'%}" alt="">
+                            <br><br>
+                            <img class="card-img-top mb-2" src="{% static 'inicio/img/Daviplata.png'%}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <div class="card-footer bg-transparent py-4 px-5">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Realiza tu donación a través de PayPal al siguiente correo: <br><br> corazonpeludo@gmail.com</h4>
+                            <img class="card-img-top mb-2" src="{% static 'inicio/img/paypal.png'%}" alt="">
+                            <img class="card-img-top mb-2" src="{% static 'inicio/img/tarjetas-creditos.png'%}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--donaciones dinero end -->
+<!--donaciones insumos -->
+<br><br>
+    <div class="text-center pb-2">
+        <p class="section-title px-5">
+        <span class="px-2">Donaciones insumos</span>
+        </p>
+    </div>
+        <br><br>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img
+                        class="img-fluid rounded mb-5 mb-lg-0"
+                        src="{% static 'inicio/img/21 Enternecedoras expresiones de perros recién adoptados que te conmoverán el corazón.jpg'%}"
+                        alt=""
+                        />
+                </div>
+                <div class="col-lg-7">
+                    <h2 style="margin-top: -30%;" class="mb-4">¡Tu ayuda es fundamental para el bienestar de nuestros adorables peluditos!</h2>
+                    <div>
+                        <p style="text-align: justify;">
+                        Además de las donaciones monetarias, también aceptamos donaciones de insumos. <strong>Estos pueden incluir alimentos para perros, correas, collares, camas, juguetes y cualquier otro elemento que pueda ayudarnos a mantener a nuestros perros felices y saludables mientras esperan encontrar un hogar definitivo.</strong>
+                        <br>
+                        Tu donación marcará una diferencia significativa en la vida de estos adorables compañeros. Con tu apoyo, podremos asegurarnos de que cada perro que ingrese a nuestra fundación reciba el amor, la atención y los cuidados necesarios hasta que encuentre una familia amorosa que lo adopte.
+                        </p>
+                        <br><br>
+                        <h4><center>Si estás interesado en realizar una donación de insumos, por favor llámanos al número: <br>322 458 7948  <br>Estaremos encantados de coordinar la entrega de tus donaciones.</center></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--donaciones insumos end -->
+
+{% endblock contenido %}    
