@@ -1,3 +1,206 @@
 {% extends "plantilla/plantilla.html" %}
 
 {% load static %}
+
+{% block contenido %}
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary mb-5">
+        <div
+        class="d-flex flex-column align-items-center justify-content-center"
+        style="min-height: 400px">
+            <h3 class="display-3 font-weight-bold text-white">¡Sé parte de nuestro equipo!</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0"><a class="text-white" href="{% url "Inicio" %}">Inicio</a></p>
+                <p class="m-0 px-2">/</p>
+                <p class="m-0">Trabaja con nostros</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Team Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                <span class="px-2">Nuestros colaboradores </span>
+                </p>
+                <h1 class="mb-4">Conoce al staff que hace este sueño posible</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona1.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Juan Camilo Guevara</h4>
+                    <i>Estudiante de ingenieria electronica</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona2.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Julieth Chavez</h4>
+                    <i>Jefe de relaciones publicas</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona3.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Fabian Gonzalez</h4>
+                    <i>Ingeniero en electronica</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona4.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Daniel Carillo</h4>
+                    <i>Estudiante de derecho</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona5.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Ana Barrantes</h4>
+                    <i>Estudiante de lenguas extranjeras</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona6.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Karol Barrera</h4>
+                    <i>Estudiante de marketing digital</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona7.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Santiago Arias</h4>
+                    <i>CEO</i>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center team mb-5">
+                    <div class="position-relative overflow-hidden mb-4">
+                        <img class="imagenesPersonas" src="{% static 'inicio/img/persona8.jpg'%}" alt="" />  
+                    </div>
+                    <h4>Fernando Espinosa</h4>
+                    <i>Veterinario</i>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="container">
+            <div class="text-center pb-2">
+                <p class="section-title px-5">
+                <span class="px-2">Sigue conectado con nosotros</span>
+            </p>
+            <h1 class="mb-4">Contactanos si quieres pertenecer a nuestro equipo</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 mb-5">
+                <div class="contact-form">
+                    <form  method="POST">
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <input
+                        name="nombre"
+                        type="text"
+                        class="form-control"
+                        placeholder="Tu nombre"
+                        required="required"
+                        data-validation-required-message="Por favor ingresa tu nombre"/>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <input
+                        name="email"
+                        type="email"
+                        class="form-control"
+                        placeholder="Tu email"
+                        required="required"
+                        data-validation-required-message="Por favor ingresa tu correo"/>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <input
+                        name="asunto"
+                        type="text"
+                        class="form-control"
+                        placeholder="Asunto"
+                        required="required"
+                        data-validation-required-message="Por favor escribe el asunto"/>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div class="control-group">
+                        <textarea
+                        name="contenido"
+                        class="form-control"
+                        rows="6"
+                        placeholder="Mensaje"
+                        required="required"
+                        data-validation-required-message="Por favor escribe el mensaje"
+                        ></textarea>
+                        <p class="help-block text-danger"></p>
+                    </div>
+                    <div style="text-align: center;">
+                        <button
+                        class="btn btn-primary py-2 px-4"
+                        type="submit">   
+                        Enviar
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-5">
+                <p>
+                    Esperamos tenerte pronto en nuestro equipo de trabajo
+                </p>
+                <div class="d-flex">
+                    <i
+                    class="fa fa-map-marker-alt d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle"
+                    style="width: 45px; height: 45px"></i>
+                    <div class="pl-3">
+                        <h5>Dirección</h5>
+                        <p>Calle 40e sur #1-28, Bogotá Colombia</p>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <i
+                    class="fa fa-envelope d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle"
+                    style="width: 45px; height: 45px"></i>
+                    <div class="pl-3">
+                        <h5>Correo</h5>
+                        <p>corazonpeludo@gmail.com</p>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <i
+                    class="fa fa-phone-alt d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle"
+                    style="width: 45px; height: 45px"></i>
+                    <div class="pl-3">
+                        <h5>Telefono</h5>
+                        <p>+57 322 458 7948</p>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <i
+                    class="far fa-clock d-inline-flex align-items-center justify-content-center bg-primary text-secondary rounded-circle"
+                    style="width: 45px; height: 45px"></i>
+                    <div class="pl-3">
+                        <h5>Horario</h5>
+                        <strong>Lunes a viernes</strong>
+                        <p class="m-0">08:00 AM - 05:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+      <!-- Contact End -->
+
+{% endblock contenido %}

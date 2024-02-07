@@ -1,3 +1,4 @@
+
 {% extends "plantilla/plantilla.html" %}
 
 {% load static %}
@@ -288,27 +289,39 @@
                             <h1 class="text-white m-0">¿Quieres trabajar con nosotros?</h1>
                         </div>
                     <div class="card-body rounded-bottom bg-primary p-5">
-                    <form>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h3 class="text-secondary mb-4 text-center">{{message}}</h3>
+                            {% endfor %}   
+                        {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control border-0 p-4"
-                                placeholder="Nombre"
-                                required="required"/>
-                        </div>
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                class="form-control border-0 p-4"
-                                placeholder="Correo"
-                                required="required"/>
-                        </div>
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                class="form-control border-0 p-4"
-                                placeholder="Motivo"
-                                required="required"/>
+                            <div class="form-group">
+                                <input
+                                    name="nombre"
+                                    type="text"
+                                    class="form-control border-0 p-4"
+                                    placeholder="Nombre"
+                                    required="required"
+                                    />
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    name="email"
+                                    type="email"
+                                    class="form-control border-0 p-4"
+                                    placeholder="Correo"
+                                    required="required"/>
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    name="contenido"
+                                    type="text"
+                                    class="form-control border-0 p-4"
+                                    placeholder="Motivo"
+                                    required="required"/>
+                            </div>
                         </div>
                         <div>
                             <button

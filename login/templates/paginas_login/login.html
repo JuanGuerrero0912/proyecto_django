@@ -1,3 +1,80 @@
 {% extends "plantilla/plantilla.html" %}
 
 {% load static %}
+
+
+{% block contenido %}
+
+<form  method="POST">
+    <div class="login-page">
+        <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-lg-7">
+                        <img  style="width: 800px; height: 600px" src="{% static 'inicio/img/imagenLogin.png'%}" alt="">
+                    </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <div class="login-title">
+                            <h2 class="text-center text-primary">Ingresa con tu cuenta</h2>
+                        </div>
+                        <div class="select-role">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn active">
+                                    <input type="radio" name="admin">
+                                    <div class="icon"><img src="{% static 'inicio/img/maletin.png'%}" class="svg" alt=""></div>
+                                    <span>Soy</span>
+                                    Administrativo
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name="adoptante">
+                                    <div class="icon"><img src="{% static 'inicio/img/usuario.png'%}" class="svg" alt=""></div>
+                                    <span>Soy</span>
+                                    Adoptante
+                                </label>
+                            </div>
+                        </div>
+                    <div class="input-group custom">
+                        <input type="text" placeholder="Usuario" name="usuario" class="form-control form-control-lg">
+                        <!--<input type="text" class="form-control form-control-lg" placeholder="Usuario" name="usuario">-->
+                        <div class="input-group-append custom">
+                        </div>
+                    </div><br>
+  
+                    <div class="input-group custom">
+                        <input type="password" placeholder="********" name="contraseña" class="form-control form-control-lg">
+                        <!--<input type="password" class="form-control form-control-lg" placeholder="**********" name="contraseña">-->
+                        <div class="input-group-append custom">
+                        </div>
+                    </div>
+  
+                    <div class="row pb-30">
+                        <div class="col-6">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Recordar</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="forgot-password"><a href="restablecerContraseña.html">Olvidé la contraseña</a></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group mb-0">
+                                <input class="btn btn-primary btn-lg btn-block" type="submit" value="ingresar">
+                            </div>
+                            <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">Ó</div>
+                                <div class="input-group mb-0">
+                                    <a class="btn btn-outline-primary btn-lg btn-block" href="{% url "Registro" %}">Crea una cuenta</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock contenido %}
