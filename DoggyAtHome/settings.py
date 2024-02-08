@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Inicio',
     'login',
     'mascota',
+    'homePage',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'proyectodoggy',
         'USER': 'root',
-        'PASSWORD': 'Juan0912*',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }
