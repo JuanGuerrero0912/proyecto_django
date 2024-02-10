@@ -1,0 +1,77 @@
+{% extends "plantilla/plantilla_home.html" %}
+{% load static %}
+{% block contenido %}
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="title">
+                                <h4>PELUDOS</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Peludos</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid pt-5">
+                    <div class="container">
+                        <div class="row">
+                            {% for mascota in entity %}
+                            <div class="col-lg-4  mb-4">
+                                <div class="card border-0 bg-light shadow-sm pb-2">
+                                    <img class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
+                                    <div class="card-body text-center">
+                                        <h4 class="card-title">{{mascota.nombre}}</h4>
+                                        <p class="card-text">
+                                        {{mascota.caracteristicas}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent py-4 px-5">
+                                        <div class="row border-bottom">
+                                            <div class="col-6 py-1 text-right border-right">
+                                                <strong>Edad</strong>
+                                            </div>
+                                            <div class="col-6 py-1">{{mascota.edad}} {{mascota.get_edad_m_a_display}}</div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-6 py-1 text-right border-right">
+                                                <strong>Raza</strong>
+                                            </div>
+                                            <div class="col-6 py-1">{{mascota.get_raza_display}}</div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-6 py-1 text-right border-right">
+                                                <strong>Genero</strong>
+                                            </div>
+                                            <div class="col-6 py-1">{{mascota.get_sexo_display}}</div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-6 py-1 text-right border-right">
+                                                <strong>Estado</strong>
+                                            </div>
+                                            <div class="col-6 py-1">{{mascota.get_estadoMascota_display}}</div>
+                                        </div>
+                                        <div class="row border-bottom">
+                                            <div class="col-6 py-1 text-right border-right">
+                                                <strong>Fecha de ingreso</strong>
+                                            </div>
+                                            <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    {% include "paginas/paginator.html" %}<br>
+{% endblock contenido %}

@@ -1,0 +1,60 @@
+{% extends "plantilla/plantilla_home.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>USUARIOS</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Usuarios" %}">Usuarios</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Listado usuarios</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 style="text-align: center;" class="text-black h4">Lista de usuarios</h4><br>
+                        <a href="{% url "Registrar_usuario" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+
+                    </div>
+                    		
+                    <div class="pb-20">
+                        <table class="table hover multiple-select-row data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="table-plus datatable-nosort">id</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Documento</th>
+                                    <th>Celular</th>
+                                    <th>Dirección</th>
+                                    <th>Correo</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th class="datatable-nosort">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Export Datatable End -->
+            </div>
+        </div>
+    </div>
+   
+{% endblock contenido %}

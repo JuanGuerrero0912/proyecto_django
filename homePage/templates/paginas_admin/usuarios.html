@@ -1,0 +1,56 @@
+{% extends "plantilla/plantilla_home.html" %}
+{% load static %}
+{% block contenido %}
+        <div class="main-container">
+            <div class="pd-ltr-20 xs-pd-20-10">
+                <div class="min-height-200px">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="title">
+                                    <h4>Apartado de usuarios</h4>
+                                </div>
+                                <nav aria-label="breadcrumb" role="navigation">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>                                        
+                                        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>                                    
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-wrap">
+                        <div class="product-list">
+                            <ul class="row"  >
+                                <li class="col-lg-4 col-md-4 col-sm-12" style="margin-left: 4px">
+                                    <div class="product-box">
+                                        <div style="text-align: center;" class="product-caption">
+                                            <img style="height: 290px;" src="{% static 'homePage/vendors/images/VeterinarioAdmin.jpg'%}" alt="AdoptanteAdmin"/>
+                                            <h4><h:link outcome="FormularioUsuarios">Administradores y Veterinarios</h:link></h4>
+                                            <div class="price">
+                                                <ins>Gestiona administradores y veterinarios</ins>
+                                            </div>
+                                            <a href="{% url "Lista_usuarios" %}"><button class="btn btn-outline-primary">Ir</button></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-lg-4 col-md-6 col-sm-12" style="margin-left: 4px">
+                                    <div class="product-box">
+                                        <div style="text-align: center;" class="product-caption">
+                                            <img style="height: 290px;" src="{% static 'homePage/vendors/images/AdoptanteAdmin.jpg'%}" alt=""/>
+                                            <h4><h:link outcome="FormularioAdoptante">Adoptantes</h:link></h4>
+                                            <div class="price">
+                                                <ins>Gestiona la información de los adoptantes</ins>
+                                            </div>
+                                            <a href="{% url "Lista_adoptantes" %}"><button class="btn btn-outline-primary">Ir</button></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock contenido %}

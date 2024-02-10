@@ -162,7 +162,7 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.html">
+			<a href="{% url "Inicio_Admin" %}">
 				<img src="{% static 'homePage/vendors/images/logoLigth.png'%}" style="height: 50px; width: 50px; margin-right: 1rem;" alt="" class="dark-logo">
 				<img src="{% static 'homePage/vendors/images/logoDark.png'%}" style="height: 50px; width: 50px; margin-right: 1rem;"alt="" class="light-logo" >
 				<h3 style="font-size: 20px; color: #17a2b8;">Doggy At Home</h3>
@@ -179,7 +179,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Usuarios</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Usuarios</a></li>
+							<li><a href="{% url "Usuarios" %}">Usuarios</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -187,7 +187,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Adopciones</a></li>
+							<li><a href="{% url "Adopciones" %}">Adopciones</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -195,7 +195,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Inventario</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Inventario</a></li>
+							<li><a href="{% url "Inventario" %}">Inventario</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -203,7 +203,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Donaciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Donaciones</a></li>
+							<li><a href="{% url "Donaciones" %}">Donaciones</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -230,5 +230,17 @@
 	<script src="{% static 'homePage/src/plugins/datatables/js/dataTables.responsive.min.js'%}"></script>
 	<script src="{% static 'homePage/src/plugins/datatables/js/responsive.bootstrap4.min.js'%}"></script>
 	<script src="{% static 'homePage/vendors/scripts/dashboard.js'%}"></script>
+	 <!-- buttons for Export datatable -->
+	 <script src="{% static 'homePage/src/plugins/datatables/js/dataTables.buttons.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/buttons.bootstrap4.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/buttons.print.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/buttons.html5.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/buttons.flash.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/pdfmake.min.js'%}"></script>
+	 <script src="{% static 'homePage/src/plugins/datatables/js/vfs_fonts.js'%}"></script>
+	 <!-- Datatable Setting js -->
+	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
+
+	 
 </body>
 </html>
