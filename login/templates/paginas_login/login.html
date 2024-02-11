@@ -2,10 +2,12 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 
 <form  method="POST">
+    {% csrf_token %}
     <div class="login-page">
         <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
             <div class="container">
@@ -34,19 +36,17 @@
                                 </label>
                             </div>
                         </div>
-                    <div class="input-group custom">
-                        <input type="text" placeholder="Usuario" name="usuario" class="form-control form-control-lg">
-                        <!--<input type="text" class="form-control form-control-lg" placeholder="Usuario" name="usuario">-->
-                        <div class="input-group-append custom">
-                        </div>
-                    </div><br>
-  
-                    <div class="input-group custom">
-                        <input type="password" placeholder="********" name="contraseña" class="form-control form-control-lg">
-                        <!--<input type="password" class="form-control form-control-lg" placeholder="**********" name="contraseña">-->
-                        <div class="input-group-append custom">
-                        </div>
-                    </div>
+                        {% if messages %}
+        
+                            {% for mensaje in messages %}
+            
+                                {{mensaje}}
+
+                            {% endfor %}
+        
+                        {% endif %}
+                        
+                        {{form|crispy}}
   
                     <div class="row pb-30">
                         <div class="col-6">

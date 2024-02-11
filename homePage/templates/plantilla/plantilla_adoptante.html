@@ -78,7 +78,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Perfil</a>					
-						<a class="dropdown-item" href="{% url "Cerrar_Session" %}"><i class="dw dw-logout"></i> Cerrar Sesion</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Cerrar Sesion</a>
 					</div>
 				</div>
 			</div>
@@ -162,7 +162,7 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="{% url "Inicio_Admin" %}">
+			<a href="{% url "Inicio_Adoptante" %}">
 				<img src="{% static 'homePage/vendors/images/logoLigth.png'%}" style="height: 50px; width: 50px; margin-right: 1rem;" alt="" class="dark-logo">
 				<img src="{% static 'homePage/vendors/images/logoDark.png'%}" style="height: 50px; width: 50px; margin-right: 1rem;"alt="" class="light-logo" >
 				<h3 style="font-size: 20px; color: #17a2b8;">Doggy At Home</h3>
@@ -176,18 +176,18 @@
 				<ul id="accordion-menu">
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Usuarios</span>
+							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{% url "Usuarios" %}">Usuarios</a></li>
+							<li><a href="#">Mis Adopciones</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
+                    <li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{% url "Adopciones" %}">Adopciones</a></li>
+							<li><a href="#">Mis solicitudes</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -195,15 +195,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Inventario</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{% url "Inventario" %}">Inventario</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Donaciones</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="{% url "Donaciones" %}">Donaciones</a></li>
+							<li><a href="#">Mascotas</a></li>
 						</ul>
 					</li>
 				</ul>

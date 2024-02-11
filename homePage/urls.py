@@ -25,9 +25,8 @@ urlpatterns = [
     path('inventario', views.Inventario, name="Inventario"),
     path('donaciones', views.Donaciones, name="Donaciones"),
     path('perritos_admin', views.Perritos_admin, name="Perritos_admin"),
+    path('inicio_veterinario', views.Inicio_Veterinario, name="Inicio_Veter"),
+    path('inicio_Adoptante', views.Inicio_Adoptante, name="Inicio_Adoptante"),
 
     
-    
-
-
 ]

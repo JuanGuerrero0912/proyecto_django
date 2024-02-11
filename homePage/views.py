@@ -77,3 +77,9 @@ def Perritos_admin(request):
         pass
 
     return render(request, "paginas_admin/perritos_admin.html", {"entity": mascotas, "paginator": paginator})
+
+def Inicio_Veterinario(request):
+    return render(request, "paginas_veter/inicio_veter.html")
+
+def Inicio_Adoptante(request):
+    return render(request, "paginas_adoptante/inicio_adoptante.html")
