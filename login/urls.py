@@ -1,8 +1,8 @@
 from django.urls import path
-from login import views
+from login.views import interfaz_login, cerrar_sesion, VRegistro
 
 urlpatterns = [
-    path('', views.interfaz_login, name="Login"),
-    path('registro', views.registro, name="Registro"),
-    path('cerrar_sesion', views.cerrar_sesion, name="Cerrar_Session"),
+    path('', interfaz_login, name="Login"),
+    path('registro', VRegistro.as_view(), name="Registro"),
+    path('cerrar_sesion', cerrar_sesion, name="Cerrar_Session"),
 ]

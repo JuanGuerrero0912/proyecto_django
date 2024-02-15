@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'login',
     'mascota',
     'homePage',
-    'usuario',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -88,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'proyectodoggy',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Juan0912*',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -112,8 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-AUTH_USER_MODEL = 'usuario.Usuario'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

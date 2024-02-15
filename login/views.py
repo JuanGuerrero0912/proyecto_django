@@ -1,19 +1,19 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import View
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from usuario.models import Usuario
+
 
 # Create your views here.
 
 def interfaz_login(request):
     if request.method=="POST":
-        user = Usuario()
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             nombre_usuario = form.cleaned_data.get("username")
             contra = form.cleaned_data.get("password")
-            usuario = authenticate(usuario = nombre_usuario, password = contra)
+            usuario = authenticate(username = nombre_usuario, password = contra)
             if usuario is not None:
                 login(request, usuario)
                 return redirect('Inicio_Admin')
@@ -24,8 +24,29 @@ def interfaz_login(request):
     form = AuthenticationForm()
     return render(request, "paginas_login/login.html", {"form": form})
 
-def registro(request):
-    return render(request, "paginas_login/registro.html")
+class VRegistro(View):
+    def get(self, request):
+        form = UserCreationForm()
+
+        return render(request, "paginas_login/registro.html", {"form": form})
+
+    def post(self, request):
+        
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            
+            usuario = form.save()
+            login(request, usuario)
+
+            return redirect('Inicio_Adoptante')
+        
+        else:
+            for msg in form.error_messages:
+                messages.error(request, form.error_messages[msg])
+            
+            return render(request, "paginas_login/registro.html", {"form": form})
+
 
 def cerrar_sesion(request):
     logout(request)
