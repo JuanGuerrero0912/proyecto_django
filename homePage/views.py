@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from mascota.models import Mascota, Adopcion,  HistorialMedico, SolicitudAdopcion, SeguimientoAdopcion
+from inventario.models import Articulos, Entradas, Salidas
+from donaciones.models import Donaciones
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -49,21 +51,30 @@ def Lista_seguimientos_proceso(request):
     return render(request, "paginas_admin/lista_seguimientos_proceso.html", {"entity": seguimientos})
 
 def Lista_donaciones(request):
-    return render(request, "paginas_admin/lista_donaciones.html")
 
-def Lista_inventario(request):
-    return render(request, "paginas_admin/lista_inventario.html")
+    donaciones = Donaciones.objects.all()
+
+    return render(request, "paginas_admin/lista_donaciones.html", {'donaciones': donaciones})
 
 def Lista_articulos(request):
-    return render(request, "paginas_admin/lista_articulos.html")
+
+    articulos = Articulos.objects.all()
+
+    return render(request, "paginas_admin/lista_articulos.html", {'articulos': articulos})
 
 def Lista_entradas(request):
-    return render(request, "paginas_admin/lista_entradas.html")
+
+    entradas = Entradas.objects.all()
+
+    return render(request, "paginas_admin/lista_entradas.html", {'entradas': entradas})
 
 def Lista_salidas(request):
-    return render(request, "paginas_admin/lista_salidas.html")
 
-def Donaciones(request):
+    salidas = Salidas.objects.all()
+
+    return render(request, "paginas_admin/lista_salidas.html", {'salidas': salidas})
+
+def Donaciones_Interfaz(request):
     return render(request, "paginas_admin/donaciones.html")
 
 def Inventario(request):

@@ -71,7 +71,7 @@ class SolicitudAdopcion(models.Model):
         return f'{self.mascota.nombre}, fecha de solicitud:   {self.fecha_solicitud}'
     
 class SeguimientoAdopcion(models.Model):
-    solicitud_adopcion= models.ForeignKey(SolicitudAdopcion, null=True, blank=True, on_delete=models.CASCADE)
+    solicitud_adopcion = models.ForeignKey(SolicitudAdopcion, null=True, blank=True, on_delete=models.CASCADE)
     fase = models.IntegerField(null = False, blank = False, choices = fase_segui, default= 1)
     estado_fase = models.IntegerField(null = False, blank = False, choices = estado_soli, default= 1)
     fecha_seguimiento = models.DateField(auto_now_add = True)
