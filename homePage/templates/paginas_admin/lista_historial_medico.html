@@ -33,15 +33,37 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
+                                    <th>Mascota</th>
                                     <th>Fecha</th>
                                     <th>Dignostico</th>
-                                    <th>Mascota</th>
                                     <th>Veterinario</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for historialMedico in entity %}
+                                <tr>
+                                    <td>{{historialMedico.id}}</td>
+                                    <td>{{historialMedico.mascota.nombre}}</td>
+                                    <td>{{historialMedico.fecha_historial }} </td>
+                                    <td>{{historialMedico.diagnostico }} </td>
+                                    <td>Daniela Zamora</td>
+                                    <td>{{historialMedico.get_estado_historial_display}}</td>
+                                    <td>
+										<div class="dropdown">
+											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+												<i class="dw dw-more"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+												<a class="dropdown-item" href=""><i class="dw dw-edit2"></i> Editar</a>
+												<a class="dropdown-item" href=""><i class="dw dw-delete-3"></i> Eliminar</a>
+												
+											</div>
+										</div>
+									</td>
+                                </tr>
+                                {% endfor%}
                             </tbody>
                         </table>
                     </div>

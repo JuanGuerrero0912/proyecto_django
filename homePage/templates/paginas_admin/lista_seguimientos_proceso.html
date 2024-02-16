@@ -33,15 +33,37 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Fecha</th>
+                                    <th>Mascota</th>
                                     <th>Fase</th>
                                     <th>Estado</th>
-                                    <th>Mascota</th>
+                                    <th>Fecha</th>
                                     <th>Estado seguimiento</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for seguimientoadopcion in entity %}
+                                <tr>
+                                    <td>{{seguimientoadopcion.id}}</td>
+                                    <td>{{seguimientoadopcion.solicitud_adopcion.mascota.nombre}}</td>
+                                    <td>{{seguimientoadopcion.get_fase_display }} </td>
+                                    <td>{{seguimientoadopcion.get_estado_fase_display}}</td>
+                                    <td>{{seguimientoadopcion.fecha_seguimiento }} </td>
+                                    <td>{{seguimientoadopcion.get_estado_seguimiento_display}}</td>
+                                    <td>
+										<div class="dropdown"><
+											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+												<i class="dw dw-more"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+												<a class="dropdown-item" href=""><i class="dw dw-edit2"></i> Editar</a>
+												<a class="dropdown-item" href=""><i class="dw dw-delete-3"></i> Eliminar</a>
+												
+											</div>
+										</div>
+									</td>
+                                </tr>
+                                {% endfor%}
                             </tbody>
                         </table>
                     </div>

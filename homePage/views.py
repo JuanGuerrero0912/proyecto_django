@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mascota.models import Mascota
+from mascota.models import Mascota, Adopcion,  HistorialMedico, SolicitudAdopcion, SeguimientoAdopcion
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -23,7 +23,8 @@ def Lista_adoptantes(request):
     return render(request, "paginas_admin/lista_adoptantes.html")
 
 def Lista_adopciones(request):
-    return render(request, "paginas_admin/lista_adopciones.html")
+    adopciones = Adopcion.objects.all()
+    return render(request, "paginas_admin/lista_adopciones.html", {"entity": adopciones})
 
 def Registrar_adoptante(request):
     return render(request, "paginas_admin/registrar_adoptante.html")
@@ -32,16 +33,20 @@ def Registrar_adopcion(request):
     return render(request, "paginas_admin/registrar_adopcion.html")
 
 def Lista_mascotas(request):
-    return render(request, "paginas_admin/lista_mascotas.html")
+    mascotas = Mascota.objects.all()
+    return render(request, "paginas_admin/lista_mascotas.html", {"entity": mascotas})
 
 def Lista_historial_medico(request):
-    return render(request, "paginas_admin/lista_historial_medico.html")
+    historiales = HistorialMedico.objects.all()
+    return render(request, "paginas_admin/lista_historial_medico.html", {"entity": historiales})
 
 def Lista_solicitudes_adopcion(request):
-    return render(request, "paginas_admin/lista_solicitudes_adopcion.html")
+    solicitudes = SolicitudAdopcion.objects.all()
+    return render(request, "paginas_admin/lista_solicitudes_adopcion.html", {"entity": solicitudes})
 
 def Lista_seguimientos_proceso(request):
-    return render(request, "paginas_admin/lista_seguimientos_proceso.html")
+    seguimientos = SeguimientoAdopcion.objects.all()
+    return render(request, "paginas_admin/lista_seguimientos_proceso.html", {"entity": seguimientos})
 
 def Lista_donaciones(request):
     return render(request, "paginas_admin/lista_donaciones.html")
@@ -83,3 +88,4 @@ def Inicio_Veterinario(request):
 
 def Inicio_Adoptante(request):
     return render(request, "paginas_adoptante/inicio_adoptante.html")
+
