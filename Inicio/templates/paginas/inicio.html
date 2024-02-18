@@ -88,14 +88,14 @@
                 <h1 class="mb-4">Peluditos que buscan un hogar</h1>
             </div>
             <div class="row">
-                <div class="col-lg-4 mb-5">
+                {% for mascota in entity %}
+                <div class="col-lg-4  mb-4">
                     <div class="card border-0 bg-light shadow-sm pb-2">
-                        <img class="card-img-top mb-2" src="{% static 'inicio/img/labrador1.png'%}" alt="" />
+                        <img class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
                         <div class="card-body text-center">
-                            <h4 class="card-title">Pepe</h4>
+                            <h4 class="card-title">{{mascota.nombre}}</h4>
                             <p class="card-text">
-                                Este peludito lo encontramos en un barrio del centro, 
-                                es muy cariñoso y le encanta que lo acaricien en todo momento. 
+                            {{mascota.caracteristicas}}
                             </p>
                         </div>
                         <div class="card-footer bg-transparent py-4 px-5">
@@ -103,90 +103,36 @@
                                 <div class="col-6 py-1 text-right border-right">
                                     <strong>Edad</strong>
                                 </div>
-                                <div class="col-6 py-1">4 años</div>
+                                <div class="col-6 py-1">{{mascota.edad}} {{mascota.get_edad_m_a_display}}</div>
                             </div>
                             <div class="row border-bottom">
                                 <div class="col-6 py-1 text-right border-right">
                                     <strong>Raza</strong>
                                 </div>
-                                <div class="col-6 py-1">Labrador</div>
+                                <div class="col-6 py-1">{{mascota.get_raza_display}}</div>
                             </div>
                             <div class="row border-bottom">
                                 <div class="col-6 py-1 text-right border-right">
                                     <strong>Genero</strong>
                                 </div>
-                                <div class="col-6 py-1">Macho</div>
+                                <div class="col-6 py-1">{{mascota.get_sexo_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Estado</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_estadoMascota_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1 text-right border-right">
+                                    <strong>Fecha de ingreso</strong>
+                                </div>
+                                <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso}}</div>
                             </div>
                         </div>
-                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card border-0 bg-light shadow-sm pb-2">
-                        <img class="card-img-top mb-2" src="{% static 'inicio/img/Criollo1.png'%}" alt="" />
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Koco</h4>
-                            <p class="card-text">
-                                Este peludito lo encontramos cerca a la fundación, 
-                                juguetón, travieso, divertido y muy amoroso.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-transparent py-4 px-5">
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Edad</strong>
-                                </div>
-                                <div class="col-6 py-1">6 años</div>
-                            </div>
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Raza</strong>
-                                </div>
-                                <div class="col-6 py-1">Criollo</div>
-                            </div>
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Genero</strong>
-                                </div>
-                                <div class="col-6 py-1">Macho</div>
-                            </div>
-                        </div>
-                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card border-0 bg-light shadow-sm pb-2">
-                        <img class="card-img-top mb-2" src="{% static 'inicio/img/Criollo2.png' %}" alt="" />
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Linda</h4>
-                            <p class="card-text">
-                                Encontrada por uno de nuestros colaboradores, 
-                                calmada, atenta, defensora y fiel compañía.
-                            </p>
-                        </div>
-                        <div class="card-footer bg-transparent py-4 px-5">
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Edad</strong>
-                                </div>
-                                <div class="col-6 py-1">4 años</div>
-                            </div>
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Raza</strong>
-                                </div>
-                                <div class="col-6 py-1">Criollo</div>
-                            </div>
-                            <div class="row border-bottom">
-                                <div class="col-6 py-1 text-right border-right">
-                                    <strong>Genero</strong>
-                                </div>
-                                <div class="col-6 py-1">Hembra</div>
-                            </div>
-                        </div>
-                        <a href=" {% url 'Perritos' %}" class="btn btn-primary px-4 mx-auto mb-4">Buscar más</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

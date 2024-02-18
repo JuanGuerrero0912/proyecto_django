@@ -23,7 +23,16 @@ def inicio(request):
         except Exception as e:
             messages.error(request, f"Ocurrio un error al enviar el correo: {e}")
             return render(request, "paginas/inicio.html")
-    return render(request, "paginas/inicio.html")
+    
+    mascotas = Mascota.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(mascotas, 3)
+        mascotas =  paginator.page(page)
+    except:
+        pass
+    return render(request, "paginas/inicio.html", {"entity": mascotas, "paginator": paginator})
 
 def nosotros(request):
     return render(request, "paginas/nosotros.html")
