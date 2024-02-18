@@ -3,7 +3,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>Doggy At Home</title>
+    {% block titulo %} {% endblock titulo %}
     <link rel="website icon" type="png" href="{% static 'inicio/img/DoggyAtHome (1).jpg' %}">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="Free HTML Templates" name="keywords" />
@@ -49,7 +49,7 @@
           style="font-size: 50px"
         >
         <i class=""> <img src="{% static 'inicio/img/DoggyAtHome (1).jpg' %}" alt="" height="70px" width="80px"></i>
-        <span class="text-primary">Doggy At Home</span>
+        <span class="text-primary">Corazón Peludo</span>
         </a>
         <button
           type="button"
@@ -68,7 +68,7 @@
             <a href="{% url "Nosotros" %}" class="nav-item nav-link {% if request.path == '/nosotros'%} active {% endif %}">Nosotros</a>
             <a href="{% url "Perritos" %}" class="nav-item nav-link {% if request.path == '/perritos'%} active {% endif %}">Perritos</a>
             <a href="{% url "Noticias" %}" class="nav-item nav-link {% if request.path == '/noticias'%} active {% endif %}">Noticias</a>
-            <a href="{% url "Donaciones" %}" class="nav-item nav-link {% if request.path == '/donaciones'%} active {% endif %}">Donaciones</a>
+            <a href="{% url "Interfaz_Donaciones" %}" class="nav-item nav-link {% if request.path == '/donaciones'%} active {% endif %}">Donaciones</a>
             <a href="{% url "Trabaja" %}" class="nav-item nav-link {% if request.path == '/trabaja_con_nosotros'%} active {% endif %}">Trabaja con nosotros</a>
           </div>
           <a href="{% url "Login" %}" class="btn btn-primary px-4">Ingresar</a>
@@ -135,7 +135,7 @@
             <a class="text-white mb-2" href="{% url "Noticias" %}"
               ><i class="fa fa-angle-right mr-2"></i>Noticias</a
             >
-            <a class="text-white mb-2" href="{% url "Donaciones" %}"
+            <a class="text-white mb-2" href="{% url "Interfaz_Donaciones" %}"
               ><i class="fa fa-angle-right mr-2"></i>Donaciones</a
             >
             <a class="text-white mb-2" href="{% url "Trabaja" %}"
