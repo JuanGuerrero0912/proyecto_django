@@ -1,0 +1,67 @@
+{% extends "plantilla/plantilla_home.html" %}
+{% load static %}
+{% block titulo %} Registrar Articulo{% endblock titulo %}
+
+{% block contenido %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Agregar un nuevo articulo</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="Inicio_Admin">Inicio</a></li>
+                                <li class="breadcrumb-item"><a href="Inventario">Inventario</a></li>
+                                <li class="breadcrumb-item"><a href="Lista_articulos">Lista de articulos</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Nuevo Articulo</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <h4 class="text-blue h4">Registra una Articulo</h4><br>
+                    </div>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Nombre Articulo</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="Nombre del articulo" name="nombreArticulo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Descripción</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="Descripción" name="descripcionArticulo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Referencia</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="Referencia" name="referenciaArticulo">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Stock</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" type="text" placeholder="stock" name="stock">
+                        </div>
+                    </div>
+                    <input type="submit" name="" value="registrar" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+{% endblock contenido %}
+
