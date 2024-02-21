@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Application definition
 
@@ -150,10 +151,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "doggyathomecp@gmail.com"
 EMAIL_HOST_PASSWORD = "lhnhbublptwzgpuo"
 
-MESSAGE_TAGS={
-    mensajes_de_error.DEBUG: 'debug',
-    mensajes_de_error.INFO: 'info',
-    mensajes_de_error.SUCCESS: 'success',
-    mensajes_de_error.WARNING: 'warning',
-    mensajes_de_error.ERROR: 'danger',
-}

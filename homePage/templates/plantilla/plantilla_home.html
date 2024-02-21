@@ -219,6 +219,23 @@
 	 <!-- Datatable Setting js -->
 	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
 
-	 
+
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	 {% if messages %}
+	 	{% for m in messages %}
+			<script>
+				Swal.fire(
+					{
+						"title": "Felicitaciones",
+						"text": "{{m}}",
+						"icon": "success"
+					}
+				)
+			</script>
+		{% endfor %}
+	 {% endif %}
+
+	 {% block js %}{% endblock js %}
 </body>
 </html>
