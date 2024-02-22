@@ -1,5 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from .choices import estado_mas, sex, selec_edad, selec_raza, perfil, estado_soli, fase_segui
+
+Usuario = get_user_model()
 
 class Mascota(models.Model):
 
@@ -10,9 +13,9 @@ class Mascota(models.Model):
     fecha_ingreso = models.DateField(auto_now_add = True)
     edad = models.IntegerField()
     edad_m_a = models.IntegerField(null = False, blank = False, choices = selec_edad, default= 1)
-    imagen = models.ImageField(upload_to="mascota", null = True, blank= True)
+    imagen = models.ImageField(upload_to='mascota/', null = True, blank= True)
     raza = models.IntegerField(null = False, blank = False, choices = selec_raza, default= 1)
-    estado_mascota = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
+    estadoRegistro = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
     updated = models.DateTimeField(auto_now_add= True)
 
     class meta:

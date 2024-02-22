@@ -1,4 +1,27 @@
 {% extends "plantilla/plantilla_home.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas este seguimiento ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/mascotas/inhabilitar_seguimiento/"+id
+                }
+            })
+        }
+    </script>
+{% endblock js %}
 {% load static %}
 {% block titulo %} Lista seguimientos {% endblock titulo %}
 {% block contenido %}
@@ -25,7 +48,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 style="text-align: center;" class="text-black h4">Lista de seguimiento de adopción</h4><br>
-                        <a href="{% url "Registrar_adoptante" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <a href="{% url "Registrar_Seguimiento" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
 
                     </div>
                             
@@ -44,26 +67,28 @@
                             </thead>
                             <tbody>
                                 {% for seguimientoadopcion in entity %}
-                                <tr>
-                                    <td>{{seguimientoadopcion.id}}</td>
-                                    <td>{{seguimientoadopcion.solicitud_adopcion.mascota.nombre}}</td>
-                                    <td>{{seguimientoadopcion.get_fase_display }} </td>
-                                    <td>{{seguimientoadopcion.get_estado_fase_display}}</td>
-                                    <td>{{seguimientoadopcion.fecha_seguimiento }} </td>
-                                    <td>{{seguimientoadopcion.get_estado_seguimiento_display}}</td>
-                                    <td>
-										<div class="dropdown"><
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href=""><i class="dw dw-edit2"></i> Editar</a>
-												<a class="dropdown-item" href=""><i class="dw dw-delete-3"></i> Eliminar</a>
-												
-											</div>
-										</div>
-									</td>
-                                </tr>
+                                    {% if seguimientoadopcion.estado_seguimiento == 1%}
+                                        <tr>
+                                            <td>{{seguimientoadopcion.id}}</td>
+                                            <td>{{seguimientoadopcion.solicitud_adopcion.mascota.nombre}}</td>
+                                            <td>{{seguimientoadopcion.get_fase_display }} </td>
+                                            <td>{{seguimientoadopcion.get_estado_fase_display}}</td>
+                                            <td>{{seguimientoadopcion.fecha_seguimiento }} </td>
+                                            <td>{{seguimientoadopcion.get_estado_seguimiento_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Seguimiento" seguimientoadopcion.id %}"><i class="dw dw-edit2"></i> Editar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ seguimientoadopcion.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor%}
                             </tbody>
                         </table>

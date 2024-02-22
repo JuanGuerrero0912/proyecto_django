@@ -1,4 +1,27 @@
 {% extends "plantilla/plantilla_home.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas esta solicitud ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/mascotas/inhabilitar_solicitud/"+id
+                }
+            })
+        }
+    </script>
+{% endblock js %}
 {% load static %}
 {% block titulo %} Lista solicitudes {% endblock titulo %}
 {% block contenido %}
@@ -26,7 +49,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 style="text-align: center;" class="text-black h4">Lista de solicitudes de adopción</h4><br>
-                        <a href="{% url "Registrar_adoptante" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <a href="{% url "Registrar_Solicitud" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
 
                     </div>
                             
@@ -36,37 +59,45 @@
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
                                     <th>Mascota</th>
+                                    <th>Foto</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Usuario</th>
-                                    <th>Nombre y apellido</th>
+                                    <th>Solicitud PDF</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for solicitudAdopcion in entity %}
-                                <tr>
-                                    <td>{{solicitudAdopcion.id}}</td>
-                                    <td>{{solicitudAdopcion.mascota.nombre}}</td>
-                                    <td>{{solicitudAdopcion.get_estado_proceso_display}}</td>
-                                    <td>{{solicitudAdopcion.fecha_solicitud }} </td>
-                                    <td>Daniela0810 </td>
-                                    <td>Daniela Zamora </td>
-                                    <td>{{solicitudAdopcion.get_estado_solicitud_display}}</td>
-                                    <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href=""><i class="dw dw-edit2"></i> Editar</a>
-												<a class="dropdown-item" href=""><i class="dw dw-delete-3"></i> Eliminar</a>
-												
-											</div>
-										</div>
-									</td>
-                                </tr>
+                                    {% if solicitudAdopcion.estado_solicitud == 1%}
+                                        <tr>
+                                            <td>{{solicitudAdopcion.id}}</td>
+                                            <td>{{solicitudAdopcion.mascota.nombre}}</td>
+                                            <td>
+                                                <img src="{{solicitudAdopcion.mascota.imagen.url}}" width="95"  alt=""/>
+                                            </td>
+                                            <td>{{solicitudAdopcion.get_estado_proceso_display}}</td>
+                                            <td>{{solicitudAdopcion.fecha_solicitud }} </td>
+                                            <td>user123 </td>
+                                            <td>
+                                                <a href="{{ solicitudAdopcion.solicitud.url }}" download>Solicitud</a>
+                                            </td>
+                                            <td>{{solicitudAdopcion.get_estado_solicitud_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Solicitud" solicitudAdopcion.id %}"><i class="dw dw-edit2"></i> Editar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ solicitudAdopcion.id}})"><i class="dw dw-delete-3"></i> Eliminar</a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor%}
                             </tbody>
                         </table>
