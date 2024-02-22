@@ -106,4 +106,24 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5  ">
+                    <img class="card-box mb-30" style="margin-left: 10rem;" src="{% static 'homePage/vendors/images/Solicitud.jpg'%}" alt=""/>
+                </div>
+                <div class="col-lg-7">
+                    <h1 style="margin-left: 10rem;" class="mb-4">Plantilla Solicitud Adopción</h1>
+                    <div>
+                        <p style="margin-left: 10rem;">
+                            Esta plantilla es para que la llenes la solicitud de adopción                                                  
+                        </p>
+                    </div>
+                    <a href="{% url 'descargar_archivo' 'solicitud.pdf' %}" download>
+                        <button class="btn btn-primary" style="margin-left: 10rem;">Descargar Archivo</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock contenido %}
