@@ -11,7 +11,6 @@ class Articulos(models.Model):
     nombre = models.CharField(max_length = 100)
     descripcion = models.CharField(max_length = 200)
     referencia = models.CharField(max_length = 10, unique = True)
-    stock = models.PositiveIntegerField(default = 0)
     estado_articulo = models.IntegerField(null = False, blank = False, choices = estado_art, default= 1)
     usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     fecha_registro = models.DateField(auto_now_add = True)
@@ -25,6 +24,29 @@ class Articulos(models.Model):
     def __str__(self):
         return f'{self.nombre}'
 
+    @property
+    def stock(self):
+        from django.db.models import Sum
+        from inventario.models import Entradas, Salidas
+        from donaciones.models import Donaciones
+
+        entradas = Entradas.objects.filter(
+            articulo = self
+        ).aggregate(Sum('cantidad_entrada'))
+
+        salidas = Salidas.objects.filter(
+            articulo = self
+        ).aggregate(Sum('cantidad_salida'))
+
+        donacion = Donaciones.objects.filter(
+            Articulos = self
+        ).aggregate(Sum('cantidad_donacion'))
+
+        entrada = entradas['cantidad_entrada__sum']
+        salida = salidas['cantidad_salida__sum']
+        donaciones = donacion['cantidad_donacion__sum']
+        resultado = (entrada + donaciones) - salida
+        return resultado
 
 class Entradas(models.Model):
 
