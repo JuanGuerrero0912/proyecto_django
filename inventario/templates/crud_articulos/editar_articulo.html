@@ -12,13 +12,13 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Actualizar registro</h4>
+                            <h4>Agregar un nuevo articulo</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="Inicio_Admin">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="Inventario">Inventario</a></li>
-                                <li class="breadcrumb-item"><a href="Lista_articulos">Lista de articulos</a></li>
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
+                                <li class="breadcrumb-item"><a href="{% url "Inventario" %}">Inventario</a></li>
+                                <li class="breadcrumb-item"><a href="{% url "Lista_articulos" %}">Lista de articulos</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Actualizar Articulo</li>
                             </ol>
                         </nav>
@@ -46,11 +46,11 @@
                         {{formulario|crispy}}
                     <input type="submit" name="" value="Actualizar" class="btn btn-primary">
                 </form>
+                <br>
+                <a href="{% url "Lista_articulos" %}"style="border-color: brown; background-color: brown; width: 104px;" class="btn btn-primary">Cancelar</a>
             </div>
         </div>
     </div>
 </div>
-    
-
 {% endblock contenido %}
 

@@ -24,5 +24,6 @@ urlpatterns = [
     path('home_page_admin/', include('homePage.urls')),
     path('articulos/', include('inventario.urls')),
     path('mascotas/', include('mascota.urls')),
+    path('donaciones/', include('donaciones.urls')),
 ]
 

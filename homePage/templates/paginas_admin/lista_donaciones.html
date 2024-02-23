@@ -1,4 +1,28 @@
 {% extends "plantilla/plantilla_home.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas esta donación ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/donaciones/inhabilitar_donacion/"+id
+                }
+            })
+        }
+    </script>
+
+{% endblock js %}
 {% load static %}
 {% block titulo %} Lista donaciones {% endblock titulo %}
 {% block contenido %}
@@ -26,7 +50,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 style="text-align: center;" class="text-black h4">Lista de Donaciones</h4><br>
-                        <a href="#"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <a href="{% url "Registrar_Donacion" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
 
                     </div>
                             
@@ -35,42 +59,40 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Usuario</th>
                                     <th>Tipo Donación</th>
                                     <th>Articulo</th>
                                     <th>Referencia</th>
                                     <th>Fecha Donacion</th>
                                     <th>Cantidad</th>
-                                    <th>Entregado</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for donacion in donaciones %}
-                                <tr>
-                                    <td class="table-plus">{{donacion.id}}</td>
-                                    <td>{{donacion.usuario.username}}</td>
-                                    <td>{{donacion.tipo_donacion.tipo_donacion}}</td>
-                                    <td>{{donacion.Articulos.nombre}}</td>
-                                    <td>{{donacion.Articulos.referencia}}</td>
-                                    <td>{{donacion.fecha_donacion}}</td>
-                                    <td>{{donacion.cantidad_donacion}}</td>
-                                    <td>{{donacion.entregado}}</td>
-                                    <td>{{donacion.get_estado_donacion_display}}</td>
-                                    <td>
-                                        <div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i>Ver</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>Editar</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>Inhabilitar</a>
-											</div>
-										</div>
-                                    </td>
-                                </tr>
+                                    {% if donacion.estado_donacion == 1 %}
+                                        <tr>
+                                            <td class="table-plus">{{donacion.id}}</td>
+                                            <td>{{donacion.tipo_donacion.tipo_donacion}}</td>
+                                            <td>{{donacion.Articulos.nombre}}</td>
+                                            <td>{{donacion.Articulos.referencia}}</td>
+                                            <td>{{donacion.fecha_donacion}}</td>
+                                            <td>{{donacion.cantidad_donacion}}</td>
+                                            <td>{{donacion.get_estado_donacion_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="{% url "Ver_Donacion" donacion.id %}"><i class="dw dw-eye"></i>Ver</a>
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Donacion" donacion.id %}"><i class="dw dw-edit2"></i>Editar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ donacion.id }})"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from inventario.forms import ArticulosForm
+from inventario.forms import ArticulosForm, EntradasForm, SalidasForm
 from django.views.generic import View
 from django.contrib import messages
-from inventario.models import Articulos
+from inventario.models import Articulos, Entradas, Salidas
 
 # Create your views here.
 
@@ -63,6 +63,137 @@ def inhabilitar_articulo(request, id):
     messages.success(request,"Articulo inhabilitado correctamente")
     return redirect('Lista_articulos')
 
-        
+def ver_articulo(request, id):
+    articulo = Articulos.objects.get(id = id)
+    formulario = ArticulosForm(instance=articulo)
 
+    return render(request, 'crud_articulos/ver_articulo.html', {"formulario": formulario})
+
+        
+class registrar_Entrada(View):
+
+    def get(self, request):
+
+        formulario = EntradasForm()
+
+        return render(request, "crud_entradas/registrar_entrada.html", {"formulario": formulario})
     
+    def post(self, request):
+
+        formulario = EntradasForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Entrada agregada correctamente")
+            return redirect('Lista_entradas')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+            
+            return render(request, 'crud_entradas/registrar_entrada.html', {"formulario": formulario})
+
+
+class actualizar_entrada(View):
+
+    def get(self, request, id):
+
+        entrada = Entradas.objects.get(id = id)
+        formulario = EntradasForm(instance=entrada)
+
+        return render(request, 'crud_entradas/editar_entrada.html', {"formulario": formulario})
+
+    def post(self,  request, id):
+
+        entrada = Entradas.objects.get(id=id)
+        formulario = EntradasForm(request.POST , instance=entrada)
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Entrada actualizada correctamente")
+            return redirect('Lista_entradas')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+            
+            return render(request, 'crud_entradas/registrar_entrada.html', {"formulario": formulario})
+
+def inhabilitar_entrada(request, id):
+
+    entrada = Entradas.objects.get(id = id)
+    entrada.estado_entrada = 2
+    entrada.save()
+    messages.success(request, "Entrada inhabilitada correctamente")
+    return redirect('Lista_entradas')
+
+def ver_entrada(request, id):
+    entrada = Entradas.objects.get(id = id)
+    formulario = EntradasForm(instance=entrada)
+
+    return render(request, 'crud_entradas/ver_entrada.html', {"formulario": formulario})
+
+class registrar_salida(View):
+
+    def get(self, request):
+
+        formulario = SalidasForm()
+
+        return render(request, 'crud_salidas/registrar_salida.html', {"formulario": formulario})
+
+    def post(self, request):
+
+        formulario = SalidasForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Salida agregada correctamente")
+            return redirect('Lista_salidas')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+
+            return render(request, 'crud_salidas/registrar_salida.html', {"formulario": formulario})
+
+class actualizar_salida(View):
+
+    def get(self, request, id):
+
+        salida = Salidas.objects.get(id = id)
+        formulario = SalidasForm(instance=salida)
+
+        return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
+    
+    def post(self, request, id):
+
+        salida = Salidas.objects.get(id = id)
+        formulario = SalidasForm(request.POST,instance=salida)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Salida actualizada correctamente")
+            return redirect('Lista_salidas')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+
+            return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
+
+def inhabilitar_salida(request, id):
+
+    salida = Salidas.objects.get(id = id)
+    salida.estado_salida = 2
+    salida.save()
+    messages.success(request, "Salida inhabilitada correctamente")
+    return redirect('Lista_salidas')
+
+def ver_salida(request, id):
+    salida = Salidas.objects.get(id = id)
+    formulario = SalidasForm(instance=salida)
+
+    return render(request, 'crud_salidas/ver_salida.html', {"formulario": formulario})

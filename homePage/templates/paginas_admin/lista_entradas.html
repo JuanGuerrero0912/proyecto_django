@@ -1,4 +1,28 @@
 {% extends "plantilla/plantilla_home.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas este entrada ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/articulos/inhabilitar_entrada/"+id
+                }
+            })
+        }
+    </script>
+
+{% endblock js %}
 {% load static %}
 {% block titulo %} Lista entradas {% endblock titulo %}
 {% block contenido %}
@@ -26,7 +50,7 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 style="text-align: center;" class="text-black h4">Lista de Entradas</h4><br>
-                        <a href="#"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <a href="{% url "Registrar_Entrada" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
 
                     </div>
                             
@@ -45,26 +69,28 @@
                             </thead>
                             <tbody>
                                 {% for entrada in entradas %}
-                                <tr>
-                                    <td class="table-plus">{{entrada.id}}</td>
-                                    <td>{{entrada.articulo.nombre}}</td>
-                                    <td>{{entrada.articulo.referencia}}</td>
-                                    <td>{{entrada.fecha_entrada}}</td>
-                                    <td>{{entrada.cantidad_entrada}}</td>
-                                    <td>{{entrada.get_estado_entrada_display}}</td>
-                                    <td>
-                                        <div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i>Ver</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i>Editar</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>Inhabilitar</a>
-											</div>
-										</div>
-                                    </td>
-                                </tr>
+                                    {% if entrada.estado_entrada == 1 %}
+                                        <tr>
+                                            <td class="table-plus">{{entrada.id}}</td>
+                                            <td>{{entrada.articulo.nombre}}</td>
+                                            <td>{{entrada.articulo.referencia}}</td>
+                                            <td>{{entrada.fecha_entrada}}</td>
+                                            <td>{{entrada.cantidad_entrada}}</td>
+                                            <td>{{entrada.get_estado_entrada_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="{% url "Ver_Entrada" entrada.id %}"><i class="dw dw-eye"></i>Ver</a>
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Entrada" entrada.id %}"><i class="dw dw-edit2"></i>Editar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ entrada.id }})"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
