@@ -28,7 +28,7 @@ class Donaciones(models.Model):
     
     tipo_donacion = models.ForeignKey(Tipo_Donacion,  on_delete = models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
-    cantidad_donacion = models.PositiveIntegerField(default = 0)
+    cantidad_donacion = models.PositiveIntegerField(default = 0, null = True, blank = True)
     fecha_donacion = models.DateField(auto_now_add = True)
     Articulos = models.ForeignKey(Articulos,on_delete = models.CASCADE)
     estado_donacion = models.IntegerField(null = False, blank = False, choices = estado_do, default= 1)

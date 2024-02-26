@@ -75,7 +75,10 @@
                                             <td class="table-plus">{{articulo.id}}</td>
                                             <td>{{articulo.nombre}}</td>
                                             <td>{{articulo.referencia}}</td>
-                                            <td>{{articulo.stock}}</td>
+                                            {% if articulo.get_stock > 0 %}<td style="color: green;">{{articulo.get_stock}}</td>
+                                            {% else %}
+                                            <td style="color: red;">{{articulo.get_stock}}</td>
+                                            {% endif %}
                                             <td>{{articulo.fecha_registro}}</td>
                                             <td>{{articulo.get_estado_articulo_display}}</td>
                                             <td>

@@ -25,7 +25,7 @@ class Articulos(models.Model):
         return f'{self.nombre}'
 
     @property
-    def stock(self):
+    def get_stock(self):
         from django.db.models import Sum
         from inventario.models import Entradas, Salidas
         from donaciones.models import Donaciones
@@ -45,14 +45,33 @@ class Articulos(models.Model):
         entrada = entradas['cantidad_entrada__sum']
         salida = salidas['cantidad_salida__sum']
         donaciones = donacion['cantidad_donacion__sum']
-        resultado = (entrada + donaciones) - salida
+
+        if entrada is not None:
+            en = 0
+            en = en + entrada
+        else:
+            en = 0
+        if salida is not None:
+            sa = 0
+            sa = sa + salida
+        else: 
+            sa = 0
+        if donaciones is not None:
+            do = 0
+            do = do + donaciones
+        else:
+            do = 0
+        
+
+        resultado = (en + do) - sa
+
         return resultado
 
 class Entradas(models.Model):
 
     fecha_entrada = models.DateField(auto_now_add = True)
     articulo = models.ForeignKey(Articulos, on_delete = models.CASCADE)
-    cantidad_entrada = models.PositiveIntegerField(default = 0)
+    cantidad_entrada = models.PositiveIntegerField(default = 0, null = True, blank = True)
     estado_entrada = models.IntegerField(null = False, blank = False, choices = estado_ent, default= 1)
 
     class meta:
@@ -70,7 +89,7 @@ class Salidas(models.Model):
 
     fecha_salida = models.DateField(auto_now_add = True)
     articulo = models.ForeignKey(Articulos, on_delete = models.CASCADE)
-    cantidad_salida = models.PositiveIntegerField(default = 0)
+    cantidad_salida = models.PositiveIntegerField(default = 0, null = True, blank = True)
     estado_salida = models.IntegerField(null = False, blank = False, choices = estado_sal, default= 1)
 
     class meta:
@@ -84,5 +103,4 @@ class Salidas(models.Model):
 
 
 
-    
 
