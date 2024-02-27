@@ -128,6 +128,19 @@ def inhabilitar_entrada(request, id):
     messages.success(request, "Entrada inhabilitada correctamente")
     return redirect('Lista_entradas')
 
+def Lista_entradas_inhabilitadas(request):
+
+    entradas = Entradas.objects.filter(estado_entrada = 2) 
+
+    return render(request, "crud_entradas/lista_entradas_inhabilitadas.html", {'entradas': entradas})
+
+def habilitar_entrada(request, id):
+    entrada = Entradas.objects.get(id = id)
+    entrada.estado_entrada = 1
+    entrada.save()
+    messages.success(request, "Entrada habilitada correctamente")
+    return redirect('Lista_entradas_Inhabilitadas')
+
 def ver_entrada(request, id):
     entrada = Entradas.objects.get(id = id)
     formulario = EntradasForm(instance=entrada)

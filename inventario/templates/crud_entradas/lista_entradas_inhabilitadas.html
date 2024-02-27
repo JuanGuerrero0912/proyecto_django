@@ -5,18 +5,18 @@
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas este entrada ya no te aparcera en la lista",
+                "text": "Si habilitas esta entrada te aparcera en la lista de entradas",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
-                "confirmButtonText": "Si, Inhabilitar",
+                "confirmButtonText": "Si, Habilitar",
                 "reverseButtons": true,
                 "confirmButtonColor": "#1b00ff",
                 "cancelButtonColor": "red"
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/articulos/inhabilitar_entrada/"+id
+                    window.location.href = "/articulos/habilitar_entrada/"+id
                 }
             })
         }
@@ -40,7 +40,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Inventario" %}">Inventario</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Listado entradas</li>
+                                    <li class="breadcrumb-item"><a href="{% url "Lista_entradas" %}">Listado entradas</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Entradas inhabilitadas</li>
                                 </ol>
                             </nav>
                         </div>
@@ -49,11 +50,9 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de Entradas</h4><br>
-                        <a href="{% url "Registrar_Entrada" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
-                    </div>
-                    <div class="pd-20">
-                        <a href="{% url "Lista_entradas_Inhabilitadas" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Inhabilitados</button></a><br>
+                        <h4 style="text-align: center;" class="text-black h4">Lista de Entradas inhabilitadas</h4><br>
+                        <a href="{% url "Lista_entradas" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Volver</button></a><br>
+
                     </div>
                             
                     <div class="pb-20">
@@ -71,7 +70,6 @@
                             </thead>
                             <tbody>
                                 {% for entrada in entradas %}
-                                    {% if entrada.estado_entrada == 1 %}
                                         <tr>
                                             <td class="table-plus">{{entrada.id}}</td>
                                             <td>{{entrada.articulo.nombre}}</td>
@@ -85,14 +83,11 @@
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="{% url "Ver_Entrada" entrada.id %}"><i class="dw dw-eye"></i>Ver</a>
-                                                        <a class="dropdown-item" href="{% url "Actualizar_Entrada" entrada.id %}"><i class="dw dw-edit2"></i>Editar</a>
-                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ entrada.id }})"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ entrada.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>

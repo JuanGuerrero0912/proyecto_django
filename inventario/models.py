@@ -31,15 +31,18 @@ class Articulos(models.Model):
         from donaciones.models import Donaciones
 
         entradas = Entradas.objects.filter(
-            articulo = self
+            articulo = self,
+            estado_entrada = 1
         ).aggregate(Sum('cantidad_entrada'))
 
         salidas = Salidas.objects.filter(
-            articulo = self
+            articulo = self,
+            estado_salida = 1
         ).aggregate(Sum('cantidad_salida'))
 
         donacion = Donaciones.objects.filter(
-            Articulos = self
+            Articulos = self,
+            estado_donacion = 1
         ).aggregate(Sum('cantidad_donacion'))
 
         entrada = entradas['cantidad_entrada__sum']
