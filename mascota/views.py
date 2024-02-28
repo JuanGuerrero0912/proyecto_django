@@ -290,9 +290,8 @@ def historiales_medicos_por_perrito(request, id):
 
 def seguimiento_por_perrito(request, id):
 
-
-    solicitud_adopcion = SeguimientoAdopcion.objects.filter(
-        solicitud_adopcion_id = id
+    solicitud_adopcion = SolicitudAdopcion.objects.filter(
+        mascota = id
     )
 
     return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"solicitud_adopcion": solicitud_adopcion})
