@@ -6,6 +6,8 @@ urlpatterns = [
     path('actualizar_articulo/<int:id>', views.actualizar_articulo.as_view(), name="Actualizar_Articulo"),
     path('ver_articulo/<int:id>', views.ver_articulo, name="Ver_Articulo"),
     path('inhabilitar_articulo/<int:id>', views.inhabilitar_articulo, name="Inhabilitar_Articulo"),
+    path('lista_articulos_inhabilitados', views.lista_articulos_inhabilitados, name="Lista_articulos_Inhabilitados"),
+    path('habilitar_articulo/<int:id>', views.habilitar_articulo, name="Habilitar_Articulo"),
     path('registrar_entrada', views.registrar_Entrada.as_view(), name="Registrar_Entrada"),
     path('actualizar_entrada/<int:id>', views.actualizar_entrada.as_view(), name="Actualizar_Entrada"),
     path('ver_entrada/<int:id>', views.ver_entrada, name="Ver_Entrada"),
@@ -16,4 +18,6 @@ urlpatterns = [
     path('actualizar_salida/<int:id>', views.actualizar_salida.as_view(), name="Actualizar_Salida"),
     path('ver_salida/<int:id>', views.ver_salida, name="Ver_Salida"),
     path('inhabilitar_salida/<int:id>', views.inhabilitar_salida, name="Inhabilitar_Salida"),
+    path('lista_salidas_inhabilitadas', views.lista_salidas_inhabilitadas, name="Lista_salidas_Inhabilitadas"),
+    path('habilitar_salida/<int:id>', views.habilitar_salida, name="Habilitar_Salida"),
 ]

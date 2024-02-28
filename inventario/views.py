@@ -69,6 +69,18 @@ def ver_articulo(request, id):
 
     return render(request, 'crud_articulos/ver_articulo.html', {"formulario": formulario})
 
+def lista_articulos_inhabilitados(request):
+
+    articulos = Articulos.objects.filter(estado_articulo = 2)
+    return render(request, 'crud_articulos/lista_articulos_inhabilitados.html', {"articulos": articulos})
+
+def habilitar_articulo(request, id):
+    articulo = Articulos.objects.get(id = id)
+    articulo.estado_articulo = 1
+    articulo.save()
+    messages.success(request,"Articulo habilitado correctamente")
+    return redirect('Lista_articulos_Inhabilitados')
+
         
 class registrar_Entrada(View):
 
@@ -210,3 +222,15 @@ def ver_salida(request, id):
     formulario = SalidasForm(instance=salida)
 
     return render(request, 'crud_salidas/ver_salida.html', {"formulario": formulario})
+
+def lista_salidas_inhabilitadas(request):
+    salidas = Salidas.objects.filter(estado_salida = 2)
+    return render(request, 'crud_salidas/lista_salidas_inhabilitadas.html', {"salidas": salidas})
+
+def habilitar_salida(request, id):
+
+    salida = Salidas.objects.get(id = id)
+    salida.estado_salida = 1
+    salida.save()
+    messages.success(request, "Salida habilitada correctamente")
+    return redirect('Lista_salidas_Inhabilitadas')

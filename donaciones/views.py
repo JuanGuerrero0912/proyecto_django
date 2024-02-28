@@ -69,3 +69,16 @@ def ver_donacion(request, id):
     formulario = DonacionForms(instance=donacion)
 
     return render(request, 'crud_donaciones/ver_donacion.html', {"formulario": formulario})
+
+def lista_donaciones_inhabilitadas(request):
+
+    donaciones = Donaciones.objects.filter(estado_donacion = 2)
+    return render(request, "crud_donaciones/lista_donaciones_inhabilitadas.html", {'donaciones': donaciones})
+
+def habilitar_donacion(request, id):
+
+    donacion = Donaciones.objects.get(id = id)
+    donacion.estado_donacion = 1
+    donacion.save()
+    messages.success(request,"Donación habilitada correctamente")
+    return redirect('Lista_donaciones_Inhabilitadas')

@@ -361,9 +361,6 @@ def historiales_medicos_por_perrito(request, id):
     return render(request, "crud_mascotas/historial_por_perrito.html", {"historial": historial})
 
 def seguimiento_por_perrito(request, id):
-    try:
-        solicitud = SolicitudAdopcion.objects.get(mascota=id)
-        seguimientos = SeguimientoAdopcion.objects.filter(solicitud_adopcion=solicitud)
-    except SolicitudAdopcion.DoesNotExist:
-        seguimientos = []
-    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"seguimientos": seguimientos})
+    peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
+
+    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"peticion": peticion})

@@ -74,7 +74,7 @@
                                             <td>{{historialMedico.mascota.nombre}}</td>
                                             <td>{{historialMedico.fecha_historial }} </td>
                                             <td>
-                                                <a href="{{ historialMedico.diagnostico.url }}" download>Historial Médico</a>
+                                                <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
                                             <td>Daniela Zamora</td>
                                             <td>{{historialMedico.get_estado_historial_display}}</td>

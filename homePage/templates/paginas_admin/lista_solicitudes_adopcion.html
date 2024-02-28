@@ -82,7 +82,7 @@
                                             <td>{{solicitudAdopcion.fecha_solicitud }} </td>
                                             <td>user123 </td>
                                             <td>
-                                                <a href="{{ solicitudAdopcion.solicitud.url }}" download>Solicitud</a>
+                                                <a href="{{ solicitudAdopcion.solicitud.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
                                             <td>{{solicitudAdopcion.get_estado_solicitud_display}}</td>
                                             <td>
