@@ -58,6 +58,22 @@ def inhabilitar_mascota(request, id):
     messages.success(request,"Mascota inhabilitada correctamente")
     return redirect('Lista_mascotas')
 
+def ver_mascota(request, id):
+    mascota = Mascota.objects.get(id = id)
+    formulario = MascotaForm(instance=mascota)
+    return render(request, 'crud_mascotas/ver_mascota.html', {"formulario": formulario})
+
+def lista_mascotas_inhabilitadas(request):
+    mascotas = Mascota.objects.filter(estadoRegistro = 2) 
+    return render(request, "crud_mascotas/lista_mascotas_inhabilitadas.html", {'entity': mascotas})
+
+def habilitar_mascota(request, id):
+    mascota = Mascota.objects.get(id = id)
+    mascota.estadoRegistro= 1
+    mascota.save()
+    messages.success(request,"Mascota habilitada correctamente")
+    return redirect('Lista_mascotas_inhabilitadas')
+
 # ADOPCION:
 class registrar_adopcion(View):
     
@@ -108,6 +124,22 @@ def inhabilitar_adopcion(request, id):
     messages.success(request,"Adopción inhabilitada correctamente")
     return redirect('Lista_adopciones')
 
+def ver_adopcion(request, id):
+    adopcion = Adopcion.objects.get(id = id)
+    formulario = AdopcionForm(instance=adopcion)
+    return render(request, 'crud_mascotas/ver_adopcion.html', {"formulario": formulario})
+
+def lista_adopciones_inhabilitadas(request):
+    adopcion = Adopcion.objects.filter(estado_adopcion = 2) 
+    return render(request, "crud_mascotas/lista_adopciones_inhabilitadas.html", {'entity': adopcion})
+
+def habilitar_adopcion(request, id):
+
+    adopcion = Adopcion.objects.get(id = id)
+    adopcion.estado_adopcion= 1
+    adopcion.save()
+    messages.success(request,"Adopción habilitada correctamente")
+    return redirect('Lista_adopciones_inhabilitadas')
 
 # HISTORIAL MÉDICO:
 class registrar_historial(View):
@@ -163,16 +195,25 @@ def inhabilitar_historial(request, id):
     messages.success(request,"Historial inhabilitado correctamente")
     return redirect('Lista_historial_medico')
 
-#descarga archivos
-from django.http import FileResponse
-import os
+def ver_historial(request, id):
+    historial = HistorialMedico.objects.get(id = id)
+    formulario = HistorialMedicoForm(instance=historial)
+    return render(request, 'crud_mascotas/ver_historial.html', {"formulario": formulario})
 
 def descargar_archivo(request, archivo_nombre):
-    # Ruta absoluta al archivo que deseas descargar
     archivo_ruta = os.path.join(settings.MEDIA_ROOT, 'plantillas', archivo_nombre)
-    # Abre el archivo y lo devuelve como una respuesta de archivo
     return FileResponse(open(archivo_ruta, 'rb'))
 
+def lista_historiales_inhabilitadas(request):
+    historial = HistorialMedico.objects.filter(estado_historial = 2) 
+    return render(request, "crud_mascotas/lista_historiales_inhabilitadas.html", {'entity': historial})
+
+def habilitar_historial(request, id):
+    historial = HistorialMedico.objects.get(id = id)
+    historial.estado_historial= 1
+    historial.save()
+    messages.success(request,"Historial habilitado correctamente")
+    return redirect('Lista_historiales_inhabilitadas')
 
 # SOLICITUD
 class registrar_solicitud(View):
@@ -227,6 +268,22 @@ def inhabilitar_solicitud(request, id):
     messages.success(request,"Solicitud inhabilitada correctamente")
     return redirect('Lista_solicitudes_adopcion')
 
+def ver_solicitud(request, id):
+    solicitud = SolicitudAdopcion.objects.get(id = id)
+    formulario = SolicitudAdopcionForm(instance=solicitud)
+    return render(request, 'crud_mascotas/ver_solicitud.html', {"formulario": formulario})
+
+def lista_solicitudes_inhabilitadas(request):
+    solicitud = SolicitudAdopcion.objects.filter(estado_solicitud = 2) 
+    return render(request, "crud_mascotas/lista_solicitudes_inhabilitadas.html", {'entity': solicitud})
+
+def habilitar_solicitud(request, id):
+    solicitud = SolicitudAdopcion.objects.get(id = id)
+    solicitud.estado_solicitud= 1
+    solicitud.save()
+    messages.success(request,"Solicitud habilitada correctamente")
+    return redirect('Lista_solicitudes_inhabilitadas')
+
 #SEGUIMIENTO
 class registrar_seguimiento(View):
     
@@ -280,6 +337,21 @@ def inhabilitar_seguimiento(request, id):
     messages.success(request,"Seguimiento inhabilitado correctamente")
     return redirect('Lista_seguimientos_proceso')
 
+def ver_seguimiento(request, id):
+    seguimiento = SeguimientoAdopcion.objects.get(id = id)
+    formulario = SeguimientoAdopcionForm(instance=seguimiento)
+    return render(request, 'crud_mascotas/ver_seguimiento.html', {"formulario": formulario})
+
+def lista_seguimientos_inhabilitados(request):
+    seguimiento = SeguimientoAdopcion.objects.filter(estado_seguimiento = 2) 
+    return render(request, "crud_mascotas/lista_seguimientos_inhabilitados.html", {'entity': seguimiento})
+
+def habilitar_seguimiento(request, id):
+    seguimiento = SeguimientoAdopcion.objects.get(id = id)
+    seguimiento.estado_seguimiento= 1
+    seguimiento.save()
+    messages.success(request,"Seguimiento habilitado correctamente")
+    return redirect('Lista_seguimientos_inhabilitados')
 
 def historiales_medicos_por_perrito(request, id):
 
@@ -289,9 +361,9 @@ def historiales_medicos_por_perrito(request, id):
     return render(request, "crud_mascotas/historial_por_perrito.html", {"historial": historial})
 
 def seguimiento_por_perrito(request, id):
-
-    solicitud_adopcion = SolicitudAdopcion.objects.filter(
-        mascota = id
-    )
-
-    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"solicitud_adopcion": solicitud_adopcion})
+    try:
+        solicitud = SolicitudAdopcion.objects.get(mascota=id)
+        seguimientos = SeguimientoAdopcion.objects.filter(solicitud_adopcion=solicitud)
+    except SolicitudAdopcion.DoesNotExist:
+        seguimientos = []
+    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"seguimientos": seguimientos})

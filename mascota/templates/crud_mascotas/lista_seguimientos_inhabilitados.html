@@ -5,18 +5,18 @@
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas este seguimiento ya no te aparcera en la lista",
+                "text": "Si habilitas este seguimiento ya no te aparcera en la lista",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
-                "confirmButtonText": "Si, Inhabilitar",
+                "confirmButtonText": "Si, habilitar",
                 "reverseButtons": true,
                 "confirmButtonColor": "#1b00ff",
                 "cancelButtonColor": "red"
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/mascotas/inhabilitar_seguimiento/"+id
+                    window.location.href = "/mascotas/habilitar_seguimiento/"+id
                 }
             })
         }
@@ -38,7 +38,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Adopciones" %}">Adopciones</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Lista seguimiento de adopción</li>
+                                    <li class="breadcrumb-item"><a href="{% url "Lista_seguimientos_proceso" %}">Lista seguimientos</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Inhabilitados</li>
                                 </ol>
                             </nav>
                         </div>
@@ -47,8 +48,8 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de seguimiento de adopción</h4><br>
-                        <a href="{% url "Registrar_Seguimiento" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <h4 style="text-align: center;" class="text-black h4">Lista de seguimiento de adopción inhabilitados</h4><br>
+                        <a href="{% url "Lista_seguimientos_proceso" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Volver</button></a><br>
 
                     </div>
                             
@@ -67,7 +68,6 @@
                             </thead>
                             <tbody>
                                 {% for seguimientoadopcion in entity %}
-                                    {% if seguimientoadopcion.estado_seguimiento == 1%}
                                         <tr>
                                             <td>{{seguimientoadopcion.id}}</td>
                                             <td>{{seguimientoadopcion.solicitud_adopcion.mascota.nombre}}</td>
@@ -81,14 +81,11 @@
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="{% url "Actualizar_Seguimiento" seguimientoadopcion.id %}"><i class="dw dw-edit2"></i> Editar</a>
-                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ seguimientoadopcion.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
-                                                        
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ seguimientoadopcion.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    {% endif %}
                                 {% endfor%}
                             </tbody>
                         </table>

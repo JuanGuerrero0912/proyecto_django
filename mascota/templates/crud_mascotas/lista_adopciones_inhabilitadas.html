@@ -5,25 +5,25 @@
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas este seguimiento ya no te aparcera en la lista",
+                "text": "Si habilitas esta adopción ya no te aparcera en la lista",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
-                "confirmButtonText": "Si, Inhabilitar",
+                "confirmButtonText": "Si, habilitar",
                 "reverseButtons": true,
                 "confirmButtonColor": "#1b00ff",
                 "cancelButtonColor": "red"
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/mascotas/inhabilitar_seguimiento/"+id
+                    window.location.href = "/mascotas/habilitar_adopcion/"+id
                 }
             })
         }
     </script>
 {% endblock js %}
 {% load static %}
-{% block titulo %} Lista seguimientos {% endblock titulo %}
+{% block titulo %} Lista adopciones {% endblock titulo %}
 {% block contenido %}
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -32,13 +32,14 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>SEGUIMIENTOS ADOPCIÓN</h4>
+                                <h4>ADOPCIONES</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Adopciones" %}">Adopciones</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Lista seguimiento de adopción</li>
+                                    <li class="breadcrumb-item"><a href="{% url "Lista_adopciones" %}">Listado Adopciones</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Inhabilitados</li>
                                 </ol>
                             </nav>
                         </div>
@@ -47,8 +48,8 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de seguimiento de adopción</h4><br>
-                        <a href="{% url "Registrar_Seguimiento" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <h4 style="text-align: center;" class="text-black h4">Lista de adopciones inhabilitas</h4><br>
+                        <a href="{% url "Lista_adopciones" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Volver</button></a><br>
 
                     </div>
                             
@@ -57,43 +58,45 @@
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
-                                    <th>Fase</th>
-                                    <th>Estado</th>
                                     <th>Fecha</th>
-                                    <th>Estado seguimiento</th>
+                                    <th>Mascota</th>
+                                    <th>Foto</th>
+                                    <th>Usuario</th>
+                                    <th>Nombre y apellido</th>
+                                    <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for seguimientoadopcion in entity %}
-                                    {% if seguimientoadopcion.estado_seguimiento == 1%}
+                        
+                                {% for adopcion in entity %}
                                         <tr>
-                                            <td>{{seguimientoadopcion.id}}</td>
-                                            <td>{{seguimientoadopcion.solicitud_adopcion.mascota.nombre}}</td>
-                                            <td>{{seguimientoadopcion.get_fase_display }} </td>
-                                            <td>{{seguimientoadopcion.get_estado_fase_display}}</td>
-                                            <td>{{seguimientoadopcion.fecha_seguimiento }} </td>
-                                            <td>{{seguimientoadopcion.get_estado_seguimiento_display}}</td>
+                                            <td>{{adopcion.id}}</td>
+                                            <td>{{adopcion.fecha_adopcion }} </td>
+                                            <td>{{adopcion.mascota.nombre }} </td>
+                                            <td>
+                                                <img src="{{adopcion.mascota.imagen.url}}" width="95"  alt=""/>
+                                            </td>
+                                            <td>Usuario</td>
+                                            <td>Daniela </td>
+                                            <td>{{adopcion.get_estado_adopcion_display}}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="{% url "Actualizar_Seguimiento" seguimientoadopcion.id %}"><i class="dw dw-edit2"></i> Editar</a>
-                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ seguimientoadopcion.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
-                                                        
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ adopcion.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                    {% endif %}
                                 {% endfor%}
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <!-- Export Datatable End -->
             </div>
         </div>
     </div>
