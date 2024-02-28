@@ -279,3 +279,20 @@ def inhabilitar_seguimiento(request, id):
     seguimiento.save()
     messages.success(request,"Seguimiento inhabilitado correctamente")
     return redirect('Lista_seguimientos_proceso')
+
+
+def historiales_medicos_por_perrito(request, id):
+
+    historial = HistorialMedico.objects.filter(
+        mascota = id
+    )
+    return render(request, "crud_mascotas/historial_por_perrito.html", {"historial": historial})
+
+def seguimiento_por_perrito(request, id):
+
+
+    solicitud_adopcion = SeguimientoAdopcion.objects.filter(
+        solicitud_adopcion_id = id
+    )
+
+    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"solicitud_adopcion": solicitud_adopcion})
