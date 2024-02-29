@@ -234,3 +234,63 @@ def habilitar_salida(request, id):
     salida.save()
     messages.success(request, "Salida habilitada correctamente")
     return redirect('Lista_salidas_Inhabilitadas')
+
+#-------------------------------------------------------------------------------------
+
+        #VETERINARIO: 
+
+class registrar_salida_veter(View):
+
+    def get(self, request):
+
+        formulario = SalidasForm()
+
+        return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
+
+    def post(self, request):
+
+        formulario = SalidasForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Salida agregada correctamente")
+            return redirect('Salidas_veterinario')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+
+            return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
+        
+def ver_salida_veter(request, id):
+    salida = Salidas.objects.get(id = id)
+    formulario = SalidasForm(instance=salida)
+
+    return render(request, 'salidas_veterinario/ver_salida_veter.html', {"formulario": formulario})
+
+class actualizar_salida_veter(View):
+
+    def get(self, request, id):
+
+        salida = Salidas.objects.get(id = id)
+        formulario = SalidasForm(instance=salida)
+
+        return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})
+    
+    def post(self, request, id):
+
+        salida = Salidas.objects.get(id = id)
+        formulario = SalidasForm(request.POST,instance=salida)
+
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Salida actualizada correctamente")
+            return redirect('Salidas_veterinario')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+
+            return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})

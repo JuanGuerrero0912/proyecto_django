@@ -20,4 +20,10 @@ urlpatterns = [
     path('inhabilitar_salida/<int:id>', views.inhabilitar_salida, name="Inhabilitar_Salida"),
     path('lista_salidas_inhabilitadas', views.lista_salidas_inhabilitadas, name="Lista_salidas_Inhabilitadas"),
     path('habilitar_salida/<int:id>', views.habilitar_salida, name="Habilitar_Salida"),
+
+    #-------------------------------------------------------------------------------------
+        #VETERINARIO: 
+    path('registrar_salida_veterinario', views.registrar_salida_veter.as_view(), name="Registrar_Salida_Veterinario"),
+    path('ver_salida_veterinario/<int:id>', views.ver_salida_veter, name="Ver_Salida_Veterinario"),
+    path('actualizar_salida_veterianrio/<int:id>', views.actualizar_salida_veter.as_view(), name="Actualizar_Salida_Veterinario"),
 ]

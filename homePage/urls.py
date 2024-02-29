@@ -30,6 +30,9 @@ urlpatterns = [
     path('lista_mascotas_vete', views.Lista_mascotas_vete, name="Lista_mascotas_vete"),
     path('lista_historial_vete', views.Lista_historial_vete, name="Lista_historial_vete"),
     path('perritos_vete', views.Perritos_vete, name="Perritos_vete"),
+    path('articulos_Veterinario', views.vista_articulos_veterinario, name="Articulos_veterinario"),
+    path('inventario_Veterinario', views.inventario_veter, name="Inventario_veterinario"),
+    path('salidas_Veterinario', views.vista_salidas_veterinario, name="Salidas_veterinario"),
 
     
 ]

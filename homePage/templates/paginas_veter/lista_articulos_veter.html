@@ -1,0 +1,68 @@
+{% extends "plantilla/plantilla_vete.html" %}
+
+{% load static %}
+
+{% block contenido %}
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>Articulos</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Inventario_veterinario" %}">Inventario</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Listado Articulos</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 style="text-align: center;" class="text-black h4">Lista de Articulos</h4><br>
+                    </div>
+                    <div class="pb-20">
+                        <table class="table hover multiple-select-row data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="table-plus datatable-nosort">id</th>
+                                    <th>Articulo</th>
+                                    <th>Referencia</th>
+                                    <th>Stock</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for articulo in articulos %}
+                                    {% if articulo.estado_articulo == 1 %}
+                                        <tr>
+                                            <td class="table-plus">{{articulo.id}}</td>
+                                            <td>{{articulo.nombre}}</td>
+                                            <td>{{articulo.referencia}}</td>
+                                            {% if articulo.get_stock > 0 %}<td style="color: green;">{{articulo.get_stock}}</td>
+                                            {% else %}
+                                            <td style="color: red;">{{articulo.get_stock}}</td>
+                                            {% endif %}
+                                            <td>{{articulo.fecha_registro}}</td>
+                                            <td>{{articulo.get_estado_articulo_display}}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Export Datatable End -->
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido %}

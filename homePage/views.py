@@ -131,3 +131,19 @@ def Perritos_vete(request):
         pass
 
     return render(request, "paginas_veter/perritos.html", {"entity": mascotas, "paginator": paginator})
+
+def vista_articulos_veterinario(request):
+
+    articulos = Articulos.objects.all()
+
+    return render(request, "paginas_veter/lista_articulos_veter.html", {'articulos': articulos})
+
+def inventario_veter(request):
+
+    return render(request, "paginas_veter/inventario_veter.html")
+
+def vista_salidas_veterinario(request):
+
+    salidas = Salidas.objects.all()
+
+    return render(request, "paginas_veter/lista_salidas_veter.html", {'salidas': salidas})

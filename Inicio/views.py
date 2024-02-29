@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import FormularioContacto
 from django.core.mail import EmailMessage
 from django.contrib import messages
-from mascota.models import Mascota
+from mascota.models import Mascota, Adopcion
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -25,6 +25,11 @@ def inicio(request):
             return render(request, "paginas/inicio.html")
     
     mascotas = Mascota.objects.all()
+    mascotas_rescatadas = Mascota.objects.filter(estadoRegistro = 1).count()
+    mascotas_adoptadas = Adopcion.objects.filter(estado_adopcion = 1).count()
+    mascotas_por_adoptar = Mascota.objects.filter(estadoMascota = 1).count()
+    mascotas_tratamiento = Mascota.objects.filter(estadoMascota = 2).count()
+    total_por_adoptar = mascotas_por_adoptar + mascotas_tratamiento
     page = request.GET.get('page', 1)
 
     try:
@@ -32,7 +37,11 @@ def inicio(request):
         mascotas =  paginator.page(page)
     except:
         pass
-    return render(request, "paginas/inicio.html", {"entity": mascotas, "paginator": paginator})
+    return render(request, "paginas/inicio.html", 
+                  {"entity": mascotas, "paginator": paginator,
+                    "mascotas_rescatadas": mascotas_rescatadas,
+                    "mascotas_adoptadas": mascotas_adoptadas,
+                    "total_por_adoptar": total_por_adoptar})
 
 def nosotros(request):
     return render(request, "paginas/nosotros.html")
