@@ -1,0 +1,104 @@
+{% extends "plantilla/plantilla_vete.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si habilitas esta mascota ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, habilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/mascotas/habilitar_mascota_vet/"+id
+                }
+            })
+        }
+    </script>
+
+{% endblock js %}
+{% load static %}
+{% block titulo %} Lista mascotas {% endblock titulo %}
+{% block contenido %}
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>PELUDOS</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Lista_mascotas_vete" %}">Listado mascotas</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Inhabilitados</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 style="text-align: center;" class="text-black h4">Peludos en adopción Inhabilitados</h4><br>
+                        <a href="{% url "Lista_mascotas_vete" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Volver</button></a><br>
+
+                    </div>
+                            
+                    <div class="pb-20">
+                        <table class="table hover multiple-select-row data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="table-plus datatable-nosort">id</th>
+                                    <th>Nombre</th>
+                                    <th>Estado Mascota</th>
+                                    <th>Sexo</th>
+                                    <th>Foto</th>
+                                    <th>Fecha ingreso</th>
+                                    <th>Estado</th>
+                                    <th class="datatable-nosort">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for mascota in entity %}
+                                    
+                                        <tr>
+                                            <td>{{mascota.id}}</td>
+                                            <td>{{mascota.nombre }} </td>
+                                            <td>{{mascota.get_estadoMascota_display }} </td>
+                                            <td>{{mascota.get_sexo_display}}</td>
+                                            <td>
+                                                <img src="{{mascota.imagen.url}}" width="95"  alt=""/>
+                                            </td>
+                                            <td>{{mascota.fecha_ingreso}}</td> 
+                                            <td>{{mascota.get_estadoRegistro_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ mascota.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                 
+                                {% endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}

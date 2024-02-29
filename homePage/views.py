@@ -100,3 +100,34 @@ def Inicio_Veterinario(request):
 def Inicio_Adoptante(request):
     return render(request, "paginas_adoptante/inicio_adoptante.html")
 
+#-------------------------------------------------------------------------------------
+
+        #VETERINARIO: 
+
+def Adopciones_vete(request):
+    return render(request, "paginas_veter/adopciones.html")
+
+def Lista_adopciones_vete(request):
+    adopciones = Adopcion.objects.all()
+    return render(request, "paginas_veter/lista_adopciones.html", {"entity": adopciones})
+
+def Lista_mascotas_vete(request):
+    mascotas = Mascota.objects.all()
+    return render(request, "paginas_veter/lista_mascotas.html", {"entity": mascotas})
+
+def Lista_historial_vete(request):
+    historiales = HistorialMedico.objects.all()
+    return render(request, "paginas_veter/lista_historial.html", {"entity": historiales})
+
+def Perritos_vete(request):
+
+    mascotas = Mascota.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(mascotas, 3)
+        mascotas =  paginator.page(page)
+    except:
+        pass
+
+    return render(request, "paginas_veter/perritos.html", {"entity": mascotas, "paginator": paginator})

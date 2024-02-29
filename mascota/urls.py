@@ -38,4 +38,24 @@ urlpatterns = [
     path('lista_seguimientos_inhabilitados', views.lista_seguimientos_inhabilitados, name="Lista_seguimientos_inhabilitados"),
     path('lista_solicitudes_inhabilitadas', views.lista_solicitudes_inhabilitadas, name="Lista_solicitudes_inhabilitadas"),
     path('descargar/<str:archivo_nombre>/', views.descargar_archivo, name='descargar_archivo'),
+    
+    
+    #VETERINARIO
+    path('ver_adopcion_vete/<int:id>', views.ver_adopcion_vete, name="Ver_adopcion_vete"),
+    path('adopcion_inhabilitada_vete', views.adopcion_inhabilitada_vete, name="Adopcion_inhabilitada_vete"),
+    path('registrar_mascota_vete', views.registrar_mascota_vete.as_view(), name="Registrar_mascota_vete"),
+    path('actualizar_mascota_vete/<int:id>', views.actualizar_mascota_vete.as_view(), name="Actualizar_mascota_vete"),
+    path('inhabilitar_mascota_vet/<int:id>', views.inhabilitar_mascota_vet, name="Inhabilitar_mascota_vet"),
+    path('ver_mascota_vet/<int:id>', views.ver_mascota_vet, name="Ver_mascota_vet"),
+    path('habilitar_mascota_vet/<int:id>', views.habilitar_mascota_vet, name="Habilitar_mascota_vet"),
+    path('lista_mascotas_inhabilitadas_vet', views.lista_mascotas_inhabilitadas_vet, name="Lista_mascotas_inhabilitadas_vet"),
+    path('registrar_historial_vete', views.registrar_historial_vete.as_view(), name="Registrar_historial_vete"),
+    path('actualizar_historial_vete/<int:id>', views.actualizar_historial_vete.as_view(), name="Actualizar_historial_vete"),
+    path('inhabilitar_historial_vete/<int:id>', views.inhabilitar_historial_vete, name="Inhabilitar_historial_vete"),
+    path('ver_historial_vete/<int:id>', views.ver_historial_vete, name="Ver_historial_vete"),
+    path('habilitar_historial_vete/<int:id>', views.habilitar_historial_vete, name="Habilitar_historial_vete"),
+    path('lista_historial_inhabilitado_vet', views.lista_historial_inhabilitado_vet, name="Lista_historial_inhabilitado_vet"),
+    path('historial_por_perrito/<int:id>', views.historiales_medicos_por_perrito, name="Historiales_medicos_por_perrito"),
+    path('seguimiento_por_perrito/<int:id>', views.seguimiento_por_perrito, name="Seguimiento_por_perrito"),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

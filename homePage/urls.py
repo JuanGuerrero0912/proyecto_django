@@ -21,8 +21,15 @@ urlpatterns = [
     path('inventario', views.Inventario, name="Inventario"),
     path('donaciones', views.Donaciones_Interfaz, name="Donaciones"),
     path('perritos_admin', views.Perritos_admin, name="Perritos_admin"),
-    path('inicio_veterinario', views.Inicio_Veterinario, name="Inicio_Veter"),
     path('inicio_Adoptante', views.Inicio_Adoptante, name="Inicio_Adoptante"),
+    
+    #LINKS VETERINARIO: 
+    path('inicio_veterinario', views.Inicio_Veterinario, name="Inicio_Veter"),
+    path('adopciones_vete', views.Adopciones_vete, name="Adopciones_Vete"),
+    path('lista_adopciones_vete', views.Lista_adopciones_vete, name="Lista_adopciones_vete"),
+    path('lista_mascotas_vete', views.Lista_mascotas_vete, name="Lista_mascotas_vete"),
+    path('lista_historial_vete', views.Lista_historial_vete, name="Lista_historial_vete"),
+    path('perritos_vete', views.Perritos_vete, name="Perritos_vete"),
 
     
 ]

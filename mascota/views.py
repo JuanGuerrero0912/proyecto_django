@@ -364,3 +364,160 @@ def seguimiento_por_perrito(request, id):
     peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
 
     return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"peticion": peticion})
+
+
+        # VETERINARIO
+def ver_adopcion_vete(request, id):
+    adopcion = Adopcion.objects.get(id = id)
+    formulario = AdopcionForm(instance=adopcion)
+    return render(request, 'crud_mascotas_vet/ver_adopcion_vete.html', {"formulario": formulario})
+
+def adopcion_inhabilitada_vete(request):
+    adopcion = Adopcion.objects.filter(estado_adopcion = 2) 
+    return render(request, "crud_mascotas_vet/adopcion_inhabilitada_vete.html", {'entity': adopcion})
+
+class registrar_mascota_vete(View):
+    
+    def get(self, request):
+        formulario = MascotaForm()
+        return render(request, 'crud_mascotas_vet/registrar_mascota.html', {"formulario": formulario})
+    
+    def post(self, request):
+        formulario = MascotaForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Mascota agregada correctamente")
+            return redirect('Lista_mascotas_vete')      
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])           
+            return render(request, 'crud_mascotas_vet/registrar_mascota.html', {"formulario": formulario})
+        
+class actualizar_mascota_vete(View):
+
+    def get(self, request, id):
+
+        mascota = Mascota.objects.get(id = id)
+        formulario = MascotaForm(instance=mascota)
+        return render(request, 'crud_mascotas_vet/editar_mascota.html', {"formulario": formulario})
+    
+    def post(self, request, id):
+
+        mascota = Mascota.objects.get(id = id)
+        formulario = MascotaForm(request.POST, request.FILES, instance=mascota)
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Mascota actualizada correctamente")
+            return redirect('Lista_mascotas_vete')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+            
+            return render(request, 'crud_mascotas_vet/editar_mascota.html', {"formulario": formulario})
+        
+def inhabilitar_mascota_vet(request, id):
+    mascota = Mascota.objects.get(id = id)
+    mascota.estadoRegistro= 2
+    mascota.save()
+    messages.success(request,"Mascota inhabilitada correctamente")
+    return redirect('Lista_mascotas_vete')
+
+def ver_mascota_vet(request, id):
+    mascota = Mascota.objects.get(id = id)
+    formulario = MascotaForm(instance=mascota)
+    return render(request, 'crud_mascotas_vet/ver_mascota.html', {"formulario": formulario})
+
+def lista_mascotas_inhabilitadas_vet(request):
+    mascotas = Mascota.objects.filter(estadoRegistro = 2) 
+    return render(request, "crud_mascotas_vet/lista_mascotas_inhabilitadas.html", {'entity': mascotas})
+
+def habilitar_mascota_vet(request, id):
+    mascota = Mascota.objects.get(id = id)
+    mascota.estadoRegistro= 1
+    mascota.save()
+    messages.success(request,"Mascota habilitada correctamente")
+    return redirect('Lista_mascotas_inhabilitadas_vet')
+
+
+class registrar_historial_vete(View):
+    
+    def get(self, request):
+        formulario = HistorialMedicoForm()
+        return render(request, 'crud_mascotas_vet/registrar_historial.html', {"formulario": formulario})
+    
+    def post(self, request):
+
+        formulario = HistorialMedicoForm(request.POST, request.FILES)
+        if formulario.is_valid():
+
+            formulario.save()
+            messages.success(request, "Historial agregado correctamente")
+            return redirect('Lista_historial_vete')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+            
+            return render(request, 'crud_mascotas_vet/registrar_historial.html', {"formulario": formulario})
+
+class actualizar_historial_vete(View):
+
+    def get(self, request, id):
+
+        historial = HistorialMedico.objects.get(id = id)
+        formulario = HistorialMedicoForm(instance=historial)
+        return render(request, 'crud_mascotas_vet/editar_historial.html', {"formulario": formulario})
+    
+    def post(self, request, id):
+
+        historial = HistorialMedico.objects.get(id = id)
+        formulario = HistorialMedicoForm(request.POST, request.FILES, instance=historial)
+
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Historial actualizado correctamente")
+            return redirect('Lista_historial_vete')
+        
+        else:
+            for msj in formulario.error_messages:
+                messages.error(request, formulario.error_messages[msj])
+            
+            return render(request, 'crud_mascotas_vet/editar_historial.html', {"formulario": formulario})
+
+def inhabilitar_historial_vete(request, id):
+    historial = HistorialMedico.objects.get(id = id)
+    historial.estado_historial= 2
+    historial.save()
+    messages.success(request,"Historial inhabilitado correctamente")
+    return redirect('Lista_historial_vete')
+
+def ver_historial_vete(request, id):
+    historial = HistorialMedico.objects.get(id = id)
+    formulario = HistorialMedicoForm(instance=historial)
+    return render(request, 'crud_mascotas_vet/ver_historial.html', {"formulario": formulario})
+
+
+def lista_historial_inhabilitado_vet(request):
+    historial = HistorialMedico.objects.filter(estado_historial = 2) 
+    return render(request, "crud_mascotas_vet/lista_historial_inhabilitado.html", {'entity': historial})
+
+def habilitar_historial_vete(request, id):
+    historial = HistorialMedico.objects.get(id = id)
+    historial.estado_historial= 1
+    historial.save()
+    messages.success(request,"Historial habilitado correctamente")
+    return redirect('Lista_historial_inhabilitado_vet')
+
+def historiales_medicos_por_perrito(request, id):
+
+    historial = HistorialMedico.objects.filter(
+        mascota = id
+    )
+    return render(request, "crud_mascotas_vet/historial_por_perrito.html", {"historial": historial})
+
+def seguimiento_por_perrito(request, id):
+    peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
+
+    return render(request, "crud_mascotas_vet/seguimiento_por_perrito.html", {"peticion": peticion})

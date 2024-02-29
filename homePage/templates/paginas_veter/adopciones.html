@@ -1,0 +1,82 @@
+{% extends "plantilla/plantilla_vete.html" %}
+{% load static %}
+{% block titulo %} Adopciones {% endblock titulo %}
+{% block contenido %} 
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>Apartado de adopciones</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Adopciones</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-wrap">
+                    <div class="product-list">
+                        <ul class="row">
+                            <li class="col-lg-4 col-md-6 col-sm-12" style="margin-left: 8rem">
+                                <div class="product-box">
+                                    <div style="text-align: center;" class="product-caption">
+                                        <img style="height: 290px;" src="{% static 'homePage/vendors/images/AdopcionesAdmin.jpg'%}" alt="AdoptanteAdmin"/>
+                                        <h4><h:link outcome="FormularioAdopciones">Adopciones</h:link></h4>
+                                        <div class="price">
+                                            <ins>Gestiona las adopciones</ins>
+                                        </div>
+                                        <a href="{% url "Lista_adopciones_vete" %}"><button class="btn btn-outline-primary">Ir</button></a>    
+                                    </div>                                
+                                </div>
+                            </li>
+                            <li class="col-lg-4 col-md-6 col-sm-12" style="margin-left: 6rem">
+                                <div class="product-box">
+                                    <div style="text-align: center;" class="product-caption">
+                                        <img style="height: 290px;" src="{% static 'homePage/vendors/images/MascotaAdmin.jpg'%}" alt=""/>
+                                        <h4><h:link outcome="ListaMascotasAdmin">Peluditos</h:link></h4>
+                                        <div class="price">
+                                            <ins>Ver peludos</ins>
+                                        </div>
+                                        <a href="{% url "Perritos_vete" %}"><button class="btn btn-outline-primary">Ir</button></a>                                    
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="col-lg-4 col-md-6 col-sm-12" style="margin-left: 8rem">
+                                <div class="product-box">
+                                    <div style="text-align: center;" class="product-caption">
+                                        <img style="height: 290px;" src="{% static 'homePage/vendors/images/MascotaAdminLista.jpg'%}" alt=""/>
+                                        <h4><h:link outcome="FormularioMascota">Gestiona Mascotas</h:link></h4>
+                                        <div class="price">
+                                            <ins>Gestiona mascotas</ins>
+                                        </div>
+                                        <a href="{% url "Lista_mascotas_vete" %}"><button class="btn btn-outline-primary">Ir</button></a>                                    
+                                    </div>
+                                </div>
+                            </li>
+                    
+                            <li class="col-lg-4 col-md-6 col-sm-12" style="margin-left: 6rem">
+                                <div class="product-box">
+                                    <div style="text-align: center;" class="product-caption">
+                                        <img style="height: 290px;" src="{% static 'homePage/vendors/images/HistorialMedicoAdmin.jpg'%}" alt=""/>
+                                        <h4><h:link outcome="FormularioSolicitudesAdopcion">Historiales Medicos</h:link></h4>
+                                        <div class="price">
+                                            <ins>Gestiona historiales</ins>
+                                        </div>
+                                        <a href="{% url "Lista_historial_vete" %}"><button class="btn btn-outline-primary">Ir</button></a>                                    
+                                    </div>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}

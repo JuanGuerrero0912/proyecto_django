@@ -157,7 +157,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Adopciones</a></li>
+							<li><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -202,7 +202,22 @@
 	 <script src="{% static 'homePage/src/plugins/datatables/js/vfs_fonts.js'%}"></script>
 	 <!-- Datatable Setting js -->
 	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	 
+	 {% if messages %}
+	 	{% for m in messages %}
+			<script>
+				Swal.fire(
+					{
+						"title": "Felicitaciones",
+						"text": "{{m}}",
+						"icon": "success"
+					}
+				)
+			</script>
+		{% endfor %}
+	 {% endif %}
+
+	 {% block js %}{% endblock js %}
 </body>
 </html>

@@ -1,9 +1,59 @@
 {% extends "plantilla/plantilla_vete.html" %}
 
 {% load static %}
+{% block titulo %} Inicio {% endblock titulo %}
 
 {% block contenido %}
-
-    <h4> Inicio Veterinario </h4>
+    <div class="main-container">
+        <div class="pd-ltr-20">
+            <div class="card-box pd-20 height-100-p mb-30">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <img src="{% static 'homePage/vendors/images/banner-img.png'%}" alt=""/>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="font-18 max-width-600 text-center">Cuentanos que quieres hacer hoy</p>
+                    </div>
+                </div>
+            </div>
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+                        <li class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="product-box">
+                                <div class="producct-img">
+                                </div>
+                                <div style="text-align: center;" class="product-caption">
+                                    <img style="height: 290px;" src="{% static 'homePage/vendors/images/PerritoInicioAdmin.jpg'%}" alt=""/>
+                                    <h4><a href="#">Adopciones</a></h4>
+                                    <div class="price">
+                                        <ins>Apartado para gestionar adopciones</ins>
+                                    </div>
+                                    <a href="{% url "Adopciones_Vete" %}"><button class="btn btn-outline-primary">Ir</button></a>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="product-box">
+                                <div class="producct-img">
+                                </div>
+                                <div style="text-align: center;" class="product-caption">
+                                    <img style="height: 290px;" src="{% static 'homePage/vendors/images/InventarioInicioAdmin.jpg'%}" alt=""/>
+                                    <h4><a href="#">Inventario</a></h4>
+                                    <div class="price">
+                                        <ins>Apartado para gestionar el inventario</ins>
+                                    </div>
+                                    <a href="{% url "Inventario" %}"><button class="btn btn-outline-primary">Ir</button></a>                                    
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock contenido %}
+
+
