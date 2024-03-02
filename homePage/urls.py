@@ -22,6 +22,7 @@ urlpatterns = [
     path('donaciones', views.Donaciones_Interfaz, name="Donaciones"),
     path('perritos_admin', views.Perritos_admin, name="Perritos_admin"),
     path('inicio_Adoptante', views.Inicio_Adoptante, name="Inicio_Adoptante"),
+
     
     #LINKS VETERINARIO: 
     path('inicio_veterinario', views.Inicio_Veterinario, name="Inicio_Veter"),

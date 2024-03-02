@@ -38,7 +38,5 @@ fase_segui = [
     (1, "Fase 1"),
     (2, "Fase 2"),
     (3, "Fase 3"),
-    (4, "Fase 4"),
-    (5, "Fase 5"),
-    (6, "Fase 6"),
+    (4, "Terminado"),
 ]

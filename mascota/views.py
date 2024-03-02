@@ -362,8 +362,8 @@ def historiales_medicos_por_perrito(request, id):
 
 def seguimiento_por_perrito(request, id):
     peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
-
-    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"peticion": peticion})
+    mascota = Mascota.objects.get(id=id)
+    return render(request, "crud_mascotas/seguimiento_por_perrito.html", {"peticion": peticion, "mascota": mascota})
 
 
         # VETERINARIO
@@ -510,14 +510,14 @@ def habilitar_historial_vete(request, id):
     messages.success(request,"Historial habilitado correctamente")
     return redirect('Lista_historial_inhabilitado_vet')
 
-def historiales_medicos_por_perrito(request, id):
+def historiales_medicos_por_perrito_vet(request, id):
 
     historial = HistorialMedico.objects.filter(
         mascota = id
     )
     return render(request, "crud_mascotas_vet/historial_por_perrito.html", {"historial": historial})
 
-def seguimiento_por_perrito(request, id):
+def seguimiento_por_perrito_vet(request, id):
     peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
 
     return render(request, "crud_mascotas_vet/seguimiento_por_perrito.html", {"peticion": peticion})
