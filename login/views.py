@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from login.models import Perfil
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+from django.contrib.auth.models import User
+from login.forms import CustomUserCreationForms
 
 
 # Create your views here.
 
+#-------------------------------------------------------------------------------------
+#Login y Registro: 
 def interfaz_login(request):
     if request.method=="POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -15,8 +20,19 @@ def interfaz_login(request):
             contra = form.cleaned_data.get("password")
             usuario = authenticate(username = nombre_usuario, password = contra)
             if usuario is not None:
-                login(request, usuario)
-                return redirect('Inicio_Admin')
+                usu = User.objects.get(username = nombre_usuario)
+                perfil = Perfil.objects.get(user = usu)
+                if perfil.rol == 1:
+                    login(request, usuario)
+                    return redirect('Inicio_Admin')
+                elif perfil.rol == 2:
+                    login(request, usuario)
+                    return redirect('Inicio_Veter')
+                elif perfil.rol == 3:
+                    login(request, usuario)
+                    return redirect('Inicio_Adoptante')
+                else:
+                    messages.error(request, "No es posible ingresar")
             else:
                 messages.error(request, "Usuario no valido")
         else:
@@ -26,28 +42,30 @@ def interfaz_login(request):
 
 class VRegistro(View):
     def get(self, request):
-        form = UserCreationForm()
+        form = CustomUserCreationForms()
 
         return render(request, "paginas_login/registro.html", {"form": form})
 
     def post(self, request):
         
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForms(request.POST)
 
         if form.is_valid():
             
             usuario = form.save()
             login(request, usuario)
 
-            return redirect('Inicio_Adoptante')
+            return redirect('Registro_Perfil_Adoptante')
         
         else:
             for msg in form.error_messages:
-                messages.error(request, form.error_messages[msg])
+                messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, "paginas_login/registro.html", {"form": form})
-
 
 def cerrar_sesion(request):
     logout(request)
     return redirect('Inicio')
+
+#-------------------------------------------------------------------------------------
+#Crear usuarios administradores:

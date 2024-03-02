@@ -50,13 +50,13 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="{% static 'homePage/vendors/images/photo1.jpg'%}" alt="">
+							<img src="{{user.perfil.imagen.url}}" alt="">
 						</span>
-						<span class="user-name">Usuario</span>
+						<span class="user-name">{{user.username}}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Perfil</a>					
-						<a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Cerrar Sesion</a>
+						<a class="dropdown-item" href="{% url "Perfil_Adoptante" %}"><i class="dw dw-user1"></i> Perfil</a>					
+						<a class="dropdown-item" href="{% url "Cerrar_Session" %}"><i class="dw dw-logout"></i> Cerrar Sesion</a>
 					</div>
 				</div>
 			</div>
@@ -211,6 +211,21 @@
 	 <!-- Datatable Setting js -->
 	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
 
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	 {% if messages %}
+	 	{% for m in messages %}
+			<script>
+				Swal.fire(
+					{
+						"title": "Felicitaciones",
+						"text": "{{m}}",
+						"icon": "success"
+					}
+				)
+			</script>
+		{% endfor %}
+	 {% endif %}
 	 
 </body>
 </html>

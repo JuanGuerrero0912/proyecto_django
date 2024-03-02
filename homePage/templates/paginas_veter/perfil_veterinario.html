@@ -1,0 +1,110 @@
+{% extends "plantilla/plantilla_vete.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Perfil</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+                    <div class="pd-20 card-box height-100-p">
+                        <div class="profile-photo">
+                            <img src="{{user.perfil.imagen.url}}" alt="" class="avatar-photo">
+                        </div>
+                        <h5 class="text-center h5 mb-0">{{user.username}}</h5>
+                        <p class="text-center text-muted font-14">{{user.perfil.get_rol_display}}</p>
+                        <div class="profile-info">
+                            <h5 class="mb-20 h5 text-blue">Información de contacto</h5>
+                            <ul>
+                                <li>
+                                    <span>Nombres y Apellidos</span>
+                                    {{user.first_name}} {{user.last_name}}
+                                </li>
+                                <li>
+                                    <span>Email</span>
+                                    {{user.email}}
+                                </li>
+                                <li>
+                                    <span>Número de celular</span>
+                                    {{user.perfil.celular}}
+                                </li>
+                                <li>
+                                    <span>Ciudad</span>
+                                    {{user.perfil.ciudad}}
+                                </li>
+                                <li>
+                                    <span>Dirección</span>
+                                    {{user.perfil.direccion}}
+                                </li>
+                                <a href="{% url "Cambio_Contraseña_Veterinario" %}"><button class="btn btn-outline-primary">Cambiar Contraseña</button></a>   
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+                    <div class="card-box height-100-p overflow-hidden">
+                        <div class="profile-tab height-100-p">
+                            <div class="tab height-100-p">
+                                <ul class="nav nav-tabs customtab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tasks" role="tab">Editar Perfil</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="tasks" role="tabpanel">
+                                        <div class="profile-setting">
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <ul class="profile-edit-list">
+                                                    <li class="weight-500">
+                                                        <h4 class="text-blue h5 mb-20">Edita datos de tu perfil</h4>
+                                                                
+                                                        <div class="profile-photo">
+                                                            <img src="{{user.perfil.imagen.url}}" alt="" class="avatar-photo">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for = "first_name">Nombres</label>
+                                                            <input class="form-control form-control-lg" type="text" name="first_name" value="{{user.first_name}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="last_name">Apellidos</label>
+                                                            <input class="form-control form-control-lg" type="text" name="last_name" value="{{user.last_name}}">
+                                                        </div>
+                                                        {{formulario|crispy}}
+                                                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">
+                                                    </li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Tasks Tab End -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}

@@ -21,9 +21,6 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/src/plugins/datatables/css/dataTables.bootstrap4.min.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/src/plugins/datatables/css/responsive.bootstrap4.min.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/vendors/styles/style.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'diseño/styles/style.css'%}">
-	
-	
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -53,12 +50,12 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="{% static 'homePage/vendors/images/photo1.jpg'%}" alt="">
+							<img src="{{user.perfil.imagen.url}}" alt="">
 						</span>
-						<span class="user-name">Usuario</span>
+						<span class="user-name">{{user.username}}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Perfil</a>					
+						<a class="dropdown-item" href="{% url "Perfil_Administrador" %}"><i class="dw dw-user1"></i> Perfil</a>					
 						<a class="dropdown-item" href="{% url "Cerrar_Session" %}"><i class="dw dw-logout"></i> Cerrar Sesion</a>
 					</div>
 				</div>
@@ -202,8 +199,6 @@
 	</div>
 	<!-- js  -->
 	<script src="{% static 'homePage/vendors/scripts/core.js'%}"></script>
-
-	<script src="{% static 'diseño/scripts/script.js'%}"></script>
 	<script src="{% static 'homePage/vendors/scripts/script.min.js'%}"></script>
 	<script src="{% static 'homePage/vendors/scripts/process.js'%}"></script>
 	<script src="{% static 'homePage/vendors/scripts/layout-settings.js'%}"></script>

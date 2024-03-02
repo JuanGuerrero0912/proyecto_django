@@ -1,7 +1,34 @@
 {% extends "plantilla/plantilla_home.html" %}
+
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas esta mascota ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/mascotas/inhabilitar_mascota/"+id
+                }
+            })
+        }
+    </script>
+
+{% endblock js %}
+
 {% load static %}
 {% block titulo %} Lista adoptantes {% endblock titulo %}
 {% block contenido %}
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -15,7 +42,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Usuarios" %}">Usuarios</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Listado adoptantes</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Listado de adoptantes</li>
                                 </ol>
                             </nav>
                         </div>
@@ -25,10 +52,10 @@
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 style="text-align: center;" class="text-black h4">Lista de adoptantes</h4><br>
-                        <a href="{% url "Registrar_adoptante" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
+                        <a href="#"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
 
                     </div>
-                            
+                    		
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
@@ -37,8 +64,6 @@
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
                                     <th>Documento</th>
-                                    <th>Celular</th>
-                                    <th>Dirección</th>
                                     <th>Correo</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
@@ -46,11 +71,39 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for perfil in perfiles %}
+                                    {% if perfil.rol == 3%}
+                                        <tr>
+                                            <td>{{perfil.user.id}}</td>
+                                            <td>{{perfil.user.first_name}}</td>
+                                            <td>{{perfil.user.last_name}}</td>
+                                            <td>{{perfil.documento}}</td>
+                                            <td>{{perfil.user.email}}</td>
+                                            <td>{{perfil.get_rol_display}}</td>
+                                            <td>{{perfil.get_estado_perfil_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>Ver</a>
+                                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
+                                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <!-- Export Datatable End -->
             </div>
         </div>
     </div>
+   
 {% endblock contenido %}

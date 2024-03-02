@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from homePage import views
 
 urlpatterns = [
+    #_________________________________________________________________________________________________________
+    #URLS ADMINISTRADOR
     path('', views.Inicio_Admin, name="Inicio_Admin"),
     path('usuarios', views.Usuarios, name="Usuarios"),
     path('adopciones', views.Adopciones, name="Adopciones"),
@@ -21,10 +23,12 @@ urlpatterns = [
     path('inventario', views.Inventario, name="Inventario"),
     path('donaciones', views.Donaciones_Interfaz, name="Donaciones"),
     path('perritos_admin', views.Perritos_admin, name="Perritos_admin"),
-    path('inicio_Adoptante', views.Inicio_Adoptante, name="Inicio_Adoptante"),
+    path('perfil_administrador', views.Actualizar_Perfil_Administrador.as_view(), name="Perfil_Administrador"),
+    path('cambio_contraseña_administrador', views.CambioContraseñaAdministrador.as_view(), name="Cambio_Contraseña_Administrador"),
 
     
-    #LINKS VETERINARIO: 
+    #_________________________________________________________________________________________________________
+    #URLS VETERINARIO
     path('inicio_veterinario', views.Inicio_Veterinario, name="Inicio_Veter"),
     path('adopciones_vete', views.Adopciones_vete, name="Adopciones_Vete"),
     path('lista_adopciones_vete', views.Lista_adopciones_vete, name="Lista_adopciones_vete"),
@@ -34,6 +38,14 @@ urlpatterns = [
     path('articulos_Veterinario', views.vista_articulos_veterinario, name="Articulos_veterinario"),
     path('inventario_Veterinario', views.inventario_veter, name="Inventario_veterinario"),
     path('salidas_Veterinario', views.vista_salidas_veterinario, name="Salidas_veterinario"),
+    path('perfil_veterinario', views.Actualizar_Perfil_Veterinario.as_view(), name="Perfil_Veterinario"),
+    path('cambio_contraseña_veterinario', views.CambioContraseñaVeterinario.as_view(), name="Cambio_Contraseña_Veterinario"),
 
+    #_________________________________________________________________________________________________________
+    #URLS ADOPTANTE
+    path('inicio_Adoptante', views.Inicio_Adoptante, name="Inicio_Adoptante"),
+    path('registro_perfil_adoptante', views.VPerfilRegistro.as_view(), name="Registro_Perfil_Adoptante"),
+    path('perfil_adoptante', views.Actualizar_Perfil_Adoptante.as_view(), name="Perfil_Adoptante"),
+    path('cambio_contraseña_adoptante', views.CambioContraseñaADoptante.as_view(), name="Cambio_Contraseña_Adoptante"),
     
 ]

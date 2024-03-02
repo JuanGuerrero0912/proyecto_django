@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>{% block titulo %} {% endblock titulo %}</title>
+	<title>Inicio</title>
 
 	<!-- Site favicon -->
 	
@@ -50,13 +50,13 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="{% static 'homePage/vendors/images/photo1.jpg'%}" alt="">
+							<img src="{{user.perfil.imagen.url}}" alt="">
 						</span>
-						<span class="user-name">Usuario</span>
+						<span class="user-name">{{user.username}}</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Perfil</a>					
-						<a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Cerrar Sesion</a>
+						<a class="dropdown-item" href="{% url "Perfil_Veterinario" %}"><i class="dw dw-user1"></i> Perfil</a>					
+						<a class="dropdown-item" href="{% url "Cerrar_Session" %}"><i class="dw dw-logout"></i> Cerrar Sesion</a>
 					</div>
 				</div>
 			</div>
@@ -157,7 +157,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
+							<li><a href="#">Adopciones</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -165,7 +165,7 @@
 							<span class="micon dw dw-edit2"></span><span class="mtext">Inventario</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="{% url "Inventario_veterinario" %}">Inventario</a></li>
+							<li><a href="#">Inventario</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -202,8 +202,8 @@
 	 <script src="{% static 'homePage/src/plugins/datatables/js/vfs_fonts.js'%}"></script>
 	 <!-- Datatable Setting js -->
 	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
-	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	 {% if messages %}
 	 	{% for m in messages %}
 			<script>

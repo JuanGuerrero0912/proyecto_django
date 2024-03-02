@@ -45,3 +45,20 @@
 <script src="{% static 'inicio/vendors/scripts/steps-setting.js'%}"></script>
 
 {% endblock contenido %}
+
+{% block alertas %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	{% if messages %}
+	 	{% for m in messages %}
+			<script>
+				Swal.fire(
+					{
+						"title": "No se pudo crear usuario",
+						"text": "{{m}}",
+						"icon": "error"
+					}
+				)
+			</script>
+		{% endfor %}
+	{% endif %}
+{% endblock alertas %}

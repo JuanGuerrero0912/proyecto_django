@@ -1,0 +1,33 @@
+{% extends "plantilla/plantilla.html" %}
+
+{% load static %}
+
+{% block titulo %} <title>Cambio contraseña</title> {% endblock titulo %}
+
+{% block contenido %}
+<div class="login-page">
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img  style="width: 800px; height: 600px" src="{% static 'inicio/img/imagenPassword.png'%}" alt="">
+                </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="login-box bg-white box-shadow border-radius-10">
+                    <div class="login-title">
+                        <h2 class="text-center text-primary">El cambio de contraseña ha sido efectuado correctamente</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group mb-0">
+                                <a href="{% url "Login" %}" class="btn btn-secondary btn-block border-0 py-3">Ir al Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}

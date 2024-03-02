@@ -1,0 +1,54 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block contenido %}
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>Datos del usuario</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-20 card-box mb-30">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <h4 class="text-blue h4">Datos de {{user.username}}</h4><br>
+                        </div>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                            {% if messages %}
+            
+                                {% for mensaje in messages %}
+                
+                                    {{mensaje}}
+
+                                {% endfor %}
+            
+                            {% endif %}
+                            
+                            {{formulario|crispy}}
+                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">
+                    </form>
+                    <br>
+                    <a href="{% url "Inicio_Adoptante" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Omitir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido %}
