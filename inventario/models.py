@@ -11,6 +11,7 @@ class Articulos(models.Model):
     nombre = models.CharField(max_length = 100)
     descripcion = models.CharField(max_length = 200)
     referencia = models.CharField(max_length = 10, unique = True)
+    imagen = models.ImageField(upload_to='articulo/', null = True, blank= True)
     estado_articulo = models.IntegerField(null = False, blank = False, choices = estado_art, default= 1)
     usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     fecha_registro = models.DateField(auto_now_add = True)
@@ -76,6 +77,7 @@ class Entradas(models.Model):
     articulo = models.ForeignKey(Articulos, on_delete = models.CASCADE)
     cantidad_entrada = models.PositiveIntegerField(default = 0, null = True, blank = True)
     estado_entrada = models.IntegerField(null = False, blank = False, choices = estado_ent, default= 1)
+    administrador = models.ForeignKey(Usuario, on_delete = models.CASCADE)
 
     class meta:
         db_table = 'entradas'
@@ -94,6 +96,7 @@ class Salidas(models.Model):
     articulo = models.ForeignKey(Articulos, on_delete = models.CASCADE)
     cantidad_salida = models.PositiveIntegerField(default = 0, null = True, blank = True)
     estado_salida = models.IntegerField(null = False, blank = False, choices = estado_sal, default= 1)
+    administrativo = models.ForeignKey(Usuario, on_delete = models.CASCADE)
 
     class meta:
         db_table = 'salidas'

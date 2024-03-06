@@ -17,6 +17,7 @@ class Mascota(models.Model):
     raza = models.IntegerField(null = False, blank = False, choices = selec_raza, default= 1)
     estadoRegistro = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
     updated = models.DateTimeField(auto_now_add= True)
+    administrativo = models.ForeignKey(Usuario, on_delete = models.CASCADE)
 
     class meta:
         db_table = 'mascota'
@@ -29,6 +30,7 @@ class Mascota(models.Model):
     
 class Adopcion(models.Model):
     mascota= models.ForeignKey(Mascota, null=True, blank=True, on_delete=models.CASCADE)
+    adoptante = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     fecha_adopcion = models.DateField(auto_now_add = True)
     estado_adopcion = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
     updated = models.DateTimeField(auto_now_add= True)
@@ -48,6 +50,7 @@ class HistorialMedico(models.Model):
     diagnostico = models.FileField(upload_to='historialesMedicos/', verbose_name='Historial Medico', null = False, blank = False)
     estado_historial = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
     updated = models.DateTimeField(auto_now_add= True)
+    veterinario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     class meta:
         db_table = 'historialMedico'
         verbose_name=["HistorialMedico"]
@@ -64,6 +67,7 @@ class SolicitudAdopcion(models.Model):
     solicitud = models.FileField(upload_to='solicitudesAdopcion/', verbose_name='Solicitud Adopción', null = False, blank = False)
     estado_solicitud = models.IntegerField(null = False, blank = False, choices = perfil, default= 1)
     updated = models.DateTimeField(auto_now_add= True)
+    adoptante = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     class meta:
         db_table = 'solicitudAdopcion'
         verbose_name=["SolicitudAdopcion"]

@@ -43,13 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Inicio',
     'login.apps.LoginConfig',
-    'mascota',
+    'mascota.apps.MascotaConfig',
     'homePage',
     'crispy_forms',
     'crispy_bootstrap5',
     'os',
     'inventario',
     'donaciones',
+    
 
 ]
 
@@ -90,9 +91,9 @@ WSGI_APPLICATION = 'DoggyAtHome.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'proyectodoggy',
+        'NAME': 'doggy',
         'USER': 'root',
-        'PASSWORD': 'Juan0912*',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }
