@@ -49,9 +49,9 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de Articulos</h4><br>
-                        <a href="{% url "Registrar_Donacion" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Registro</button></a>
-                        <a href="{% url "Lista_donaciones_Inhabilitadas" %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
+                        <h4 style="text-align: center;" class="text-black h4">Lista de Donaciones</h4><br>
+                        <a href="{% url "Registrar_Donacion" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nueva Donación</button></a>
+                        <a href="{% url "Lista_donaciones_Inhabilitadas" %}"><button type="button" class="btn btn-primary">Inhabilitadas</button></a>
                     </div>
                             
                     <div class="pb-20">
@@ -62,7 +62,8 @@
                                     <th>Tipo Donación</th>
                                     <th>Articulo</th>
                                     <th>Referencia</th>
-                                    <th>Fecha Donacion</th>
+                                    <th>Donante</th>
+                                    <th>Fecha</th>
                                     <th>Cantidad</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
@@ -76,7 +77,8 @@
                                             <td>{{donacion.tipo_donacion.tipo_donacion}}</td>
                                             <td>{{donacion.Articulos.nombre}}</td>
                                             <td>{{donacion.Articulos.referencia}}</td>
-                                            <td>{{donacion.fecha_donacion}}</td>
+                                            <td>{{donacion.usuario}}</td>
+                                            <td>{{donacion.fecha_donacion|date:"d/m/y"}}</td>
                                             <td>{{donacion.cantidad_donacion}}</td>
                                             <td>{{donacion.get_estado_donacion_display}}</td>
                                             <td>

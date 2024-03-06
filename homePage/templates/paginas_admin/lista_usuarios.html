@@ -1,12 +1,11 @@
 {% extends "plantilla/plantilla_home.html" %}
-
 {% block js %}
 
     <script>
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas esta mascota ya no te aparcera en la lista",
+                "text": "Si inhabilitas este usuario ya no te aparcera en la lista",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
@@ -17,14 +16,12 @@
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/mascotas/inhabilitar_mascota/"+id
+                    window.location.href = "/home_page_admin/inhabilitar_usuario_administrativo/"+id
                 }
             })
         }
     </script>
-
 {% endblock js %}
-
 {% load static %}
 {% block titulo %} Lista usuarios {% endblock titulo %}
 {% block contenido %}
@@ -51,9 +48,9 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de usuarios</h4><br>
-                        <a href="#"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
-
+                        <h4 style="text-align: center;" class="text-black h4">Lista de Usuarios</h4><br>
+                        <a href="{% url "Registrar_usuario" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Registro</button></a>
+                        <a href="{% url "Lista_usuarios_inhabilitados" %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
                     </div>
                     		
                     <div class="pb-20">
@@ -63,38 +60,40 @@
                                     <th class="table-plus datatable-nosort">id</th>
                                     <th>Nombres</th>
                                     <th>Apellidos</th>
-                                    <th>Documento</th>
                                     <th>Correo</th>
+                                    <th>Celular</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for perfil in perfiles %}
-                                    {% if perfil.rol == 1 or perfil.rol == 2 %}
-                                        <tr>
-                                            <td>{{perfil.user.id}}</td>
-                                            <td>{{perfil.user.first_name}}</td>
-                                            <td>{{perfil.user.last_name}}</td>
-                                            <td>{{perfil.documento}}</td>
-                                            <td>{{perfil.user.email}}</td>
-                                            <td>{{perfil.get_rol_display}}</td>
-                                            <td>{{perfil.get_estado_perfil_display}}</td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>Ver</a>
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Editar</a>
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>Inhabilitar</a>
-                                                        
+                                {% for usuario in usuarios %}
+                                    {% if usuario.estado_perfil == 1 %}
+                                        {% if usuario.rol == 1 or usuario.rol == 2 %}
+                                            <tr>
+                                                <td class="table-plus">{{usuario.id}}</td>
+                                                <td>{{usuario.user.first_name}}</td>
+                                                <td>{{usuario.user.last_name}}</td>
+                                                <td>{{usuario.user.email}}</td>
+                                                <td>{{usuario.celular}}</td>
+                                                <td>{{usuario.get_rol_display}}</td>
+                                                <td>{{usuario.get_estado_perfil_display}}</td>
+
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                            <i class="dw dw-more"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                            <a class="dropdown-item" href="{% url "Ver_usuario_administrativo" usuario.user.id %}"><i class="dw dw-eye"></i>Ver</a>
+                                                            <a class="dropdown-item" href="{% url "Actualizar_usuario_administrativo" usuario.user.id %}"><i class="dw dw-edit2"></i>Editar</a>
+                                                            <a class="dropdown-item" href="#" onclick="inhabilitar({{ usuario.id }})"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             </tbody>

@@ -16,11 +16,14 @@ class registrar_articulo(View):
     
     def post(self, request):
 
+        usuario = self.request.user
         formulario = ArticulosForm(request.POST)
         
         if formulario.is_valid():
 
-            formulario.save()
+            articulo = formulario.save(commit=False)
+            articulo.usuario = usuario
+            articulo.save()
             messages.success(request, "Articulo agregado correctamente")
             return redirect('Lista_articulos')
         
@@ -36,6 +39,7 @@ class actualizar_articulo(View):
 
         articulo = Articulos.objects.get(id = id)
         formulario = ArticulosForm(instance=articulo)
+        
 
         return render(request, 'crud_articulos/editar_articulo.html', {"formulario": formulario})
     
@@ -43,9 +47,12 @@ class actualizar_articulo(View):
 
         articulo = Articulos.objects.get(id = id)
         formulario = ArticulosForm(request.POST, instance=articulo)
+        usuario = self.request.user
 
         if formulario.is_valid():
-            formulario.save()
+            articulo = formulario.save(commit=False)
+            articulo.usuario = usuario
+            articulo.save()
             messages.success(request, "Articulo actualizado correctamente")
             return redirect('Lista_articulos')
         

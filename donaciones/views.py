@@ -11,16 +11,18 @@ class registrar_donacion(View):
     def get(self, request):
 
         formulario = DonacionForms()
-
         return render(request, 'crud_donaciones/registrar_donacion.html', {"formulario": formulario})
     
     def post(self, request):
 
         formulario = DonacionForms(request.POST)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            donacion = formulario.save(commit=False)
+            donacion.usuario = usuario
+            donacion.save()
             messages.success(request, "Donación agregada correctamente")
             return redirect('Lista_donaciones')
         
@@ -43,9 +45,12 @@ class actualizar_donacion(View):
 
         donacion = Donaciones.objects.get(id = id)
         formulario = DonacionForms(request.POST,instance=donacion)
+        usuario = self.request.user
 
         if formulario.is_valid():
-            formulario.save()
+            donacion = formulario.save(commit=False)
+            donacion.adoptante = usuario
+            donacion.save()
             messages.success(request, "Donación actualizada correctamente")
             return redirect('Lista_donaciones')
         

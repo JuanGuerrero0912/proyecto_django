@@ -1,7 +1,7 @@
 {% extends "plantilla/plantilla_home.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block titulo %} Registro Adoptante {% endblock titulo %}
+{% block titulo %} Ver Adoptante {% endblock titulo %}
 {% block contenido %}
 
 	<div class="main-container">
@@ -11,14 +11,14 @@
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
 							<div class="title">
-								<h4>Nuevo Registro</h4>
+								<h4>Ver Adoptante</h4>
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
 									<li class="breadcrumb-item"><a href="{% url "Usuarios" %}">Usuarios</a></li>
 									<li class="breadcrumb-item"><a href="{% url "Lista_adoptantes" %}">Listado adoptantes</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Nuevo Adoptante</li>
+									<li class="breadcrumb-item active" aria-current="page">Ver usuario</li>
 								</ol>
 							</nav>
 						</div>
@@ -28,21 +28,25 @@
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue h4">Nuevo Adoptante</h4><br>
+							<h4 class="text-blue h4">Ver usuario</h4><br>
 						</div>
 						
 					</div>
 					<form method="post">
 						{% csrf_token %}
-
-						{{form|crispy}}
+                        <div class="form-group">
+                            <label for = "first_name">Nombres</label>
+                            <input class="form-control form-control-lg" type="text" name="first_name" value="{{usuario.first_name}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Apellidos</label>
+                            <input class="form-control form-control-lg" type="text" name="last_name" value="{{usuario.last_name}}">
+                        </div>
 						{{formulario|crispy}}
-						<br>
 
-						<input type="submit" name="" value="registrar" class="btn btn-primary">
 					</form>
 					<br>
-					<a href="{% url "Lista_adoptantes" %}"><button style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</button></a>
+					<a href="{% url "Lista_adoptantes" %}"><button style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</button></a>
 				</div>	
 			</div>	
 		</div>

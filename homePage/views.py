@@ -4,7 +4,7 @@ from mascota.models import Mascota, Adopcion,  HistorialMedico, SolicitudAdopcio
 from inventario.models import Articulos, Entradas, Salidas
 from donaciones.models import Donaciones
 from login.models import Perfil
-from homePage.forms import Perfil_Adoptante, Usuario_Adoptante, Usuario_Administrador, Perfil_Administrador, Usuario_Veterinario, Perfil_Veterinario
+from homePage.forms import Perfil_Adoptante, Usuario_Adoptante, Usuario_Administrador, Perfil_Administrador, Usuario_Veterinario, Perfil_Veterinario, Perfil_Registro_Adoptante, Perfil_Registro 
 from django.contrib.auth.models import User
 from django.views.generic import View
 from django.core.paginator import Paginator
@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.auth import update_session_auth_hash
+from login.forms import CustomUserCreationForms
 
 
 # Create your views here.
@@ -23,9 +24,9 @@ def Inicio_Admin(request):
 
 def Lista_usuarios(request):
 
-    perfiles = Perfil.objects.all()
+    usuarios = Perfil.objects.filter(estado_perfil = 1)
 
-    return render(request, "paginas_admin/lista_usuarios.html", {"perfiles": perfiles})
+    return render(request, "paginas_admin/lista_usuarios.html", {"usuarios": usuarios})
 
 def Usuarios(request):
     return render(request, "paginas_admin/usuarios.html")
@@ -33,14 +34,184 @@ def Usuarios(request):
 def Adopciones(request):
     return render(request, "paginas_admin/adopciones.html")
 
-def Registrar_usuario(request):
-    return render(request, "paginas_admin/registrar_usuario.html")
+class Registrar_usuario_administrativo(View):
+
+    def get(self, request):
+        
+        form = CustomUserCreationForms()
+        formulario = Perfil_Registro()
+
+        return render(request, "paginas_admin/registrar_usuario.html", {"form": form, "formulario": formulario})
+    
+    def post(self, request):
+
+        form = CustomUserCreationForms(request.POST)
+        username = request.POST.get("username")
+        
+        if form.is_valid():
+  
+            form.save()
+            user = User.objects.get(username = username)
+            formulario = Perfil_Registro(request.POST, request.FILES, instance=user.perfil)
+            if formulario.is_valid():
+                formulario.save()
+                messages.success(request,"Usuario administrativo creado correctamente")
+                return redirect('Lista_usuarios')
+
+        else:
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
+            
+            return render(request, "paginas_admin/registrar_usuario.html", {"form": form, "formulario": formulario })
+
+class Actualizar_usuario_administrativo(View):
+
+    def get(self, request, id):
+
+        usuario = User.objects.get(id = id)
+        form = Usuario_Administrador(instance=usuario)
+        formulario = Perfil_Registro(instance=usuario.perfil)
+        
+
+        return render(request, "paginas_admin/actualizar_usuario.html", {"form": form,"formulario": formulario, "usuario": usuario})
+
+    def post(self, request, id):
+        usuario = User.objects.get(id = id)
+        form = Usuario_Administrador(request.POST,instance=usuario)
+        formulario = Perfil_Registro(request.POST,request.FILES,instance=usuario.perfil)
+
+        if form.is_valid() and formulario.is_valid():
+
+            form.save()
+            formulario.save()
+            messages.success(request, "Usuario actualizado correctamente")
+            return redirect('Lista_usuarios')
+        
+        else:
+            messages.error(request, "No se pudo actualizar el usuario intentalo otra vez")
+            
+            return render(request, "paginas_admin/actualizar_usuario.html", {"form": form,"formulario": formulario, "usuario": usuario})
+
+def ver_usuario_administrativo(request, id):
+
+    usuario = User.objects.get(id = id)
+    form = Usuario_Administrador(instance=usuario)
+    formulario = Perfil_Registro(instance=usuario.perfil)
+
+    return render(request, "paginas_admin/ver_usuario.html", {"form": form,"formulario": formulario, "usuario": usuario})
+
+def inhabilitar_usuario(request, id):
+
+    perfil = Perfil.objects.get(id = id)
+    perfil.estado_perfil = 2
+    perfil.save()
+    messages.success(request,"Usuario inhabilitado correctamente")
+    return redirect('Lista_usuarios')
+
+def lista_usuarios_inhabilitados(request):
+    usuarios = Perfil.objects.filter(estado_perfil = 2)
+    return render(request, "paginas_admin/listado_usuarios_inhabilitados.html", {"usuarios": usuarios})
+
+def habilitar_usuario(request, id):
+
+    perfil = Perfil.objects.get(id = id)
+    perfil.estado_perfil = 1
+    perfil.save()
+    messages.success(request,"Usuario habilitado correctamente")
+    return redirect('Lista_usuarios_inhabilitados')
+
 
 def Lista_adoptantes(request):
 
-    perfiles = Perfil.objects.all()
+    usuarios = Perfil.objects.filter(estado_perfil = 1)
 
-    return render(request, "paginas_admin/lista_adoptantes.html", {"perfiles": perfiles})
+    return render(request, "paginas_admin/lista_adoptantes.html", {"usuarios": usuarios})
+
+class registrar_usuario_adoptante(View):
+
+    def get(self, request):
+
+        form = CustomUserCreationForms()
+        formulario = Perfil_Registro_Adoptante()
+        
+        return render(request, "paginas_admin/registrar_adoptante.html", {"form": form,"formulario": formulario})
+    
+    def post(self, request):
+
+        form = CustomUserCreationForms(request.POST)
+        username = request.POST.get("username")
+        
+        if form.is_valid():
+  
+            form.save()
+            user = User.objects.get(username = username)
+            formulario = Perfil_Registro_Adoptante(request.POST, request.FILES, instance=user.perfil)
+            if formulario.is_valid():
+                formulario.save()
+                messages.success(request,"Adoptante creado correctamente")
+                return redirect('Lista_adoptantes')
+
+        else:
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
+            
+            return render(request, "paginas_admin/registrar_adoptante.html", {"form": form, "formulario": formulario })
+        
+class Actualizar_adoptante(View):
+
+    def get(self, request, id):
+
+        usuario = User.objects.get(id = id)
+        form = Usuario_Administrador(instance=usuario)
+        formulario = Perfil_Registro_Adoptante(instance=usuario.perfil)
+        
+        return render(request, "paginas_admin/actualizar_adoptante.html", {"form": form,"formulario": formulario, "usuario": usuario})
+    
+    def post(self, request, id):
+        usuario = User.objects.get(id = id)
+        form = Usuario_Administrador(request.POST,instance=usuario)
+        formulario = Perfil_Registro_Adoptante(request.POST,request.FILES,instance=usuario.perfil)
+
+        if form.is_valid() and formulario.is_valid():
+
+            form.save()
+            formulario.save()
+            messages.success(request, "Adoptante actualizado correctamente")
+            return redirect('Lista_adoptantes')
+        
+        else:
+            messages.error(request, "No se pudo actualizar el usuario intentalo otra vez")
+            
+            return render(request, "paginas_admin/actualizar_adoptante.html", {"form": form,"formulario": formulario, "usuario": usuario})
+
+def ver_adoptante(request, id):
+
+    usuario = User.objects.get(id = id)
+    form = Usuario_Administrador(instance=usuario)
+    formulario = Perfil_Registro_Adoptante(instance=usuario.perfil)
+        
+    return render(request, "paginas_admin/ver_adoptante.html", {"form": form,"formulario": formulario, "usuario": usuario})
+
+
+def inhabilitar_adoptante(request, id):
+
+    perfil = Perfil.objects.get(id = id)
+    perfil.estado_perfil = 2
+    perfil.save()
+    messages.success(request,"Adoptante inhabilitado correctamente")
+    return redirect('Lista_adoptantes')
+
+def lista_adoptantes_inhabilitados(request):
+
+    usuarios = Perfil.objects.filter(estado_perfil = 2)
+    return render(request, "paginas_admin/listado_adoptantes_inhabilitados.html", {"usuarios": usuarios})
+
+def habilitar_adoptante(request, id):
+
+    perfil = Perfil.objects.get(id = id)
+    perfil.estado_perfil = 1
+    perfil.save()
+    messages.success(request,"Adoptante habilitado correctamente")
+    return redirect('Lista_adoptantes_inhabilitados')
+
 
 def Lista_adopciones(request):
     adopciones = Adopcion.objects.all()

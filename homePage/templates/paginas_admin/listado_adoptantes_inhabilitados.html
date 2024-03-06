@@ -5,28 +5,25 @@
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas este articulo ya no te aparcera en la lista",
+                "text": "Si habilitas este adoptante te aparcera en la lista de adoptantes",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
-                "confirmButtonText": "Si, Inhabilitar",
+                "confirmButtonText": "Si, Habilitar",
                 "reverseButtons": true,
                 "confirmButtonColor": "#1b00ff",
                 "cancelButtonColor": "red"
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/articulos/inhabilitar_articulo/"+id
+                    window.location.href = "/home_page_admin/habilitar_adoptante/"+id
                 }
             })
         }
     </script>
-
 {% endblock js %}
 {% load static %}
-{% block titulo %} Lista articulos {% endblock titulo %}
-
-
+{% block titulo %} Lista Adoptantes Inhabilitados {% endblock titulo %}
 {% block contenido %}
 
     <div class="main-container">
@@ -36,13 +33,14 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Articulos</h4>
+                                <h4>Adoptantes Inhabilitados</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
-                                    <li class="breadcrumb-item"><a href="{% url "Inventario" %}">Inventario</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Listado Articulos</li>
+                                    <li class="breadcrumb-item"><a href="{% url "Usuarios" %}">Usuarios</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Lista_adoptantes" %}">Listado adoptantes</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Adoptantes Inhabilitados</li>
                                 </ol>
                             </nav>
                         </div>
@@ -51,48 +49,43 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de articulos</h4><br>
-                        <a href="{% url "Registrar_Articulo" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Articulo</button></a>
-                        <a href="{% url "Lista_articulos_Inhabilitados" %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
+                        <h4 style="text-align: center;" class="text-black h4">Lista de Adoptantes inhabilitados</h4><br>
+                        <a href="{% url "Lista_adoptantes" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Volver</button></a>
                     </div>
-                            
+                    		
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Articulo</th>
-                                    <th>Referencia</th>
-                                    <th>Stock</th>
-                                    <th>Fecha de Registro</th>
-                                    <th>Usuario</th>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Correo</th>
+                                    <th>Celular</th>
+                                    <th>Rol</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for articulo in articulos %}
-                                    {% if articulo.estado_articulo == 1 %}
+                                {% for usuario in usuarios %}
+                                    {% if usuario.rol == 3%}
                                         <tr>
-                                            <td class="table-plus">{{articulo.id}}</td>
-                                            <td>{{articulo.nombre}}</td>
-                                            <td>{{articulo.referencia}}</td>
-                                            {% if articulo.get_stock > 0 %}<td style="color: green;">{{articulo.get_stock}}</td>
-                                            {% else %}
-                                            <td style="color: red;">{{articulo.get_stock}}</td>
-                                            {% endif %}
-                                            <td>{{articulo.fecha_registro}}</td>
-                                            <td>{{articulo.usuario.username}}</td>
-                                            <td>{{articulo.get_estado_articulo_display}}</td>
+                                            <td class="table-plus">{{usuario.id}}</td>
+                                            <td>{{usuario.user.first_name}}</td>
+                                            <td>{{usuario.user.last_name}}</td>
+                                            <td>{{usuario.user.email}}</td>
+                                            <td>{{usuario.celular}}</td>
+                                            <td>{{usuario.get_rol_display}}</td>
+                                            <td>{{usuario.get_estado_perfil_display}}</td>
+
                                             <td>
                                                 <div class="dropdown">
                                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="{% url "Ver_Articulo" articulo.id %}"><i class="dw dw-eye"></i>Ver</a>
-                                                        <a class="dropdown-item" href="{% url "Actualizar_Articulo" articulo.id %}"><i class="dw dw-edit2"></i>Editar</a>
-                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ articulo.id}})"><i class="dw dw-delete-3"></i>Inhabilitar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ usuario.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -107,5 +100,5 @@
             </div>
         </div>
     </div>
-
+   
 {% endblock contenido %}
