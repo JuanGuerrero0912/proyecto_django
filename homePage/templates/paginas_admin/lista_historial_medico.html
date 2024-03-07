@@ -57,8 +57,7 @@
                         <table style="text-align: center;" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
+                                    <th class="table-plus datatable-nosort">Mascota</th>
                                     <th>Fecha</th>
                                     <th>PDF</th>
                                     <th>Veterinario</th>
@@ -70,13 +69,12 @@
                                 {% for historialMedico in entity %}
                                     {% if historialMedico.estado_historial == 1 %}
                                         <tr>
-                                            <td>{{historialMedico.id}}</td>
                                             <td>{{historialMedico.mascota.nombre}}</td>
-                                            <td>{{historialMedico.fecha_historial }} </td>
+                                            <td>{{historialMedico.fecha_historial|date:"d/m/y" }} </td>
                                             <td>
                                                 <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
-                                            <td>Daniela Zamora</td>
+                                            <td>{{historialMedico.veterinario.username }}</td>
                                             <td>{{historialMedico.get_estado_historial_display}}</td>
                                             <td>
                                                 <div class="dropdown">

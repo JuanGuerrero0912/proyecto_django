@@ -53,16 +53,14 @@
                         <a href="{% url "Lista_adoptantes_inhabilitados" %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
                     </div>
                     		
-                    <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                    <div  class="pb-20">
+                        <table style="text-align:center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
+                                    <th class="table-plus datatable-nosort">Usuario</th>
+                                    <th>Documento</th>
                                     <th>Correo</th>
                                     <th>Celular</th>
-                                    <th>Rol</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -72,12 +70,10 @@
                                     {% if usuario.estado_perfil == 1 %}
                                         {% if usuario.rol == 3%}
                                             <tr>
-                                                <td class="table-plus">{{usuario.id}}</td>
-                                                <td>{{usuario.user.first_name}}</td>
-                                                <td>{{usuario.user.last_name}}</td>
+                                                <td class="table-plus">{{usuario.user.username}}</td>
+                                                <td>{{usuario.documento}}</td>
                                                 <td>{{usuario.user.email}}</td>
                                                 <td>{{usuario.celular}}</td>
-                                                <td>{{usuario.get_rol_display}}</td>
                                                 <td>{{usuario.get_estado_perfil_display}}</td>
 
                                                 <td>

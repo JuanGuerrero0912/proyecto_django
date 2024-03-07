@@ -8,6 +8,9 @@ import os
 from DoggyAtHome import settings
 
 
+def mostrar_video(request):
+    video_url = '/media/videoAdoptante.mp4' 
+    return render(request, 'paginas_adoptante/inicio_adoptante.html', {'video_url': video_url})
 # PERRITO:
 class registrar_mascota(View):
     

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from homePage import views
 
+
 urlpatterns = [
     #_________________________________________________________________________________________________________
     #URLS ADMINISTRADOR
@@ -60,4 +61,4 @@ urlpatterns = [
     path('perfil_adoptante', views.Actualizar_Perfil_Adoptante.as_view(), name="Perfil_Adoptante"),
     path('cambio_contraseña_adoptante', views.CambioContraseñaADoptante.as_view(), name="Cambio_Contraseña_Adoptante"),
     
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

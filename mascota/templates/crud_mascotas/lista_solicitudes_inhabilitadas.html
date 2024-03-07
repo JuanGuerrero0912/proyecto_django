@@ -54,16 +54,15 @@
                     </div>
                             
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table style="text-align: center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
+                                    <th class="table-plus datatable-nosort">Mascota</th>
                                     <th>Foto</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Usuario</th>
-                                    <th>Solicitud PDF</th>
+                                    <th>PDF</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -71,16 +70,15 @@
                             <tbody>
                                 {% for solicitudAdopcion in entity %}
                                         <tr>
-                                            <td>{{solicitudAdopcion.id}}</td>
                                             <td>{{solicitudAdopcion.mascota.nombre}}</td>
                                             <td>
                                                 <img src="{{solicitudAdopcion.mascota.imagen.url}}" width="95"  alt=""/>
                                             </td>
                                             <td>{{solicitudAdopcion.get_estado_proceso_display}}</td>
-                                            <td>{{solicitudAdopcion.fecha_solicitud }} </td>
-                                            <td>user123 </td>
+                                            <td>{{solicitudAdopcion.fecha_solicitud |date:"d/m/y"}} </td>
+                                            <td>{{solicitudAdopcion.adoptante.username}} </td>
                                             <td>
-                                                <a href="{{ solicitudAdopcion.solicitud.url }}" download>Solicitud</a>
+                                                <a href="{{ solicitudAdopcion.solicitud.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
                                             <td>{{solicitudAdopcion.get_estado_solicitud_display}}</td>
                                             <td>

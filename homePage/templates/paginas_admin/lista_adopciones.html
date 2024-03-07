@@ -25,6 +25,7 @@
 {% load static %}
 {% block titulo %} Lista adopciones {% endblock titulo %}
 {% block contenido %}
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -47,22 +48,78 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Lista de adopciones</h4><br>
+                        <h4 style="text-align: left;" class="text-black h4">Resumen</h4><br>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div  class="h4 mb-0">{{adopciones_finalizadas}}</div>
+                                        <div class="weight-600 font-14">Total adoptados</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart2"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{adopciones_proceso}}</div>
+                                        <div class="weight-600 font-14">Adopciones en proceso</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart3"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{adopciones_rechazadas}}</div>
+                                        <div class="weight-600 font-14">Adopciones rechazadas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart4"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{mascotas_rescatadas}}</div>
+                                        <div class="weight-600 font-14">Total rescatados</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-20">
+                        <h4 style="text-align: left;" class="text-black h4">Listado</h4><br>
                         <a href="{% url "Registrar_Adopcion" %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Registro</button></a>
                         <a href="{% url "Lista_adopciones_inhabilitadas" %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
 
                     </div>
-                            
+                        
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Fecha</th>
                                     <th>Mascota</th>
+                                    <th>Fecha</th>
                                     <th>Foto</th>
                                     <th>Usuario</th>
-                                    <th>Nombre y apellido</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -73,13 +130,12 @@
                                     {% if adopcion.estado_adopcion == 1%}
                                         <tr>
                                             <td>{{adopcion.id}}</td>
-                                            <td>{{adopcion.fecha_adopcion }} </td>
                                             <td>{{adopcion.mascota.nombre }} </td>
+                                            <td>{{adopcion.fecha_adopcion|date:"d/m/y" }} </td>
                                             <td>
                                                 <img src="{{adopcion.mascota.imagen.url}}" width="95"  alt=""/>
                                             </td>
-                                            <td>Usuario</td>
-                                            <td>Daniela </td>
+                                            <td>{{adopcion.adoptante.username}}</td>
                                             <td>{{adopcion.get_estado_adopcion_display}}</td>
                                             <td>
                                                 <div class="dropdown">
@@ -105,4 +161,5 @@
             </div>
         </div>
     </div>
+
 {% endblock contenido %}

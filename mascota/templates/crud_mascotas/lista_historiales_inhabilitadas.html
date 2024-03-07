@@ -55,13 +55,12 @@
                     </div>
                             
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table style="text-align:center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
+                                    <th class="table-plus datatable-nosort">Mascota</th>
                                     <th>Fecha</th>
-                                    <th>Dignostico PDF</th>
+                                    <th>PDF</th>
                                     <th>Veterinario</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
@@ -70,13 +69,12 @@
                             <tbody>
                                 {% for historialMedico in entity %}
                                         <tr>
-                                            <td>{{historialMedico.id}}</td>
                                             <td>{{historialMedico.mascota.nombre}}</td>
-                                            <td>{{historialMedico.fecha_historial }} </td>
+                                            <td>{{historialMedico.fecha_historial|date:"d/m/y" }} </td>
                                             <td>
                                                 <a href="{{ historialMedico.diagnostico.url }}" download>Historial Médico</a>
                                             </td>
-                                            <td>Daniela Zamora</td>
+                                            <td>{{historialMedico.veterinario.username }}/td>
                                             <td>{{historialMedico.get_estado_historial_display}}</td>
                                             <td>
                                                 <div class="dropdown">

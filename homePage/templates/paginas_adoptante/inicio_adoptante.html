@@ -3,7 +3,35 @@
 {% load static %}
 
 {% block contenido %}
+<div class="main-container">
+    <div class="pd-ltr-20">
+        
+        <div class="card-box height-100-p mb-30 ">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="{% static 'homePage/vendors/images/banner-img.png'%}" alt=""/>
+                </div>
+                <div class="col-md-8">
+                    <p class="font-18 max-width-600 text-center">Cuentanos que quieres hacer hoy</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-lg-6 col-md-6 col-sm-12">
+                <img  style=" border-radius: 2%;" src="{{ MEDIA_URL }}media/video/videoAdoptante.gif" alt="Mi GIF">
 
-    <h4> Inicio Veterinario </h4>
+            </div>
+            <div  class="card-box mb-30 col-lg-6">
+                <div class="pd-30"><br>
+                    <h3 style="color: ##7FB3D5; text-align:center" class=" mb-4 ">Estamos felices de tenerte de aqui </h3>
+                    <p style=" text-align:center" >¡Nos encanta que estés de nuevo con nosotros!<br/><br/> Para nosotros es importante seguir contando con personitas como tú porque asi logramos llegar a más personas y no solo eso, lo más importante es que gracias a ti y que hoy estás aqui, podemos cambiar la vida de unos cuantos perritos de los miles que hay al rededor del mundo sin hogar <br/><br/> Asi que ANIMATE, aqui puede estar tu proximo mejor amigo</p>
+                </div>       
+                
+            </div>
+        </div>  
+    </div>
+</div>
+
+    
 
 {% endblock contenido %}

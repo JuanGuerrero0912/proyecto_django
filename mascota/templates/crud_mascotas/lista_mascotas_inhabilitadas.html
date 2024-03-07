@@ -55,11 +55,10 @@
                     </div>
                             
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table style="text-align: center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Nombre</th>
+                                    <th class="table-plus datatable-nosort">Nombre</th>
                                     <th>Estado Mascota</th>
                                     <th>Sexo</th>
                                     <th>Foto</th>
@@ -72,14 +71,13 @@
                                 {% for mascota in entity %}
                                     
                                         <tr>
-                                            <td>{{mascota.id}}</td>
                                             <td>{{mascota.nombre }} </td>
                                             <td>{{mascota.get_estadoMascota_display }} </td>
                                             <td>{{mascota.get_sexo_display}}</td>
                                             <td>
                                                 <img src="{{mascota.imagen.url}}" width="95"  alt=""/>
                                             </td>
-                                            <td>{{mascota.fecha_ingreso}}</td> 
+                                            <td>{{mascota.fecha_ingreso|date:"d/m/y"}}</td> 
                                             <td>{{mascota.get_estadoRegistro_display}}</td>
                                             <td>
                                                 <div class="dropdown">

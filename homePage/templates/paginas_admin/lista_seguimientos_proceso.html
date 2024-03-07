@@ -57,9 +57,9 @@
                         <table style="text-align: center;"class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th  class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
+                                    <th  class="table-plus datatable-nosort">Mascota</th>
                                     <th>Fase</th>
+                                    <th>Usuario</th>
                                     <th>Progreso</th>
                                     <th>Fecha</th>
                                     <th>Estado SE</th>
@@ -71,9 +71,9 @@
                                 {% for seguimientoadopcion in entity %}
                                     {% if seguimientoadopcion.estado_seguimiento == 1 %}
                                         <tr>
-                                            <td>{{ seguimientoadopcion.id }}</td>
                                             <td>{{ seguimientoadopcion.solicitud_adopcion.mascota.nombre }}</td>
                                             <td>{{ seguimientoadopcion.get_fase_display }}</td>
+                                            <td>{{ seguimientoadopcion.solicitud_adopcion.adoptante.username }}</td>
                                             <td>
                                                 <div style="text-align: left;" class="rogress-ring">
                                                   {% if seguimientoadopcion.fase == 1  %}
@@ -88,7 +88,7 @@
                                                 </div>
                                               </td>
                                             
-                                            <td>{{ seguimientoadopcion.fecha_seguimiento }}</td>
+                                            <td>{{ seguimientoadopcion.fecha_seguimiento|date:"d/m/y" }}</td>
                                             <td>{{ seguimientoadopcion.get_estado_seguimiento_display }}</td>
                                             
                                             <td>

@@ -54,15 +54,14 @@
                     </div>
                             
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table style="text-align: center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
                                     <th class="table-plus datatable-nosort">id</th>
-                                    <th>Fecha</th>
                                     <th>Mascota</th>
+                                    <th>Fecha</th>
                                     <th>Foto</th>
                                     <th>Usuario</th>
-                                    <th>Nombre y apellido</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -72,13 +71,12 @@
                                 {% for adopcion in entity %}
                                         <tr>
                                             <td>{{adopcion.id}}</td>
-                                            <td>{{adopcion.fecha_adopcion }} </td>
                                             <td>{{adopcion.mascota.nombre }} </td>
+                                            <td>{{adopcion.fecha_adopcion |date:"d/m/y" }} </td>
                                             <td>
                                                 <img src="{{adopcion.mascota.imagen.url}}" width="95"  alt=""/>
                                             </td>
-                                            <td>Usuario</td>
-                                            <td>Daniela </td>
+                                            <td>{{adopcion.adoptante.username}}</td>
                                             <td>{{adopcion.get_estado_adopcion_display}}</td>
                                             <td>
                                                 <div class="dropdown">

@@ -21,6 +21,7 @@ from login.forms import CustomUserCreationForms
 #ADMINISTRADOR: 
 def Inicio_Admin(request):
     return render(request, "paginas_admin/inicio.html")
+    
 
 def Lista_usuarios(request):
 
@@ -139,7 +140,6 @@ class registrar_usuario_adoptante(View):
 
         form = CustomUserCreationForms(request.POST)
         username = request.POST.get("username")
-        
         if form.is_valid():
   
             form.save()
@@ -151,8 +151,7 @@ class registrar_usuario_adoptante(View):
                 return redirect('Lista_adoptantes')
 
         else:
-            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
-            
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")          
             return render(request, "paginas_admin/registrar_adoptante.html", {"form": form, "formulario": formulario })
         
 class Actualizar_adoptante(View):
@@ -215,7 +214,28 @@ def habilitar_adoptante(request, id):
 
 def Lista_adopciones(request):
     adopciones = Adopcion.objects.all()
-    return render(request, "paginas_admin/lista_adopciones.html", {"entity": adopciones})
+    mascotas = Mascota.objects.all()
+    mascotas_rescatadas = Mascota.objects.filter(estadoRegistro = 1).count()
+    adopciones_finalizadas = Adopcion.objects.filter(estado_adopcion = 1).count()
+    adopciones_rechazadas = SolicitudAdopcion.objects.filter(estado_proceso = 3).count()
+    adopciones_proceso = SolicitudAdopcion.objects.filter(estado_proceso = 2).count()
+    porcentaje_adoptados = (mascotas_rescatadas / adopciones_finalizadas) * 100
+
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(mascotas, 3)
+        mascotas =  paginator.page(page)
+    except:
+        pass
+    return render(request, "paginas_admin/lista_adopciones.html", 
+                  {"entity": adopciones, "paginator": paginator,
+                    "mascotas_rescatadas": mascotas_rescatadas,
+                    "adopciones_finalizadas": adopciones_finalizadas,
+                    "adopciones_rechazadas": adopciones_rechazadas,
+                    "adopciones_proceso": adopciones_proceso,
+                    "porcentaje_adoptados": porcentaje_adoptados})
+
 
 def Registrar_adoptante(request):
     return render(request, "paginas_admin/registrar_adoptante.html")

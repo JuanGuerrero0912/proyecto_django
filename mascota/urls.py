@@ -6,6 +6,7 @@ from .views import *
 
 urlpatterns = [
     path('registrar_mascota', views.registrar_mascota.as_view(), name="Registrar_Mascota"),
+    path('video/', views.mostrar_video, name='mostrar_video'),
     path('actualizar_mascota/<int:id>', views.actualizar_mascota.as_view(), name="Actualizar_Mascota"),
     path('inhabilitar_mascota/<int:id>', views.inhabilitar_mascota, name="Inhabilitar_Mascota"),
     path('ver_mascota/<int:id>', views.ver_mascota, name="Ver_Mascota"),
