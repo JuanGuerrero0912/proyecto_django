@@ -33,20 +33,26 @@
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Articulo:</label>
+                                {{formulario.articulo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Cantidad del articulo:</label>
+                                {{formulario.cantidad_salida}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <a href="{% url "Lista_salidas" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</a>
+                    </div>
                 </form>
-                <br>
-                <a href="{% url "Lista_salidas" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</a>
             </div>
         </div>
     </div>

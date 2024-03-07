@@ -5,7 +5,7 @@ class DonacionForms(forms.ModelForm):
 
     class Meta:
         model = Donaciones
-        filds = '__all__'
+        fields = ['tipo_donacion', 'cantidad_donacion', 'Articulos', 'entregado']
         exclude = ['usuario']
     
     def __init__(self, *args, **kwargs):
@@ -17,7 +17,8 @@ class DonacionForms(forms.ModelForm):
         self.fields['Articulos'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['estado_donacion'].widget.attrs.update({
+        self.fields['cantidad_donacion'].widget.attrs.update({
             'class': 'form-control',
         })
+
 

@@ -100,10 +100,13 @@ class registrar_Entrada(View):
     def post(self, request):
 
         formulario = EntradasForm(request.POST)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            entrada = formulario.save(commit=False)
+            entrada.administrador = usuario
+            entrada.save()
             messages.success(request, "Entrada agregada correctamente")
             return redirect('Lista_entradas')
         
@@ -127,9 +130,12 @@ class actualizar_entrada(View):
 
         entrada = Entradas.objects.get(id=id)
         formulario = EntradasForm(request.POST , instance=entrada)
+        usuario = self.request.user
 
         if formulario.is_valid():
-            formulario.save()
+            entrada = formulario.save(commit=False)
+            entrada.administrador = usuario
+            entrada.save()
             messages.success(request, "Entrada actualizada correctamente")
             return redirect('Lista_entradas')
         
@@ -177,10 +183,13 @@ class registrar_salida(View):
     def post(self, request):
 
         formulario = SalidasForm(request.POST)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            salida = formulario.save(commit=False)
+            salida.administrativo = usuario
+            salida.save()
             messages.success(request, "Salida agregada correctamente")
             return redirect('Lista_salidas')
         
@@ -203,10 +212,13 @@ class actualizar_salida(View):
 
         salida = Salidas.objects.get(id = id)
         formulario = SalidasForm(request.POST,instance=salida)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            salida = formulario.save(commit=False)
+            salida.administrativo = usuario
+            salida.save()
             messages.success(request, "Salida actualizada correctamente")
             return redirect('Lista_salidas')
         

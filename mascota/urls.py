@@ -27,7 +27,6 @@ urlpatterns = [
     path('inhabilitar_solicitud/<int:id>', views.inhabilitar_solicitud, name="Inhabilitar_Solicitud"),
     path('ver_solicitud/<int:id>', views.ver_solicitud, name="Ver_Solicitud"),
     path('habilitar_solicitud/<int:id>', views.habilitar_solicitud, name="Habilitar_Solicitud"),
-    path('registrar_seguimiento', views.registrar_seguimiento.as_view(), name="Registrar_Seguimiento"),
     path('actualizar_seguimiento/<int:id>', views.actualizar_seguimiento.as_view(), name="Actualizar_Seguimiento"),
     path('seguimiento_por_perrito/<int:id>', views.seguimiento_por_perrito, name="Seguimiento_Por_Mascota"),
     path('inhabilitar_seguimiento/<int:id>', views.inhabilitar_seguimiento, name="Inhabilitar_Seguimiento"),

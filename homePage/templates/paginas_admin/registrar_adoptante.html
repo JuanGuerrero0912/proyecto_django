@@ -27,22 +27,125 @@
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Nuevo Adoptante</h4><br>
-						</div>
-						
+						<h4 class="text-blue h4">Nuevo Adoptante</h4>
+						<p class="mb-30">Registrar nuevo Adoptante</p>
 					</div>
-					<form method="post">
-						{% csrf_token %}
-
-						{{form|crispy}}
-						{{formulario|crispy}}
-						<br>
-
-						<input type="submit" name="" value="registrar" class="btn btn-primary">
-					</form>
-					<br>
-					<a href="{% url "Lista_adoptantes" %}"><button style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</button></a>
+					<div class="wizard-content">
+						<form class="tab-wizard wizard-circle wizard" method="POST">
+							{% csrf_token %}
+							<h5>Información del adoptante</h5>
+							<section>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Usuario:</label>
+											{{form.username}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Email:</label>
+											{{form.email}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Contraseña :</label>
+											{{form.password1}}
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Repetir Contraseña :</label>
+											{{form.password2}}
+										</div>
+									</div>
+								</div>
+							</section>
+							<h5>Información personal</h5>
+							<section>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Nombres :</label>
+											{{form.first_name}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Apellidos :</label>
+											{{form.last_name}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Tipo de documento :</label>
+											{{formulario.tipo_documento}}
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Número de documento :</label>
+											{{formulario.documento}}
+										</div>
+									</div>
+								</div>
+							</section>
+							<h5>Información de contacto</h5>
+							<section>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Celular :</label>
+											{{formulario.celular}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Ciudad :</label>
+											{{formulario.ciudad}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Dirección :</label>
+											{{formulario.direccion}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Imagen o Icono:</label>
+											{{formulario.imagen}}
+										</div>
+									</div>
+								</div>
+							</section>
+							<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered max-width-400" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center font-18">
+											<h3 class="mb-20">Registrando Nuevo Adoptante!</h3>
+											<div class="mb-30 text-center"><img src="{% static "homePage/vendors/images/success.png" %}"></div>
+											¿Estas seguro de registrar este adoptante?
+										</div>
+										<div class="modal-footer justify-content-center">
+											<input type="submit" name="" value="Registrar" class="btn btn-primary">
+											<button type="button" style="border-color: brown; background-color: brown;" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<a href="{% url "Lista_adoptantes" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</a>
+					</div>
 				</div>	
 			</div>	
 		</div>

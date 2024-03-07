@@ -33,19 +33,68 @@
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <input type="submit" name="" value="Actualizar" class="btn btn-primary">
-                    <a href="{% url "Lista_mascotas" %}" class="btn btn-danger">Cancelar</a>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Nombre de la Mascota:</label>
+                                {{formulario.nombre}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Caracteristicas:</label>
+                                {{formulario.caracteristicas}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label >Estado de la Mascota:</label>
+                                {{formulario.estadoMascota}}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label >Sexo:</label>
+                                {{formulario.sexo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label >Raza:</label>
+                                {{formulario.raza}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label >Edad:</label>
+                                {{formulario.edad}}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label >Años o Meses:</label>
+                                {{formulario.edad_m_a}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Foto de la mascota:</label>
+                                {{formulario.imagen}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">&emsp;&emsp; 
+                        <a href="{% url "Lista_mascotas" %}" class="btn btn-danger">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

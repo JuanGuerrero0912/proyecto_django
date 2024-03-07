@@ -7,7 +7,6 @@
 {% block titulo %} <title>Registro</title> {% endblock titulo %}
 
 {% block contenido %}
-
 <div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
     <div class="container">
         <div class="row align-items-center">
@@ -16,14 +15,91 @@
             </div>
             <div class="col-md-6 col-lg-5">
                 <div class="register-box bg-white box-shadow border-radius-10">
-                    
                     <div class="wizard-content">
-                        <form style="font-family: Nunito;" class="tab-wizard2 wizard-circle wizard" method="POST">
+                        <form class="tab-wizard2 wizard-circle wizard" method="POST">
                             {% csrf_token %}
-                            <h5> Datos básicos</h5>
+                            <h5>Información de adoptante</h5>
                             <section>
-                                {{form|crispy}}
-
+                                <div class="form-wrap max-width-600 mx-auto">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Usuario </label>
+                                        <div class="col-sm-8">
+                                            {{form.username}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            {{form.email}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Contraseña</label>
+                                        <div class="col-sm-8">
+                                            {{form.password1}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Repetir Contraseña</label>
+                                        <div class="col-sm-8">
+                                            {{form.password2}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Step 2 -->
+                            <h5>Información personal</h5>
+                            <section>
+                                <div class="form-wrap max-width-600 mx-auto">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Nombres</label>
+                                        <div class="col-sm-8">
+                                            {{form.first_name}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Apellidos</label>
+                                        <div class="col-sm-8">
+                                            {{form.last_name}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Tipo de documento</label>
+                                        <div class="col-sm-8">
+                                            {{formulario.tipo_documento}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Número de documento</label>
+                                        <div class="col-sm-8">
+                                            {{formulario.documento}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- Step 3 -->
+                            <h5>Información de contacto</h5>
+                            <section>
+                                <div class="form-wrap max-width-600 mx-auto">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Celular</label>
+                                        <div class="col-sm-8">
+                                            {{formulario.celular}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Ciudad</label>
+                                        <div class="col-sm-8">
+                                            {{formulario.ciudad}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Dirección</label>
+                                        <div class="col-sm-8">
+                                            {{formulario.direccion}}
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
                             <button type="submit" value="registrar" id="success-modal-btn" hidden data-toggle="modal" data-target="#success-modal" data-backdrop="static">Launch modal</button>
                         </form>

@@ -27,27 +27,86 @@
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Ver usuario</h4><br>
-						</div>
-						
+						<h4 class="text-blue h4">Ver Usuario</h4>
+						<p class="mb-30">Ver información del Usuario</p>
 					</div>
-					<form method="post">
-						{% csrf_token %}
-                        <div class="form-group">
-                            <label for = "first_name">Nombres</label>
-                            <input class="form-control form-control-lg" type="text" name="first_name" value="{{usuario.first_name}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Apellidos</label>
-                            <input class="form-control form-control-lg" type="text" name="last_name" value="{{usuario.last_name}}">
-                        </div>
-						{{formulario|crispy}}
-
-					</form>
-					<br>
-					<a href="{% url "Lista_usuarios" %}"><button style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</button></a>
-				</div>	
+					<div class="wizard-content">
+						<form class="tab-wizard wizard-circle wizard" method="POST">
+							{% csrf_token %}
+							<h5>Información personal</h5>
+							<section>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Nombres :</label>
+											{{form.first_name}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Apellidos :</label>
+											{{form.last_name}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Tipo de documento :</label>
+											{{formulario.tipo_documento}}
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label >Número de documento :</label>
+											{{formulario.documento}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Rol:</label>
+											{{formulario.rol}}
+										</div>
+									</div>
+								</div>
+							</section>
+							<h5>Información de contacto</h5>
+							<section>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Celular :</label>
+											{{formulario.celular}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Ciudad :</label>
+											{{formulario.ciudad}}
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-md-center">
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Dirección :</label>
+											{{formulario.direccion}}
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="form-group">
+											<label >Imagen o Icono:</label>
+											{{formulario.imagen}}
+										</div>
+									</div>
+								</div>
+							</section>
+						</form>
+						<a href="{% url "Lista_usuarios" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Volver</a>
+					</div>
+				</div>
 			</div>	
 		</div>
 	</div>

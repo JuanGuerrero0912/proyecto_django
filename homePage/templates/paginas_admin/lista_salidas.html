@@ -63,6 +63,7 @@
                                     <th>Referencia</th>
                                     <th>Fecha Salida</th>
                                     <th>Cantidad</th>
+                                    <th>Administrativo</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -74,8 +75,9 @@
                                             <td class="table-plus">{{salida.id}}</td>
                                             <td>{{salida.articulo.nombre}}</td>
                                             <td>{{salida.articulo.referencia}}</td>
-                                            <td>{{salida.fecha_salida}}</td>
+                                            <td>{{salida.fecha_salida|date:"d/m/y"}}</td>
                                             <td>{{salida.cantidad_salida}}</td>
+                                            <td>{{salida.administrativo}}</td>
                                             <td>{{salida.get_estado_salida_display}}</td>
                                             <td>
                                                 <div class="dropdown">

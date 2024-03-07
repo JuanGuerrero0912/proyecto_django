@@ -6,6 +6,7 @@ from mascota.models import Mascota, Adopcion, HistorialMedico, SolicitudAdopcion
 from django.http import FileResponse
 import os
 from DoggyAtHome import settings
+from login.models import Perfil
 
 
 def mostrar_video(request):
@@ -20,8 +21,11 @@ class registrar_mascota(View):
     
     def post(self, request):
         formulario = MascotaForm(request.POST, request.FILES)
+        usuario = self.request.user
         if formulario.is_valid():
-            formulario.save()
+            mascota = formulario.save(commit=False)
+            mascota.administrativo = usuario
+            mascota.save()
             messages.success(request, "Mascota agregada correctamente")
             return redirect('Lista_mascotas')      
         else:
@@ -41,9 +45,12 @@ class actualizar_mascota(View):
 
         mascota = Mascota.objects.get(id = id)
         formulario = MascotaForm(request.POST, request.FILES, instance=mascota)
+        usuario = self.request.user
 
         if formulario.is_valid():
-            formulario.save()
+            mascota = formulario.save(commit=False)
+            mascota.administrativo = usuario
+            mascota.save()
             messages.success(request, "Mascota actualizada correctamente")
             return redirect('Lista_mascotas')
         
@@ -155,9 +162,12 @@ class registrar_historial(View):
     def post(self, request):
 
         formulario = HistorialMedicoForm(request.POST, request.FILES)
+        usuario = self.request.user
         if formulario.is_valid():
 
-            formulario.save()
+            historial = formulario.save(commit=False)
+            historial.veterinario = usuario
+            historial.save()
             messages.success(request, "Historial agregado correctamente")
             return redirect('Lista_historial_medico')
         
@@ -179,9 +189,12 @@ class actualizar_historial(View):
 
         historial = HistorialMedico.objects.get(id = id)
         formulario = HistorialMedicoForm(request.POST, request.FILES, instance=historial)
+        usuario = self.request.user
 
         if formulario.is_valid():
-            formulario.save()
+            historial = formulario.save(commit=False)
+            historial.veterinario = usuario
+            historial.save()
             messages.success(request, "Historial actualizado correctamente")
             return redirect('Lista_historial_medico')
         
@@ -288,26 +301,6 @@ def habilitar_solicitud(request, id):
     return redirect('Lista_solicitudes_inhabilitadas')
 
 #SEGUIMIENTO
-class registrar_seguimiento(View):
-    
-    def get(self, request):
-        
-        formulario = SeguimientoAdopcionForm()
-        return render(request, 'crud_mascotas/registrar_seguimiento.html', {"formulario": formulario})
-    
-    def post(self, request):
-
-        formulario = SeguimientoAdopcionForm(request.POST, request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request, "Seguimiento agregado correctamente")
-            return redirect('Lista_seguimientos_proceso')
-        
-        else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
-            
-            return render(request, 'crud_mascotas/registrar_seguimiento.html', {"formulario": formulario})
 
 class actualizar_seguimiento(View):
 
@@ -382,6 +375,7 @@ def adopcion_inhabilitada_vete(request):
 class registrar_mascota_vete(View):
     
     def get(self, request):
+
         formulario = MascotaForm()
         return render(request, 'crud_mascotas_vet/registrar_mascota.html', {"formulario": formulario})
     

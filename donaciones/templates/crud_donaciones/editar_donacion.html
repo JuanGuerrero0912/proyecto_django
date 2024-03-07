@@ -33,21 +33,43 @@
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <input type="submit" name="" value="Registrar" class="btn btn-primary">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Tipo de Donación:</label>
+                                {{formulario.tipo_donacion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Articulo:</label>
+                                {{formulario.Articulos}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Cantidad:</label>
+                                {{formulario.cantidad_donacion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Entregado:</label>
+                                {{formulario.entregado}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">&emsp;&emsp;
+                        <a href="{% url "Lista_donaciones" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</a>
+                    </div>
                 </form>
-                <br>
-                <a href="{% url "Lista_donaciones" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</a>
             </div>
         </div>
     </div>

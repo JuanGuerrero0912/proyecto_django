@@ -4,16 +4,26 @@ from mascota.models import Mascota, Adopcion, HistorialMedico, SolicitudAdopcion
 class MascotaForm(forms.ModelForm):
     class Meta:
         model = Mascota
-        fields = '__all__'
-        exclude = ()
+        fields = ['nombre', 'caracteristicas', 'estadoMascota', 'sexo',
+                   'edad','edad_m_a', 'imagen', 'raza']
+        exclude = ['administrativo']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['estadoRegistro'].widget.attrs.update({
+        self.fields['nombre'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['caracteristicas'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['edad'].widget.attrs.update({
             'class': 'form-control',
         })
         self.fields['edad_m_a'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['imagen'].widget.attrs.update({
             'class': 'form-control',
         })
         self.fields['estadoMascota'].widget.attrs.update({
@@ -25,16 +35,12 @@ class MascotaForm(forms.ModelForm):
         self.fields['raza'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['administrativo'].widget.attrs.update({
-            'class': 'form-control',
-        })
-        
-        
 
+        
 class AdopcionForm(forms.ModelForm):
     class Meta:
         model = Adopcion
-        fields = '__all__'
+        fields = ['mascota', 'adoptante']
         exclude = ()
         
     def __init__(self, *args, **kwargs):
@@ -46,15 +52,12 @@ class AdopcionForm(forms.ModelForm):
         self.fields['adoptante'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['estado_adopcion'].widget.attrs.update({
-            'class': 'form-control',
-        })
-        
+
 class HistorialMedicoForm(forms.ModelForm):
     class Meta:
         model = HistorialMedico
-        fields = '__all__'
-        exclude = ()
+        fields = ['mascota', 'diagnostico']
+        exclude = ['veterinario']
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -62,18 +65,16 @@ class HistorialMedicoForm(forms.ModelForm):
         self.fields['mascota'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['estado_historial'].widget.attrs.update({
+        self.fields['diagnostico'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['veterinario'].widget.attrs.update({
-            'class': 'form-control',
-        })
+
         
 class SolicitudAdopcionForm(forms.ModelForm):
     class Meta:
         model = SolicitudAdopcion
-        fields = '__all__'
-        exclude = ()
+        fields = ['mascota', 'estado_proceso', 'solicitud', 'adoptante']
+        exclude = []
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -84,18 +85,18 @@ class SolicitudAdopcionForm(forms.ModelForm):
         self.fields['estado_proceso'].widget.attrs.update({
             'class': 'form-control',
         })
-        self.fields['estado_solicitud'].widget.attrs.update({
+        self.fields['solicitud'].widget.attrs.update({
             'class': 'form-control',
-        }) 
+        })
         self.fields['adoptante'].widget.attrs.update({
             'class': 'form-control',
-        }) 
+        })
         
 class SeguimientoAdopcionForm(forms.ModelForm):
     class Meta:
         model = SeguimientoAdopcion
-        fields = '__all__'
-        exclude = ()
+        fields = ['solicitud_adopcion','fase', 'estado_fase']
+        exclude = []
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -107,8 +108,5 @@ class SeguimientoAdopcionForm(forms.ModelForm):
             'class': 'form-control',
         })
         self.fields['estado_fase'].widget.attrs.update({
-            'class': 'form-control',
-        }) 
-        self.fields['estado_seguimiento'].widget.attrs.update({
             'class': 'form-control',
         }) 

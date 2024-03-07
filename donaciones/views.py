@@ -27,8 +27,8 @@ class registrar_donacion(View):
             return redirect('Lista_donaciones')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            
+            messages.error(request, "Ocurrio un error al registrar la salida, intentalo de nuevo")
             
             return render(request, 'crud_donaciones/registrar_donacion.html', {"formulario": formulario})
 

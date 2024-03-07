@@ -33,19 +33,41 @@
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <a href="{% url "Lista_solicitudes_adopcion" %}" class="btn btn-danger">Cancelar</a>
-
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Mascota:</label>
+                                {{formulario.mascota}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Estado de la solicitud:</label>
+                                {{formulario.estado_proceso}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Solicitud:</label>
+                                {{formulario.solicitud}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Adoptante:</label>
+                                {{formulario.adoptante}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <a href="{% url "Lista_solicitudes_adopcion" %}" class="btn btn-danger">Ver</a>
+                    </div>
                 </form>
             </div>
         </div>

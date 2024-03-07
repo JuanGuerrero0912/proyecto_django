@@ -33,19 +33,34 @@
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <input type="submit" name="" value="Actualizar" class="btn btn-primary">
-                    <a href="{% url "Lista_seguimientos_proceso" %}" class="btn btn-danger">Cancelar</a>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Solicitud de Adopción:</label>
+                                {{formulario.solicitud_adopcion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Fase:</label>
+                                {{formulario.fase}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Estado de la fase:</label>
+                                {{formulario.estado_fase}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">&emsp;&emsp;
+                        <a href="{% url "Lista_seguimientos_proceso" %}" class="btn btn-danger">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

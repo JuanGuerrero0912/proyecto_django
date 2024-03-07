@@ -63,6 +63,7 @@
                                     <th>Referencia</th>
                                     <th>Fecha Entrada</th>
                                     <th>Cantidad</th>
+                                    <th>Administrador</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
@@ -74,8 +75,9 @@
                                             <td class="table-plus">{{entrada.id}}</td>
                                             <td>{{entrada.articulo.nombre}}</td>
                                             <td>{{entrada.articulo.referencia}}</td>
-                                            <td>{{entrada.fecha_entrada}}</td>
+                                            <td>{{entrada.fecha_entrada|date:"d/m/y"}}</td>
                                             <td>{{entrada.cantidad_entrada}}</td>
+                                            <td>{{entrada.administrador}}</td>
                                             <td>{{entrada.get_estado_entrada_display}}</td>
                                             <td>
                                                 <div class="dropdown">

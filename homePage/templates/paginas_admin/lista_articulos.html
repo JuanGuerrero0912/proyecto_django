@@ -64,7 +64,7 @@
                                     <th>Articulo</th>
                                     <th>Referencia</th>
                                     <th>Stock</th>
-                                    <th>Fecha de Registro</th>
+                                    <th>Fecha</th>
                                     <th>Usuario</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
@@ -81,7 +81,7 @@
                                             {% else %}
                                             <td style="color: red;">{{articulo.get_stock}}</td>
                                             {% endif %}
-                                            <td>{{articulo.fecha_registro}}</td>
+                                            <td>{{articulo.fecha_registro|date:"d/m/y"}}</td>
                                             <td>{{articulo.usuario.username}}</td>
                                             <td>{{articulo.get_estado_articulo_display}}</td>
                                             <td>

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% load crispy_forms_tags %}
-{% block titulo %} Ver mascota{% endblock titulo %}
+{% block titulo %} Actualizar mascota{% endblock titulo %}
 
 {% block contenido %}
 <div class="main-container">
@@ -12,14 +12,14 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Ver mascota</h4>
+                            <h4>Actualizar mascota</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                 <li class="breadcrumb-item"><a href="{% url "Adopciones" %}">Adopciones</a></li>
                                 <li class="breadcrumb-item"><a href="{% url "Lista_mascotas" %}">Listado Mascotas</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ver mascota</li>
+                                <li class="breadcrumb-item active" aria-current="page">Actualizar</li>
                             </ol>
                         </nav>
                     </div>
@@ -28,23 +28,72 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="text-blue h4">Ver mascota</h4><br>
+                        <h4 class="text-blue h4">Actualiza una mascota</h4><br>
                     </div>
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <a href="{% url "Lista_mascotas" %}" class="btn btn-danger">Cancelar</a>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Nombre de la Mascota:</label>
+                                {{formulario.nombre}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Caracteristicas:</label>
+                                {{formulario.caracteristicas}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label >Estado de la Mascota:</label>
+                                {{formulario.estadoMascota}}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label >Sexo:</label>
+                                {{formulario.sexo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label >Raza:</label>
+                                {{formulario.raza}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label >Edad:</label>
+                                {{formulario.edad}}
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label >Años o Meses:</label>
+                                {{formulario.edad_m_a}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Foto de la mascota:</label>
+                                {{formulario.imagen}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <a href="{% url "Lista_mascotas" %}" class="btn btn-danger">Volver</a>
+                    </div>
                 </form>
             </div>
         </div>

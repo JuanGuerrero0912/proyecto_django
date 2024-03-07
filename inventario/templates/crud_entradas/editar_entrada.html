@@ -33,21 +33,27 @@
                 </div>
                 <form method="post">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <input type="submit" name="" value="Actualizar" class="btn btn-primary">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Articulo:</label>
+                                {{formulario.articulo}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Cantidad del articulo:</label>
+                                {{formulario.cantidad_entrada}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" name="" value="Actualizar" class="btn btn-primary">&emsp;&emsp;
+                        <a href="{% url "Lista_entradas" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</a>
+                    </div>
                 </form>
-                <br>
-                <a href="{% url "Lista_entradas" %}"style="border-color: brown; background-color: brown; width: 104px;" class="btn btn-primary">Cancelar</a>
             </div>
         </div>
     </div>

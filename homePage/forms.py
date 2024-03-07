@@ -6,6 +6,17 @@ class Usuario_Adoptante(forms.ModelForm):
    class Meta:
       model = User
       fields = ['first_name', 'last_name']
+   
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+
+      self.fields['first_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['last_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
+
 
 class Perfil_Adoptante(forms.ModelForm):
    class Meta:
@@ -23,6 +34,16 @@ class Usuario_Administrador(forms.ModelForm):
    class Meta:
       model = User
       fields = ['first_name', 'last_name']
+   
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+
+      self.fields['first_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['last_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
 
 class Perfil_Administrador(forms.ModelForm):
    class Meta:
@@ -40,6 +61,17 @@ class Usuario_Veterinario(forms.ModelForm):
    class Meta:
       model = User
       fields = ['first_name', 'last_name']
+   
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+
+      self.fields['first_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['last_name'].widget.attrs.update({
+         'class': 'form-control',
+      })
+
 
 class Perfil_Veterinario(forms.ModelForm):
    class Meta:
@@ -68,6 +100,22 @@ class Perfil_Registro(forms.ModelForm):
       self.fields['tipo_documento'].widget.attrs.update({
          'class': 'form-control',
       })
+      self.fields['imagen'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['documento'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['celular'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['ciudad'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['direccion'].widget.attrs.update({
+         'class': 'form-control',
+      })
+
 
 class Perfil_Registro_Adoptante(forms.ModelForm):
    class Meta:
@@ -79,5 +127,20 @@ class Perfil_Registro_Adoptante(forms.ModelForm):
 
 
       self.fields['tipo_documento'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['imagen'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['documento'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['celular'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['ciudad'].widget.attrs.update({
+         'class': 'form-control',
+      })
+      self.fields['direccion'].widget.attrs.update({
          'class': 'form-control',
       })

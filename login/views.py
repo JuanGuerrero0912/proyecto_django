@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.models import User
 from login.forms import CustomUserCreationForms
+from homePage.forms import Perfil_Registro_Adoptante
 
 
 # Create your views here.
@@ -43,25 +44,34 @@ def interfaz_login(request):
 class VRegistro(View):
     def get(self, request):
         form = CustomUserCreationForms()
-
-        return render(request, "paginas_login/registro.html", {"form": form})
+        formulario = Perfil_Registro_Adoptante()
+        
+        return render(request, "paginas_login/registro.html", {"form": form, "formulario": formulario})
 
     def post(self, request):
         
         form = CustomUserCreationForms(request.POST)
+        username = request.POST.get("username")
 
         if form.is_valid():
             
             usuario = form.save()
             login(request, usuario)
+            user = User.objects.get(username = username)
+            formulario = Perfil_Registro_Adoptante(request.POST, request.FILES, instance =user.perfil)
+            if formulario.is_valid():
+                formulario.save()
+                messages.success(request,"Tu registro ha sido exitoso")
+                return redirect('Inicio_Adoptante')
+            else:
+                messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
-            return redirect('Registro_Perfil_Adoptante')
+                return render(request, "paginas_login/login.html", {"form": form, "formulario": formulario })
         
         else:
-            for msg in form.error_messages:
-                messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
-            return render(request, "paginas_login/registro.html", {"form": form})
+            return render(request, "paginas_login/cambiar_contraseña.html", {"form": form, "formulario": formulario})
 
 def cerrar_sesion(request):
     logout(request)
