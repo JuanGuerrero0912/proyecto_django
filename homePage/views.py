@@ -393,11 +393,13 @@ def inventario_veter(request):
 
     return render(request, "paginas_veter/inventario_veter.html")
 
-def vista_salidas_veterinario(request):
+class vista_salidas_veterinario(View):
 
-    salidas = Salidas.objects.all()
+    def get(self, request):
+        usuario = self.request.user
+        salidas = Salidas.objects.filter(administrativo = usuario)
 
-    return render(request, "paginas_veter/lista_salidas_veter.html", {'salidas': salidas})
+        return render(request, "paginas_veter/lista_salidas_veter.html", {'salidas': salidas})
 
 class Actualizar_Perfil_Veterinario(View):
 

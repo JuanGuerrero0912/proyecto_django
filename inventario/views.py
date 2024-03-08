@@ -17,7 +17,7 @@ class registrar_articulo(View):
     def post(self, request):
 
         usuario = self.request.user
-        formulario = ArticulosForm(request.POST)
+        formulario = ArticulosForm(request.POST, request.FILES)
         
         if formulario.is_valid():
 
@@ -269,10 +269,13 @@ class registrar_salida_veter(View):
     def post(self, request):
 
         formulario = SalidasForm(request.POST)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            salida = formulario.save(commit=False)
+            salida.administrativo = usuario
+            salida.save()
             messages.success(request, "Salida agregada correctamente")
             return redirect('Salidas_veterinario')
         
@@ -301,10 +304,13 @@ class actualizar_salida_veter(View):
 
         salida = Salidas.objects.get(id = id)
         formulario = SalidasForm(request.POST,instance=salida)
+        usuario = self.request.user
 
         if formulario.is_valid():
 
-            formulario.save()
+            salida = formulario.save(commit=False)
+            salida.administrativo = usuario
+            salida.save()
             messages.success(request, "Salida actualizada correctamente")
             return redirect('Salidas_veterinario')
         

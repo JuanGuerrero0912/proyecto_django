@@ -33,18 +33,25 @@
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <a href="{% url "Lista_historial_vete" %}" class="btn btn-danger">Cancelar</a>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Mascota:</label>
+                                {{formulario.mascota}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Diagnostico:</label>
+                                {{formulario.diagnostico}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <a href="{% url "Lista_historial_vete" %}" class="btn btn-danger">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -50,7 +50,7 @@ urlpatterns = [
     path('perritos_vete', views.Perritos_vete, name="Perritos_vete"),
     path('articulos_Veterinario', views.vista_articulos_veterinario, name="Articulos_veterinario"),
     path('inventario_Veterinario', views.inventario_veter, name="Inventario_veterinario"),
-    path('salidas_Veterinario', views.vista_salidas_veterinario, name="Salidas_veterinario"),
+    path('salidas_Veterinario', views.vista_salidas_veterinario.as_view(), name="Salidas_veterinario"),
     path('perfil_veterinario', views.Actualizar_Perfil_Veterinario.as_view(), name="Perfil_Veterinario"),
     path('cambio_contraseña_veterinario', views.CambioContraseñaVeterinario.as_view(), name="Cambio_Contraseña_Veterinario"),
 

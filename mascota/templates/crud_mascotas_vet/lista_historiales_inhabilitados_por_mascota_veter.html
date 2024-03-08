@@ -1,22 +1,22 @@
-{% extends "plantilla/plantilla_vete.html" %}
+{% extends "plantilla/plantilla_home.html" %}
 {% block js %}
 
     <script>
         function inhabilitar(id){
             Swal.fire({
                 "title": "¿Estas seguro?",
-                "text": "Si inhabilitas este historial ya no te aparcera en la lista",
+                "text": "Si habilitas este historial ya no te aparcera en la lista",
                 "icon": "question",
                 "showCancelButton": true,
                 "cancelButtonText": "No, volver",
-                "confirmButtonText": "Si, Inhabilitar",
+                "confirmButtonText": "Si, habilitar",
                 "reverseButtons": true,
                 "confirmButtonColor": "#1b00ff",
                 "cancelButtonColor": "red"
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/mascotas/inhabilitar_historial_vete/"+id
+                    window.location.href = "/mascotas/habilitar_historial_por_mascota_veter/"+id
                 }
             })
         }
@@ -39,8 +39,9 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
-                                    <li class="breadcrumb-item"><a href="{% url "Perritos_vete" %}">Peludos</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Lista historiales médicos</li>
+                                    <li class="breadcrumb-item"><a href="{% url "Perritos_vete" %}">Mascotas</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "historiales_medicos_por_perrito_vet" perrito.id %}">Historiales</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Inhabilitados</li>
                                 </ol>
                             </nav>
                         </div>
@@ -49,27 +50,25 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Historial médico</h4><br>
-                        <a href="{% url "Registrar_historial_vete" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
-
+                        <h4 style="text-align: center;" class="text-black h4">Historiales médicos inhabilitados de {{perrito.nombre}}</h4><br>
+                        <a href="{% url "historiales_medicos_por_perrito_vet" perrito.id %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Volver</button></a><br>
                     </div>
                             
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table style="text-align:center" class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">id</th>
-                                    <th>Mascota</th>
+                                    <th class="table-plus datatable-nosort">Mascota</th>
                                     <th>Fecha</th>
-                                    <th>Dignostico PDF</th>
+                                    <th>PDF</th>
                                     <th>Veterinario</th>
                                     <th>Estado</th>
                                     <th class="datatable-nosort">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for historialMedico in historial %}
-                                    {% if historialMedico.estado_historial == 1 %}
+                                {% for historialMedico in entity %}
+                                    {% if historialMedico.mascota.id == perrito.id %}
                                         <tr>
                                             <td>{{historialMedico.id}}</td>
                                             <td>{{historialMedico.mascota.nombre}}</td>
@@ -85,10 +84,7 @@
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <<a class="dropdown-item" href="{% url "Ver_historial_vete" historialMedico.id %}"><i class="dw dw-eye"></i>Ver</a>
-                                                        <a class="dropdown-item" href="{% url "Actualizar_historial_vete" historialMedico.id %}"><i class="dw dw-edit2"></i> Editar</a>
-                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ historialMedico.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
-                                                        
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ historialMedico.id }})"><i class="dw dw-edit2"></i>Habilitar</a>
                                                     </div>
                                                 </div>
                                             </td>

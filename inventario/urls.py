@@ -1,5 +1,7 @@
 from django.urls import path
 from inventario import views
+from django.conf import settings
+from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
     path('registrar_articulo', views.registrar_articulo.as_view(), name="Registrar_Articulo"),
@@ -26,4 +28,4 @@ urlpatterns = [
     path('registrar_salida_veterinario', views.registrar_salida_veter.as_view(), name="Registrar_Salida_Veterinario"),
     path('ver_salida_veterinario/<int:id>', views.ver_salida_veter, name="Ver_Salida_Veterinario"),
     path('actualizar_salida_veterianrio/<int:id>', views.actualizar_salida_veter.as_view(), name="Actualizar_Salida_Veterinario"),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

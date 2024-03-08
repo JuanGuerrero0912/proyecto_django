@@ -24,7 +24,7 @@ def inicio(request):
             messages.error(request, f"Ocurrio un error al enviar el correo: {e}")
             return render(request, "paginas/inicio.html")
     
-    mascotas = Mascota.objects.all()
+    mascotas = Mascota.objects.filter(estadoMascota = 1)
     mascotas_rescatadas = Mascota.objects.filter(estadoRegistro = 1).count()
     mascotas_adoptadas = Adopcion.objects.filter(estado_adopcion = 1).count()
     mascotas_por_adoptar = Mascota.objects.filter(estadoMascota = 1).count()
@@ -48,7 +48,7 @@ def nosotros(request):
 
 def perritos(request):
 
-    mascotas = Mascota.objects.all()
+    mascotas = Mascota.objects.filter(estadoMascota = 1)
     page = request.GET.get('page', 1)
 
     try:

@@ -227,16 +227,28 @@
 	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	 {% if messages %}
-	 	{% for m in messages %}
-			<script>
-				Swal.fire(
-					{
-						"title": "Felicitaciones",
-						"text": "{{m}}",
-						"icon": "success"
-					}
-				)
-			</script>
+	 	{% for m in messages%}
+			{% if m.tags == "success" %}
+				<script>
+					Swal.fire(
+						{
+							"title": "Felicitaciones",
+							"text": "{{m}}",
+							"icon": "success"
+						}
+					)
+				</script>
+			{% elif m.tags == "error" %}
+				<script>
+					Swal.fire(
+						{
+							"title": "Ocurrio un error",
+							"text": "{{m}}",
+							"icon": "error"
+						}
+					)
+				</script>
+			{% endif %}
 		{% endfor %}
 	 {% endif %}
 

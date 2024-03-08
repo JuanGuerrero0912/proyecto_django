@@ -72,11 +72,11 @@
                                         <tr>
                                             <td>{{historialMedico.id}}</td>
                                             <td>{{historialMedico.mascota.nombre}}</td>
-                                            <td>{{historialMedico.fecha_historial }} </td>
+                                            <td>{{historialMedico.fecha_historial|date:"d/m/y" }} </td>
                                             <td>
                                                 <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
-                                            <td>Daniela Zamora</td>
+                                            <td>{{historialMedico.veterinario}}</td>
                                             <td>{{historialMedico.get_estado_historial_display}}</td>
                                             <td>
                                                 <div class="dropdown">
@@ -114,7 +114,7 @@
                             Esta plantilla es para que la llenes los datos de los peluditos rescatados                                                   
                         </p>
                     </div>
-                    <a href="{% url 'descargar_archivo' 'historial.pdf' %}" download>
+                    <a href="{% url 'descargar_archivo' 'historial_medico.pdf' %}" download>
                         <button class="btn btn-primary" style="margin-left: 10rem;">Descargar Archivo</button>
                     </a>
                 </div>

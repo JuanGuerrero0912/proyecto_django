@@ -69,7 +69,19 @@ class HistorialMedicoForm(forms.ModelForm):
             'class': 'form-control',
         })
 
-        
+class Historial_medico_por_mascota(forms.ModelForm):
+    class Meta:
+        model = HistorialMedico
+        fields = ['diagnostico']
+        exclude = ['veterinario', 'mascota']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['diagnostico'].widget.attrs.update({
+            'class': 'form-control',
+        })
+
 class SolicitudAdopcionForm(forms.ModelForm):
     class Meta:
         model = SolicitudAdopcion

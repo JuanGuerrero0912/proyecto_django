@@ -31,23 +31,45 @@
                         <h4 class="text-blue h4">Registra un Articulo</h4><br>
                     </div>
                 </div>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
-                        
-                        {{formulario|crispy}}
-                    <input type="submit" name="" value="Registrar" class="btn btn-primary">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Nombre del Articulo:</label>
+                                {{formulario.nombre}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Descripción del Articulo:</label>
+                                {{formulario.descripcion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Referencia del Articulo:</label>
+                                {{formulario.referencia}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label >Imagen del Articulo:</label>
+                                {{formulario.imagen}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" name="" value="Registrar" class="btn btn-primary">&emsp;&emsp;
+                        <a href="{% url "Lista_articulos" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</a>
+                    </div>
                 </form>
-                <br>
-                <a href="{% url "Lista_articulos" %}"style="border-color: brown; background-color: brown;" class="btn btn-primary">Cancelar</a>
             </div>
         </div>
     </div>

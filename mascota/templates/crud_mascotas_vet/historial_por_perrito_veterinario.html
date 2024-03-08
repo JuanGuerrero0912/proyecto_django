@@ -1,0 +1,124 @@
+{% extends "plantilla/plantilla_vete.html" %}
+{% block js %}
+
+    <script>
+        function inhabilitar(id){
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "Si inhabilitas este historial ya no te aparcera en la lista",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, volver",
+                "confirmButtonText": "Si, Inhabilitar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#1b00ff",
+                "cancelButtonColor": "red"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/mascotas/inhabilitar_historial_por_mascota_veter/"+id
+                }
+            })
+        }
+    </script>
+
+{% endblock js %}
+{% load static %}
+{% block titulo %} Lista historial médico {% endblock titulo %}
+{% block contenido %}
+    <<div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>HISTORIAL MÉDICO</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Perritos_vete" %}">Mascotas</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Lista historiales médicos</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 style="text-align: center;" class="text-black h4">Historiales médicos de {{mascota.nombre}}</h4><br>
+                        <a href="{% url "Registrar_Historial_por_mascota_veter" mascota.id %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Registro</button></a>
+                        <a href="{% url "Lista_Historial_Inhabilitados_por_mascota_veter" mascota.id %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
+                    </div>
+                            
+                    <div class="pb-20">
+                        <table class="table hover multiple-select-row data-table-export nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="table-plus datatable-nosort">id</th>
+                                    <th>Mascota</th>
+                                    <th>Fecha</th>
+                                    <th>Dignostico PDF</th>
+                                    <th>Veterinario</th>
+                                    <th>Estado</th>
+                                    <th class="datatable-nosort">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for historialMedico in historial %}
+                                    {% if historialMedico.estado_historial == 1 %}
+                                        <tr>
+                                            <td>{{historialMedico.id}}</td>
+                                            <td>{{historialMedico.mascota.nombre}}</td>
+                                            <td>{{historialMedico.fecha_historial }} </td>
+                                            <td>
+                                                <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
+                                            </td>
+                                            <td>{{historialMedico.veterinario}}</td>
+                                            <td>{{historialMedico.get_estado_historial_display}}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="{% url "Ver_Historial_por_mascota_veter" mascota.id historialMedico.id %}"><i class="dw dw-eye"></i>Ver</a>
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Historial_por_mascota_veter" mascota.id historialMedico.id %}"><i class="dw dw-edit2"></i> Editar</a>
+                                                        <a class="dropdown-item" href="#" onclick="inhabilitar({{ historialMedico.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5  ">
+                    <img class="card-box mb-30" style="margin-left: 10rem;" src="{% static 'homePage/vendors/images/Solicitud.jpg'%}" alt=""/>
+                </div>
+                <div class="col-lg-7">
+                    <h1 style="margin-left: 10rem;" class="mb-4">Plantilla Historial Médico</h1>
+                    <div>
+                        <p style="margin-left: 10rem;">
+                            Esta plantilla es para que la llenes los datos de los peluditos rescatados                                                   
+                        </p>
+                    </div>
+                    <a href="{% url 'descargar_archivo' 'historial.pdf' %}" download>
+                        <button class="btn btn-primary" style="margin-left: 10rem;">Descargar Archivo</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}

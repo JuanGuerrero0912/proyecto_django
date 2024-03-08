@@ -26,8 +26,8 @@
                         <div class="row">
                             {% for mascota in entity %}
                             <div class="col-lg-4  mb-4">
-                                <div style="height: 700px" class="card border-0 bg-light shadow-sm pb-2">
-                                    <img style="height: 255px;" class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
+                                <div class="card border-0 bg-light shadow-sm pb-2">
+                                    <img class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
                                     <div class="card-body text-center">
                                         <h4 class="card-title">{{mascota.nombre}}</h4>
                                         <p class="card-text">
@@ -66,10 +66,10 @@
                                             <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso}}</div>
                                         </div>
                                     </div>
-                                    <a href="{% url "Historiales_medicos_por_perrito" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
+                                    <a href="{% url "historiales_medicos_por_perrito_vet" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
                                         Historiales Medicos
                                     </a>
-                                    <a href="{% url "Seguimiento_Por_Mascota" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
+                                    <a href="{% url "seguimiento_por_perrito_vet" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
                                         Seguimientos de proceso
                                     </a>
                                 </div>

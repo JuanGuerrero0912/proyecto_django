@@ -16,7 +16,7 @@
             })
             .then(function(result) {
                 if(result.isConfirmed){
-                    window.location.href = "/mascotas/inhabilitar_historial/"+id
+                    window.location.href = "/mascotas/inhabilitar_historial_por_mascota/"+id
                 }
             })
         }
@@ -39,6 +39,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
                                     <li class="breadcrumb-item"><a href="{% url "Adopciones" %}">Adopciones</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Perritos_admin" %}">Mascotas</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Lista historiales médicos</li>
                                 </ol>
                             </nav>
@@ -48,9 +49,9 @@
                 
                 <div class="card-box mb-30">
                     <div class="pd-20">
-                        <h4 style="text-align: center;" class="text-black h4">Historial médico</h4><br>
-                        <a href="{% url "Registrar_Historial" %}"><button style="background-color: #1b00ff;"  class="btn btn-success ">Nuevo Registro</button></a><br>
-
+                        <h4 style="text-align: center;" class="text-black h4">Historiales médicos de {{mascota.nombre}}</h4><br>
+                        <a href="{% url "Registrar_Historial_por_mascota" mascota.id %}"><button style="background-color: #1b00ff; "  class="btn btn-success ">Nuevo Registro</button></a>
+                        <a href="{% url "Lista_historiales_inhabilitados_por_mascota" mascota.id %}"><button type="button" class="btn btn-primary">Inhabilitados</button></a>
                     </div>
                             
                     <div class="pb-20">
@@ -76,7 +77,7 @@
                                             <td>
                                                 <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
                                             </td>
-                                            <td>Daniela Zamora</td>
+                                            <td>{{historialMedico.veterinario}}</td>
                                             <td>{{historialMedico.get_estado_historial_display}}</td>
                                             <td>
                                                 <div class="dropdown">
@@ -84,10 +85,9 @@
                                                         <i class="dw dw-more"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="#"><i class="dw dw-eye"></i>Ver</a>
-                                                        <a class="dropdown-item" href="{% url "Actualizar_Historial" historialMedico.id %}"><i class="dw dw-edit2"></i> Editar</a>
+                                                        <a class="dropdown-item" href="{% url "Ver_Historial_por_mascota" mascota.id historialMedico.id %}"><i class="dw dw-eye"></i>Ver</a>
+                                                        <a class="dropdown-item" href="{% url "Actualizar_Historial_por_mascota" mascota.id historialMedico.id %}"><i class="dw dw-edit2"></i> Editar</a>
                                                         <a class="dropdown-item" href="#" onclick="inhabilitar({{ historialMedico.id}})"><i class="dw dw-delete-3"></i> Inhabilitar</a>
-                                                        
                                                     </div>
                                                 </div>
                                             </td>

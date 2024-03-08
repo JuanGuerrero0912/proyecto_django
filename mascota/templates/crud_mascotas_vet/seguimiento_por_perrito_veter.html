@@ -1,0 +1,151 @@
+{% extends "plantilla/plantilla_vete.html" %}
+
+{% load static %}
+{% block titulo %} Lista seguimientos {% endblock titulo %}
+{% block contenido %}
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>SEGUIMIENTOS ADOPCIÓN</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Veter" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Adopciones_Vete" %}">Adopciones</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Perritos_vete" %}">Mascotas</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Lista seguimiento de adopción</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style=" background-image: url('/static/homePage/vendors/images/fondoSegui.jpg');" class="card-box mb-30">
+                    <div class="pd-20"><br>
+                        <h4 style="text-align: center; " class="text-black h4">Procesos de adopción de {{ mascota.nombre }}</h4><br>
+                    </div>       
+                    <div class="pb-20">
+                        <div class="row">
+                                {% for seguimientoadopcion in entity %}
+                                    {% if seguimientoadopcion.estado_seguimiento == 1%}
+                                    <div class="col-lg-4  mb-4">
+                                        <div class="card border-0  pb-2">
+                                            <div class="row">
+                                                <div class="col-6 py-1 text-right ">
+                                                    <strong>Adoptante</strong>
+                                                </div>
+                                                <div class="col-6 py-1">{{seguimientoadopcion.solicitud_adopcion.adoptante.username}}</div>
+                                            </div><br/>
+                                            <div style="text-align: left;" class="rogress-ring">
+                                                {% if seguimientoadopcion.fase == 1  %}
+                                                  <div class="progress pink">
+                                                      <span class="progress-left">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <span class="progress-right">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <div  class="progress-value">50%</div>
+                                                  </div>                                                    
+                                                  {% elif seguimientoadopcion.fase == 2 %}
+                                                  <div class="progress yellow">
+                                                      <span class="progress-left">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <span class="progress-right">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <div  class="progress-value">75%</div>
+                                                  </div>  
+                                                {% elif seguimientoadopcion.fase == 3 %}
+                                                <div class="progress green">
+                                                  <span class="progress-left">
+                                                      <span class="progress-bar"></span>
+                                                  </span>
+                                                  <span class="progress-right">
+                                                      <span class="progress-bar"></span>
+                                                  </span>
+                                                  <div  class="progress-value">90%</div>
+                                              </div>  
+                                                  {% elif seguimientoadopcion.fase == 4 %}
+                                                  <div class="progress blue">
+                                                      <span class="progress-left">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <span class="progress-right">
+                                                          <span class="progress-bar"></span>
+                                                      </span>
+                                                      <div  class="progress-value">100%</div>
+                                                  </div>  
+                                                {% endif %}
+                                              </div>
+                                            <div class=" bg-transparent py-4 px-5">
+                                                <div class="row border-bottom">
+                                                    <div class="col-6 py-1 text-right border-right">
+                                                        <strong>Fecha Solicitud</strong>
+                                                    </div>
+                                                    <div class="col-6 py-1">{{ seguimientoadopcion.solicitud_adopcion.fecha_solicitud }}</div>
+                                                </div>
+                                                <div class="row border-bottom">
+                                                    <div class="col-6 py-1 text-right border-right">
+                                                        <strong>PDF</strong>
+                                                    </div>
+                                                    <div class="col-6 py-1"><a href="{{ seguimientoadopcion.solicitud_adopcion.solicitud.url}}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 25px; heigth: 25px;"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="row border-bottom">
+                                                    <div class="col-6 py-1 text-right border-right">
+                                                        <strong>Fecha actualización</strong>
+                                                    </div>
+                                                    <div class="col-6 py-1">{{seguimientoadopcion.updated }}</div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>                
+                                    {% endif %}
+                                {% endfor%}
+                            </div>   
+                    </div>
+                    {% include "paginas/paginator.html" %}<br>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img style="margin-top: 4rem; border-radius: 8%;"  src="{% static "homePage/vendors/images/recordar.png" %}" > </img>
+
+                    </div>
+                    <div class="card-box mb-30 col-lg-6">
+                        <div class="pd-20"><br>
+                            <h3 style="color: ##7FB3D5;" class=" mb-4 ">Para recordar... </h3>
+                            <p >Queremos que recueres como funciona nuestro proceso de adopción y que de esta manera identifiques en que va tu proceso </p>
+                        </div>       
+                        <div class="pb-20">
+                            <details style="background-color: #b4d3e3">
+                                <summary><strong>FASE 1: </strong>                                                                                                                                        </summary>
+                                <p ><br>En esta fase tu nos envias diligenciada la solicitud de adopción para que nosotros la revisemos y te demos el visto bueno</p>
+                            </details>
+                            <details style="background-color: #b4d3e3">
+                                <summary><strong>FASE 2: </strong>                                                                                                                                         </summary>
+                                <p class="card-text" style="" ><br>En esta fase nos coordinamos contigo para hacer la visita domiciliaria con el fin de determinar si el espacio en donde estará el peludo es el adecuado</p>
+                            </details>
+                            <details style="background-color: #b4d3e3">
+                                <summary><strong>FASE 3: </strong>                                                                                                                                     </summary>
+                                <p style="" ><br>En esta fase organizamos un espacio para poder hacerte entrega al peludito </p>
+                            </details>
+                            <details style="background-color: #b4d3e3">
+                                <summary><strong>FASE 4: </strong>                                                                                                                                          </summary>
+                                <p style="" ><br>Aqui ya damos por terminado el progreso como satisfactorio</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock contenido %}

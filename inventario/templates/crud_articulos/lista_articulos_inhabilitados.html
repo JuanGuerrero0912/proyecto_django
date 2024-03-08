@@ -63,6 +63,7 @@
                                     <th class="table-plus datatable-nosort">id</th>
                                     <th>Articulo</th>
                                     <th>Referencia</th>
+                                    <th>Imagen</th>
                                     <th>Stock</th>
                                     <th>Fecha de Registro</th>
                                     <th>Estado</th>
@@ -75,6 +76,9 @@
                                             <td class="table-plus">{{articulo.id}}</td>
                                             <td>{{articulo.nombre}}</td>
                                             <td>{{articulo.referencia}}</td>
+                                            <td>
+                                                <img src="{{articulo.imagen.url}}" width="40"  alt=""/>
+                                            </td>
                                             {% if articulo.get_stock > 0 %}<td style="color: green;">{{articulo.get_stock}}</td>
                                             {% else %}
                                             <td style="color: red;">{{articulo.get_stock}}</td>
