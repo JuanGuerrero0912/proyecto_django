@@ -1,0 +1,63 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block titulo %} Solicitud{% endblock titulo %}
+
+{% block contenido %}
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="title">
+                                <h4>SOLICITUDES</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Solicitudes</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                <div style="margin-left: 10rem; width: 700px" class="blog-detail card-box  mb-30">
+                        <div style="text-align: center;" class="blog-caption">
+                            <h4 style="text-align: center" class="mb-10">Formulario de adopción</h4><br/>
+                            <FONT  COLOR="black">En este blog te comentamos todo acerca del proceso de adopcion, cada paso a seguir durante la solicitud</FONT>
+                        </div>
+                        <form method="post" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label >Mascota:</label>
+                                        {{formulario.mascota}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label >Solicitud:</label>
+                                        {{formulario.solicitud}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <input type="submit" name="" value="Enviar" class="btn btn-primary">&emsp;&emsp; 
+                            </div><br/>
+                        </form>
+                    </div>    
+                            
+                </div>
+                
+            </div> 
+        </div>
+    </div>
+    
+{% endblock contenido %}

@@ -450,6 +450,26 @@ class CambioContraseñaVeterinario(PasswordChangeView):
 def Inicio_Adoptante(request):
     return render(request, "paginas_adoptante/inicio_adoptante.html")
 
+def info_adoptante(request):
+    return render(request, "paginas_adoptante/info_adoptante.html")
+
+def perritos(request):
+    return render(request, "paginas_adoptante/listado_mascotas.html")
+
+
+def perritos_adop(request):
+
+    mascotas = Mascota.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(mascotas, 3)
+        mascotas =  paginator.page(page)
+    except:
+        pass
+
+    return render(request, "paginas_adoptante/listado_mascotas.html", {"entity": mascotas, "paginator": paginator})
+
 class VPerfilRegistro(View):
 
     def get(self, request):

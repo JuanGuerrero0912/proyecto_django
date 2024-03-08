@@ -1,0 +1,165 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+
+{% load static %}
+
+{% block contenido %}
+    <div class="main-container">
+        <div class="pd-ltr-20">
+            <div class="page-header">
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<div class="title">
+							<h4>INFORMACIÓN PROCESO DE ADOPCIÓN</h4>
+						</div>
+						<nav aria-label="breadcrumb" role="navigation">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Información general</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+                
+			</div>
+            <div class="blog-wrap">
+                <div class="container pd-0">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <div class="blog-detail card-box overflow-hidden mb-30">
+                                <div style="text-align: center;" class="blog-caption">
+                                    <h4 style="text-align: center" class="mb-10">Todo sobre el proceso de adopción</h4><br/>
+                                    <FONT  COLOR="black">En este blog te comentamos todo acerca del proceso de adopcion, cada paso a seguir durante la solicitud</FONT>
+
+                                </div>
+                            </div>
+                            <div class="blog-detail card-box overflow-hidden mb-30">
+                                <div class="blog-caption">
+                                    <h5 class="mb-10">Elige un perrito</h5><br/>
+                                    <ul>
+                                        <li><FONT  COLOR="black">Ve al apartado de 'Mascotas'</FONT></li>
+                                        <li><FONT  COLOR="black">Conoce todos nuestros peludos y elige uno</FONT></li>
+                                        <li><FONT  COLOR="black">Puedes ir al aparado de solicitud seleccionando el peludo ó en el apartado de 'Solicitudes'</FONT></li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                            <div class="blog-detail card-box overflow-hidden mb-30">
+                                <div class="blog-caption">
+                                    <h5 class="mb-10">Realiza la solicitud</h5><br/>
+                                    <ul>
+                                        <li><FONT  COLOR="black">Si te interesaste en uno de nuestros peludos, ve al apartado de 'Solicitudes'</FONT></li>
+                                        <li><FONT  COLOR="black">Estándo alli, anexa el PDF con el formulario ya completado</FONT></li>
+                                        <li><FONT  COLOR="black">Envialo</FONT></li>           
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="blog-detail card-box overflow-hidden mb-30">
+                                <div class="blog-caption">
+                                    <h5 class="mb-10">Haz un seguimiento</h5>
+                                    <ul>
+                                        <li><FONT  COLOR="black">Ve al apartado de 'Seguimiento'</FONT></li>    
+                                        <li><FONT  COLOR="black">Alli  ubica las solicitudes que tienes por cada peludito</FONT></li>    
+                                        <li><FONT  COLOR="black">En este apartado es donde encontrarás la fase en la que te encuentras, en total son cuatro fases</FONT></li>    
+                                     
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="blog-detail card-box overflow-hidden mb-30">
+                                <div class="blog-caption">
+                                    <h5 class="mb-10">FACES</h5>
+                                    <ul>
+                                        <li><FONT  COLOR="black">Explicación de las fases</FONT></li>  
+                                        <div class="faq-wrap">
+                                            <div id="accordion">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <button class="btn btn-block" data-toggle="collapse" data-target="#faq1">
+                                                            Fase 1
+                                                        </button>
+                                                    </div>
+                                                    <div id="faq1" class="collapse show" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <FONT  COLOR="black">Aqui es donde tu eliges un peludito e inicias el proceso, aqui nosotros recibimos tu solicitud de adopción y la analizamos para darle continuidad al proceso</FONT>                          
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2">
+                                                            Fase 2
+                                                        </button>
+                                                    </div>
+                                                    <div id="faq2" class="collapse" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <FONT  COLOR="black">Aqui nosotros ya habremos aceptado tu solicitud, lo siguiente es realizar una visita domiciliaria o una video llamada para que podamos evidenciar si las condiciones del lugar son optimas para el peludito</FONT>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq3">
+                                                            Fase 3
+                                                        </button>
+                                                    </div>
+                                                    <div id="faq3" class="collapse" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <FONT  COLOR="black">Si llegaste hasta aqui, es porque tu solicitud y la visita domiciliaria salieron a la perfección, por eso en esta fase coordinamos la entrega del peludo junto con la firma del contrato de adopción</FONT>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq4">
+                                                            Fase 4
+                                                        </button>
+                                                    </div>
+                                                    <div id="faq4" class="collapse" data-parent="#accordion">
+                                                        <div class="card-body">
+                                                            <FONT  COLOR="black">En esta fase te indicamos que el proceso finalizó satisfactoriamente</FONT>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center" class="col-md-4 col-sm-12">
+                            <div class="mb-30">
+                                <img style="width: 155px; border-radius: 5%" src="{% static 'homePage/vendors/images/blog.jpg'%}" alt=""/>
+                            </div>
+                            <div class=" mb-30">
+                                <div >
+                                    <img style="width: 220px; border-radius: 5%" src="{% static 'homePage/vendors/images/listado.jpg'%}" alt=""/>
+                                </div>
+                            </div>
+                            <div class=" mb-30">
+                                <div >
+                                    <img style="width: 200px; border-radius: 5%" src="{% static 'homePage/vendors/images/seguimientoadop.jpg'%}" alt=""/>
+                                </div>
+                            </div>
+                            <div class=" mb-30">
+                                <div >
+                                    <img style="width: 200px; border-radius: 5%" src="{% static 'homePage/vendors/images/segui.jpg'%}" alt=""/>
+                                </div>
+                            </div>
+                            <div class=" mb-30">
+                                <div >
+                                    <img style="width: 110px; border-radius: 5%" src="{% static 'homePage/vendors/images/fases.png'%}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+
+    
+
+{% endblock contenido %}

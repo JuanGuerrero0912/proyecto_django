@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from mascota.forms import MascotaForm, AdopcionForm, HistorialMedicoForm, SolicitudAdopcionForm, SeguimientoAdopcionForm
+from mascota.forms import MascotaForm, AdopcionForm, HistorialMedicoForm, SolicitudAdopcionForm, SeguimientoAdopcionForm, SolicitudAdoptanteForm
 from django.views.generic import View
 from django.contrib import messages
 from mascota.models import Mascota, Adopcion, HistorialMedico, SolicitudAdopcion, SeguimientoAdopcion
@@ -518,3 +518,32 @@ def seguimiento_por_perrito_vet(request, id):
     peticion = SeguimientoAdopcion.objects.filter(solicitud_adopcion__mascota = id)
 
     return render(request, "crud_mascotas_vet/seguimiento_por_perrito.html", {"peticion": peticion})
+
+#ADOPTANTE--------------------------------------------------------
+
+class registrar_solicitud_adoptante(View):
+    def get(self, request):
+
+        formulario = SolicitudAdoptanteForm()
+
+        return render(request, "crud_adoptante/registrar_solicitud_adoptante.html", {"formulario": formulario})
+    
+    def post(self, request):
+
+        formulario = SolicitudAdoptanteForm(request.POST, request.FILES)
+        usuario = self.request.user
+
+        if formulario.is_valid():
+
+            solicitud = formulario.save(commit=False)
+            solicitud.adoptante = usuario
+            solicitud.save()
+            messages.success(request, "Solicitud enviada correctamente")
+            return redirect('perritos_adop')
+        
+        else:
+            for campo, errores in formulario.errors.items():  # Itera sobre los campos y sus errores
+                for error in errores:  # Itera sobre los errores de cada campo
+                    messages.error(request, f"{campo}: {error}")  # Agrega el mensaje de error al contexto de mensajes
+            return render(request, 'crud_adoptante/registrar_solicitud_adoptante.html', {"formulario": formulario}) 
+

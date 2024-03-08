@@ -110,3 +110,21 @@ class SeguimientoAdopcionForm(forms.ModelForm):
         self.fields['estado_fase'].widget.attrs.update({
             'class': 'form-control',
         }) 
+
+class SolicitudAdoptanteForm(forms.ModelForm):
+    class Meta:
+        model = SolicitudAdopcion
+        fields = ['mascota', 'solicitud']
+        exclude = ['adoptante', 'estado_proceso', 'fecha_solicitud', 'estado_solicitud']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['mascota'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['solicitud'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        
+
+        

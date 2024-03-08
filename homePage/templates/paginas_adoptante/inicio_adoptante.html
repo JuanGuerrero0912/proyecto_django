@@ -3,34 +3,43 @@
 {% load static %}
 
 {% block contenido %}
-<div class="main-container">
-    <div class="pd-ltr-20">
-        
-        <div class="card-box height-100-p mb-30 ">
-            <div class="row align-items-center">
-                <div class="col-md-4">
-                    <img src="{% static 'homePage/vendors/images/banner-img.png'%}" alt=""/>
+    <div class="main-container">
+        <div class="pd-ltr-20">
+            <div class="card-box height-100-p mb-30 ">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <img style="width:220px;  height:200px; margin-left: 85px" src="{% static 'homePage/vendors/images/inicioAdoptante2.jpg'%}" alt=""/>
+                    </div>
+                    <div class="col-md-8">
+						<h4 class="font-20 weight-500 mb-10 text-capitalize">
+							BIENVENID@ <div class="weight-600 font-30 text-blue">{{user.username}}</div>
+						</h4>
+						<p class="font-18 max-width-500">Recuerda revisar cada uno de los apartados para no perderte de las ultimas actualizaciones</p>
+					</div>
+                  
                 </div>
-                <div class="col-md-8">
-                    <p class="font-18 max-width-600 text-center">Cuentanos que quieres hacer hoy</p>
+            </div>
+            <div class="product-wrap">
+                <div class="product-list">
+                    <ul class="row">
+                        <li class="">
+                            <div class="">
+                                <img  style=" border-radius: 2%; height:400px;" src="{{ MEDIA_URL }}media/video/videoAdoptante.gif" alt="Mi GIF"></img>      
+                            </div>
+                        </li>
+                        <li class="col-lg-6 col-md-6 col-sm-12">
+                            <div  style="width: 800px; margin-right: 20rem" class="product-box">
+                                <div style="text-align: center;" class="product-caption"><br/><br/>
+                                    <h3 style="color: ##7FB3D5; text-align:center" class=" mb-4">Estamos felices de tenerte de aqui </h3>
+                                    <p style=" text-align:center" >¡Nos encanta que estés de nuevo con nosotros!<br/><br/> Para nosotros es importante seguir contando con personitas como tú porque asi logramos llegar a más personas y no solo eso, lo más importante es que gracias a ti y que hoy estás aqui, podemos cambiar la vida de unos cuantos perritos de los miles que hay al rededor del mundo sin hogar <br/><br/> Asi que ANIMATE, aqui puede estar tu proximo mejor amigo</p>                                   
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class=" col-lg-6 col-md-6 col-sm-12">
-                <img  style=" border-radius: 2%;" src="{{ MEDIA_URL }}media/video/videoAdoptante.gif" alt="Mi GIF">
-
-            </div>
-            <div  class="card-box mb-30 col-lg-6">
-                <div class="pd-30"><br>
-                    <h3 style="color: ##7FB3D5; text-align:center" class=" mb-4 ">Estamos felices de tenerte de aqui </h3>
-                    <p style=" text-align:center" >¡Nos encanta que estés de nuevo con nosotros!<br/><br/> Para nosotros es importante seguir contando con personitas como tú porque asi logramos llegar a más personas y no solo eso, lo más importante es que gracias a ti y que hoy estás aqui, podemos cambiar la vida de unos cuantos perritos de los miles que hay al rededor del mundo sin hogar <br/><br/> Asi que ANIMATE, aqui puede estar tu proximo mejor amigo</p>
-                </div>       
-                
-            </div>
-        </div>  
     </div>
-</div>
 
     
 

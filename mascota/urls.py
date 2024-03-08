@@ -57,5 +57,8 @@ urlpatterns = [
     path('lista_historial_inhabilitado_vet', views.lista_historial_inhabilitado_vet, name="Lista_historial_inhabilitado_vet"),
     path('historiales_medicos_por_perrito_vet/<int:id>', views.historiales_medicos_por_perrito_vet, name="historiales_medicos_por_perrito_vet"),
     path('seguimiento_por_perrito_vet/<int:id>', views.seguimiento_por_perrito_vet, name="seguimiento_por_perrito_vet"),
+    
+    #ADOPTANTE
+    path('registrar_solicitud_adoptante', views.registrar_solicitud_adoptante.as_view(), name="registrar_solicitud_adoptante"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

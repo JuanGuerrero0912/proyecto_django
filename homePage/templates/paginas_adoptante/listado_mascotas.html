@@ -1,4 +1,4 @@
-{% extends "plantilla/plantilla_home.html" %}
+{% extends "plantilla/plantilla_adoptante.html" %}
 {% load static %}
 {% block titulo %} Peludos {% endblock titulo %}
 {% block contenido %}
@@ -13,8 +13,7 @@
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Admin" %}">Inicio</a></li>
-                                    <li class="breadcrumb-item"><a href="{% url "Adopciones" %}">Adopciones</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Peludos</li>
                                 </ol>
                             </nav>
@@ -66,12 +65,10 @@
                                             <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso}}</div>
                                         </div>
                                     </div>
-                                    <a href="{% url "Historial_Por_Mascota" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
-                                        Historiales Medicos
+                                    <a href="" class="btn btn-info px-4 mx-auto my-2">
+                                        Adoptar
                                     </a>
-                                    <a href="{% url "Seguimiento_Por_Mascota" mascota.id%}" class="btn btn-primary px-4 mx-auto my-2">
-                                        Seguimientos de proceso
-                                    </a>
+                                    
                                 </div>
                             </div>
                             {% endfor %}

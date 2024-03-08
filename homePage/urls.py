@@ -60,5 +60,7 @@ urlpatterns = [
     path('registro_perfil_adoptante', views.VPerfilRegistro.as_view(), name="Registro_Perfil_Adoptante"),
     path('perfil_adoptante', views.Actualizar_Perfil_Adoptante.as_view(), name="Perfil_Adoptante"),
     path('cambio_contraseña_adoptante', views.CambioContraseñaADoptante.as_view(), name="Cambio_Contraseña_Adoptante"),
+    path('info_adoptante', views.info_adoptante, name="info_adoptante"),
+    path('perritos_adop', views.perritos_adop, name="perritos_adop"),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

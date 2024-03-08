@@ -152,30 +152,21 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
+						<a href="{% url 'info_adoptante'  %}" class="dropdown-toggle">
+							<span class="micon dw dw-edit2"></span><span class="">Información general</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="#">Mis Adopciones</a></li>
-						</ul>
-					</li>
-                    <li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Adopciones</span>
+						<a href="{% url 'perritos_adop'  %}" class="dropdown-toggle">
+							<span class="micon dw dw-edit2"></span><span class="">Mascotas</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="#">Mis solicitudes</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Inventario</span>
+						<a href="" class="dropdown-toggle">
+							<span class="micon dw dw-edit2"></span><span class="">Adopciones</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="#">Mascotas</a></li>
-						</ul>
-					</li>
+						<a href="{% url 'registrar_solicitud_adoptante'  %}" class="dropdown-toggle">
+							<span class="micon dw dw-edit2"></span><span class="">Solicitudes</span>
+						</a>
+						<a href="#" class="dropdown-toggle">
+							<span class="micon dw dw-edit2"></span><span class="">Donaciones</span>
+						</a>
 				</ul>
 			</div>
 		</div>
@@ -199,7 +190,9 @@
 	<script src="{% static 'homePage/src/plugins/datatables/js/dataTables.bootstrap4.min.js'%}"></script>
 	<script src="{% static 'homePage/src/plugins/datatables/js/dataTables.responsive.min.js'%}"></script>
 	<script src="{% static 'homePage/src/plugins/datatables/js/responsive.bootstrap4.min.js'%}"></script>
-	<script src="{% static 'homePage/vendors/scripts/dashboard.js'%}"></script>
+	<script src="{% static 'homePage/vendors/scripts/dashboard2.js'%}"></script>
+	<script src="{% static 'homePage/src/plugins/jquery-steps/jquery.steps.js'%}"></script>
+	<script src="{% static 'homePage/vendors/scripts/steps-setting.js'%}"></script>
 	 <!-- buttons for Export datatable -->
 	 <script src="{% static 'homePage/src/plugins/datatables/js/dataTables.buttons.min.js'%}"></script>
 	 <script src="{% static 'homePage/src/plugins/datatables/js/buttons.bootstrap4.min.js'%}"></script>
@@ -210,6 +203,7 @@
 	 <script src="{% static 'homePage/src/plugins/datatables/js/vfs_fonts.js'%}"></script>
 	 <!-- Datatable Setting js -->
 	 <script src="{% static 'homePage/vendors/scripts/datatable-setting.js'%}"></script>
+
 
 	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -226,6 +220,7 @@
 			</script>
 		{% endfor %}
 	 {% endif %}
-	 
+
+	 {% block js %}{% endblock js %}
 </body>
 </html>
