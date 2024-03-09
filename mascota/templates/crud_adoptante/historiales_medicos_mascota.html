@@ -1,0 +1,109 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block titulo %} Historiales{% endblock titulo %}
+
+{% block contenido %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Solicitud de adopción</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Solicitud de adopción</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  mb-4">
+                    <div style="height: 650px" class="card border-0 bg-light  pb-2">
+                        <img style="height: 255px;" class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{mascota.nombre}}</h4>
+                            <p>
+                            {{mascota.caracteristicas}}
+                            </p>
+                        </div>
+                        <div class=" bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Edad</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.edad}} {{mascota.get_edad_m_a_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Raza</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_raza_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Genero</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_sexo_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Estado</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_estadoMascota_display}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1">
+                                    <strong>Fecha de ingreso</strong>
+                                </div>
+                                <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso|date:"d/m/y"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8  mb-4">
+                    <div class="card-box mb-30">
+                        <div class="pd-20">
+                            <h4 style="text-align: center;" class="text-black h4">Historiales médicos de {{mascota.nombre}}</h4><br>
+                        </div>
+                        <div class="pb-20">
+                            <table class="table hover multiple-select-row nowrap">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Fecha</th>
+                                        <th>Dignostico PDF</th>
+                                        <th>Veterinario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for historialMedico in historial %}
+                                        {% if historialMedico.estado_historial == 1 %}
+                                            <tr class="text-center">
+                                                <td>{{historialMedico.fecha_historial|date:"d/m/y"}} </td>
+                                                <td>
+                                                    <a href="{{ historialMedico.diagnostico.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 30px; heigth: 30px;"></a>
+                                                </td>
+                                                <td>{{historialMedico.veterinario}}</td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock contenido %}

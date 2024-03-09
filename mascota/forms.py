@@ -1,5 +1,7 @@
 from django import forms
 from mascota.models import Mascota, Adopcion, HistorialMedico, SolicitudAdopcion, SeguimientoAdopcion
+from login.models import Perfil
+from django.contrib.auth.models import User
 
 class MascotaForm(forms.ModelForm):
     class Meta:
@@ -69,6 +71,8 @@ class HistorialMedicoForm(forms.ModelForm):
             'class': 'form-control',
         })
 
+
+
 class Historial_medico_por_mascota(forms.ModelForm):
     class Meta:
         model = HistorialMedico
@@ -126,17 +130,13 @@ class SeguimientoAdopcionForm(forms.ModelForm):
 class SolicitudAdoptanteForm(forms.ModelForm):
     class Meta:
         model = SolicitudAdopcion
-        fields = ['mascota', 'solicitud']
-        exclude = ['adoptante', 'estado_proceso', 'fecha_solicitud', 'estado_solicitud']
+        fields = ['solicitud']
+        exclude = ['adoptante', 'estado_proceso', 'fecha_solicitud', 'estado_solicitud', 'mascota']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['mascota'].widget.attrs.update({
-            'class': 'form-control',
-        })
         self.fields['solicitud'].widget.attrs.update({
             'class': 'form-control',
         })
-        
 
         

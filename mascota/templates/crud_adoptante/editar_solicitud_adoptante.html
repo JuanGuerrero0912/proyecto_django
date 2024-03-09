@@ -26,20 +26,19 @@
                 <div class="">
                 <div style="margin-left: 10rem; width: 700px" class="blog-detail card-box  mb-30">
                         <div style="text-align: center;" class="blog-caption">
-                            <h4 style="text-align: center" class="mb-10">Formulario de adopción</h4><br/>
-                            <FONT  COLOR="black">En este blog te comentamos todo acerca del proceso de adopcion, cada paso a seguir durante la solicitud</FONT>
+                            <h4 style="text-align: center" class="mb-10">Actualizar solicitud de adopción</h4><br/>
+                            <FONT  COLOR="black">Si no se siente conforme con el documento que subió cuando realizó la solicitud de adopción, este es el espacio para cambiar el documento 
+                            </FONT>
                         </div>
+                        <dl class="row">
+                            <dt class="col-sm-1" style="margin-top: 20px;"></dt>
+                            <dt class="col-sm-2" style="margin-top: 20px;">Paso 1:</dt>
+                            <dd class="col-sm-8" style="margin-top: 20px;">Adjunte el archivo nuevo en el espacio que dice modificar.</dd>
+                            <dt class="col-sm-1" style="margin-top: 20px;"></dt>
+                        </dl>
                         <form method="post" enctype="multipart/form-data">
 
                             {% csrf_token %}
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label >Mascota:</label>
-                                        {{formulario.mascota}}
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row justify-content-md-center">
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -49,13 +48,12 @@
                                 </div>
                             </div>
                             <div class="row justify-content-md-center">
-                                <input type="submit" name="" value="Enviar" class="btn btn-primary">&emsp;&emsp; 
+                                <input type="submit" name="" value="Enviar" class="btn btn-primary">&emsp;&emsp;
+                                <a href="{% url "Mis_solicitudes" %}" class="btn btn-danger">Cancelar</a> 
                             </div><br/>
                         </form>
                     </div>    
-                            
                 </div>
-                
             </div> 
         </div>
     </div>

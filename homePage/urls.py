@@ -7,7 +7,7 @@ from homePage import views
 urlpatterns = [
     #_________________________________________________________________________________________________________
     #URLS ADMINISTRADOR
-    path('', views.Inicio_Admin, name="Inicio_Admin"),
+    path('', views.Inicio_Admin.as_view(), name="Inicio_Admin"),
     path('usuarios', views.Usuarios, name="Usuarios"),
     path('registrar_usuario_administrativo', views.Registrar_usuario_administrativo.as_view(), name="Registrar_usuario"),
     path('actualizar_usuario_administrativo/<int:id>', views.Actualizar_usuario_administrativo.as_view(), name="Actualizar_usuario_administrativo"),

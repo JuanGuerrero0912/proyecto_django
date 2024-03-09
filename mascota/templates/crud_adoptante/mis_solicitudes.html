@@ -1,0 +1,74 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block titulo %} Mis solicitudes {% endblock titulo %}
+
+{% block contenido %}
+
+    <div class="main-container">
+        <div class="pd-ltr-20 xs-pd-20-10">
+            <div class="min-height-200px">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="title">
+                                <h4>ADOPCIONES</h4>
+                            </div>
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Adopciones</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Mis solicitudes</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-box mb-30">
+                    <div class="pd-20">
+                        <h4 style="text-align: center;" class="text-black h4">Mis solicitudes</h4><br>
+                    </div>
+                    <div class="pb-20 center">
+                        {% for solicitud  in entity %}
+                        <div class="row">
+                            <div class="col-lg-3 text-center">
+                                <img style="width: 150px;" class="card-img-top mb-2" src="{{solicitud.mascota.imagen.url}}" alt="" />
+                            </div>
+                            <div class="col-lg-7 text-center">
+                                <dl class="row">
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Nombre:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.nombre}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Estado:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.get_estadoMascota_display}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Ingreso:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.fecha_ingreso|date:"d/m/y"}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Edad:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.edad}} {{solicitud.mascota.get_edad_m_a_display}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Raza:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.get_raza_display}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Sexo:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.mascota.get_sexo_display}}</dd>
+                                    <dd class="col-sm-2" style="margin-top: 20px;"></dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Solicitud:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.fecha_solicitud|date:"d/m/y"}}</dd>
+                                    <dt class="col-sm-1" style="margin-top: 20px;">Estado:</dt>
+                                    <dd class="col-sm-3" style="margin-top: 20px;">{{solicitud.get_estado_proceso_display}}</dd>
+                                    <dd class="col-sm-2" style="margin-top: 20px;"></dd>
+                                </dl>
+                            </div>
+                            <div class="col-lg-2 text-center" style="margin-top: 20px;">
+                                <a href="{{ solicitud.solicitud.url }}" target="_blank"><img src="{% static "homePage/vendors/images/pdf.png" %}" style="width: 50px; heigth: 50px;"></a>
+                                <a class="dropdown-item" style="margin-top: 15px;" href="{% url "Editar_solicitud_adoptante" solicitud.id %}"><i class="dw dw-edit2"></i> Editar</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% include "paginas/paginator.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock contenido %}

@@ -1,0 +1,124 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block titulo %} Solicitud{% endblock titulo %}
+
+{% block contenido %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Solicitud de adopción</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Solicitud de adopción</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  mb-4">
+                    <div style="height: 650px" class="card border-0 bg-light  pb-2">
+                        <img style="height: 255px;" class="card-img-top mb-2" src="{{mascota.imagen.url}}" alt="" />
+                        <div class="card-body text-center">
+                            <h4 class="card-title">{{mascota.nombre}}</h4>
+                            <p>
+                            {{mascota.caracteristicas}}
+                            </p>
+                        </div>
+                        <div class=" bg-transparent py-4 px-5">
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Edad</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.edad}} {{mascota.get_edad_m_a_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Raza</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_raza_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Genero</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_sexo_display}}</div>
+                            </div>
+                            <div class="row border-bottom">
+                                <div class="col-6 py-1">
+                                    <strong>Estado</strong>
+                                </div>
+                                <div class="col-6 py-1">{{mascota.get_estadoMascota_display}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 py-1">
+                                    <strong>Fecha de ingreso</strong>
+                                </div>
+                                <div class="col-6 py-1 pt-3">{{mascota.fecha_ingreso|date:"d/m/y"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8  mb-4">
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <div class="row align-items-center">
+                            <div class="col-md-12 mb-4">
+                                <h3 class=" text-center">
+                                    Realizar solicitud de adopción por {{mascota.nombre}}
+                                </h3>
+                            </div>
+                            <div>
+                                <dl class="row">
+                                    <p class="col-sm-12 weight-500 mb-10" style="margin-top: 20px;">Pasos que debes seguir para realizar la solicitud
+                                        de adopción de manera correcta, es importante seguir los pasos como 
+                                        se le indican para no tener problemas con el registro de la solicitud.
+                                    </p>
+                                    <dt class="col-sm-4" style="margin-top: 20px;">Paso 1: Descargar</dt>
+                                    <dd class="col-sm-8" style="margin-top: 20px;">Descarga el documento de solicitud de adopción</dd>
+                                </dl>
+                                <div class="text-center">
+
+                                    <a href="{% url 'descargar_archivo' 'Solicitud_adopción.pdf' %}" download>
+                                        <button class="btn btn-primary">Descargar Archivo</button>
+                                    </a>
+                                </div>
+                                <dl class="row">
+                                    <dt class="col-sm-4" style="margin-top: 20px;">Paso 2: Datos</dt>
+                                    <dd class="col-sm-8" style="margin-top: 20px;">Completa el formulario con los datos que se te solicitan</dd>
+                                    <dt class="col-sm-4" style="margin-top: 20px;">Paso 3: Subir</dt>
+                                    <dd class="col-sm-8" style="margin-top: 20px;">Subir la solicitud en el espacio que se encuentra a continuación, y pulse en el botón de registrar.</dd>
+                                </dl>
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label >Solicitud:</label>
+                                                {{formulario.solicitud}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-center">
+                                        <input type="submit" name="" value="Registrar" class="btn btn-primary">&emsp;&emsp; 
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock contenido %}

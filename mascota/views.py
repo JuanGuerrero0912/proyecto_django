@@ -163,12 +163,11 @@ class registrar_historial(View):
     def post(self, request):
 
         formulario = HistorialMedicoForm(request.POST, request.FILES)
-        usuario = self.request.user
+
         if formulario.is_valid():
 
-            historial = formulario.save(commit=False)
-            historial.veterinario = usuario
-            historial.save()
+            formulario.save()
+
             messages.success(request, "Historial agregado correctamente")
             return redirect('Lista_historial_medico')
         
@@ -189,13 +188,11 @@ class actualizar_historial(View):
     def post(self, request, id):
 
         historial = HistorialMedico.objects.get(id = id)
+        
         formulario = HistorialMedicoForm(request.POST, request.FILES, instance=historial)
-        usuario = self.request.user
 
         if formulario.is_valid():
-            historial = formulario.save(commit=False)
-            historial.veterinario = usuario
-            historial.save()
+            formulario.save()
             messages.success(request, "Historial actualizado correctamente")
             return redirect('Lista_historial_medico')
         
@@ -806,29 +803,105 @@ def seguimiento_por_perrito_vet(request, id):
 
 #ADOPTANTE--------------------------------------------------------
 
-class registrar_solicitud_adoptante(View):
-    def get(self, request):
+class solicitud_por_mascota(View):
+    
+    def get(self, request, id):
 
         formulario = SolicitudAdoptanteForm()
-
-        return render(request, "crud_adoptante/registrar_solicitud_adoptante.html", {"formulario": formulario})
+        mascota = Mascota.objects.get(id = id)
+        return render(request, "crud_adoptante/solicitud_por_mascota.html", 
+                      {"mascota": mascota, "formulario": formulario})
     
-    def post(self, request):
+    def post(self, request, id):
 
+        mascota = Mascota.objects.get(id = id)
         formulario = SolicitudAdoptanteForm(request.POST, request.FILES)
         usuario = self.request.user
 
         if formulario.is_valid():
 
             solicitud = formulario.save(commit=False)
+            solicitud.mascota = mascota
             solicitud.adoptante = usuario
             solicitud.save()
-            messages.success(request, "Solicitud enviada correctamente")
-            return redirect('perritos_adop')
+            messages.success(request, "Tu solicitud fue registrada con éxito, si deseas conocer que paso es el siguiente dirígete al apartado de mis seguimientos.")
+            return redirect("Inicio_Adoptante")
         
         else:
-            for campo, errores in formulario.errors.items():  # Itera sobre los campos y sus errores
-                for error in errores:  # Itera sobre los errores de cada campo
-                    messages.error(request, f"{campo}: {error}")  # Agrega el mensaje de error al contexto de mensajes
-            return render(request, 'crud_adoptante/registrar_solicitud_adoptante.html', {"formulario": formulario}) 
 
+            messages.error(request, "Ocurrio un error al registrar tu solicitud, intentalo de nuevo")
+            return render(request, "crud_adoptante/solicitud_por_mascota.html", 
+                      {"mascota": mascota, "formulario": formulario})
+
+class ver_historiales_por_mascota(View):
+
+    def get(self, request, id):
+
+        mascota = Mascota.objects.get(id = id)
+        historial = HistorialMedico.objects.filter(mascota = id)
+
+        return render(request, 'crud_adoptante/historiales_medicos_mascota.html', 
+                      {"mascota": mascota, "historial": historial})
+
+class mis_solicitudes(View):
+
+    def get(self, request):
+
+        usuario = self.request.user
+        solicitudes = SolicitudAdopcion.objects.filter(adoptante = usuario)
+        page = request.GET.get('page', 1)
+
+        try:
+            paginator = Paginator(solicitudes,3)
+            solicitudes = paginator.page(page)
+        except:
+            pass
+
+        return render(request, "crud_adoptante/mis_solicitudes.html", {"entity": solicitudes, "paginator": paginator})
+    
+    
+class actualizar_solicitud_de_adoptante(View):
+
+    def get(self, request, id):
+
+        solicitud = SolicitudAdopcion.objects.get(id = id)
+        formulario = SolicitudAdoptanteForm(instance = solicitud)
+        return render(request, "crud_adoptante/editar_solicitud_adoptante.html", {"formulario": formulario})
+
+    def post(self, request, id):
+
+        solicitud = SolicitudAdopcion.objects.get(id = id)
+        masc = solicitud.mascota.id
+        formulario = SolicitudAdoptanteForm(request.POST, request.FILES,instance = solicitud)
+        usuario = self.request.user
+        mascota = Mascota.objects.get(id = masc)
+
+        if formulario.is_valid():
+
+            solicitud = formulario.save(commit=False)
+            solicitud.mascota = mascota
+            solicitud.adoptante = usuario
+            solicitud.save()
+            messages.success(request, "Tu solicitud fue actualizada con éxito")
+            return redirect("Mis_solicitudes")
+        
+        else:
+            messages.error(request, "Ocurrio un error al actualizar tu solicitud, intentalo de nuevo")
+            return render(request, "crud_adoptante/editar_solicitud_adoptante.html", {"formulario": formulario})
+
+
+class mis_seguimientos(View):
+
+    def get(self, request):
+
+        usuario = self.request.user
+        seguimientos = SeguimientoAdopcion.objects.filter(solicitud_adopcion__adoptante = usuario)
+        page = request.GET.get('page', 1)
+
+        try:
+            paginator = Paginator(seguimientos,3)
+            seguimientos = paginator.page(page)
+        except:
+            pass
+
+        return render(request, "crud_adoptante/mis_seguimientos.html", {"entity": seguimientos, "paginator": paginator})

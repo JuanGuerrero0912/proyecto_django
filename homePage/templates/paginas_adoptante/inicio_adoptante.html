@@ -11,12 +11,12 @@
                         <img style="width:220px;  height:200px; margin-left: 85px" src="{% static 'homePage/vendors/images/inicioAdoptante2.jpg'%}" alt=""/>
                     </div>
                     <div class="col-md-8">
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							BIENVENID@ <div class="weight-600 font-30 text-blue">{{user.username}}</div>
-						</h4>
-						<p class="font-18 max-width-500">Recuerda revisar cada uno de los apartados para no perderte de las ultimas actualizaciones</p>
-					</div>
-                  
+                        <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                            BIENVENID@ <div class="weight-600 font-30 text-blue">{{user.username}}</div>
+                        </h4>
+                        <p class="font-18 max-width-500">Recuerda revisar cada uno de los apartados para no perderte de las ultimas actualizaciones</p>
+                    </div>
+                
                 </div>
             </div>
             <div class="product-wrap">
@@ -38,8 +38,89 @@
                     </ul>
                 </div>
             </div>
+            <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion_2.jpg'); height: 70px;" class="card-box pd-20 height-100-p mb-30">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title text-center">
+                        <h3>Tus procesos</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-group mb-30">
+                <div class="card card-box">
+                    <img class="card-img-top" src="{% static "homePage/vendors/images/MascotaAdminLista.jpg" %}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mis adopciones</h5>
+                        <p class="card-text">Revisa tus adopciones y recuerda el bello momento en el que recibiste un nuevo miembro para tu hogar.</p>
+                        <a href="#"><button type="button" class="btn btn-primary">Mis adopciones</button></a>
+                    </div>
+                </div>
+                <div class="card card-box">
+                    <img class="card-img-top" src="{% static "homePage/vendors/images/seguimiento_adoptante.jpg" %}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mis seguimientos</h5>
+                        <p class="card-text">Sigue el paso a paso de tus procesos de adopción, en cualquier momento adoptaras un lindo perrito.</p>
+                        <a href="#"><button type="button" class="btn btn-primary">Mis seguimientos</button></a>
+                    </div>
+                </div>
+                <div class="card card-box">
+                    <img class="card-img-top" src="{% static "homePage/vendors/images/mascotas_adoptante.jpg" %}" alt="Card image cap">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Conocer mascotas</h5>
+                        <p class="card-text">Busca una mascota que te alegre el corazón, revisa la lista y dale la oportunidad a un perrito.</p>
+                        <a href="#"><button type="button" class="btn btn-primary">Conocer mascotas</button></a>
+                    </div>
+                </div>
+            </div>
+            <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion_2.jpg'); height: 70px;" class="card-box pd-20 height-100-p mb-30">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title text-center">
+                        <h3>Solicitud de adopción</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-wrap">
+                <div class="container pd-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="blog-list">
+                                <ul>
+                                    <li>
+                                        <div class="row no-gutters">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="blog-img">
+                                                    <img class="bg_img" src="{% static 'homePage/vendors/images/Solicitud.jpg'%}" alt=""/>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                                <div class="blog-caption text-center">
+                                                    <br>
+                                                    <h3>Documento de solicitud de adopción</h3>
+                                                    <br>
+                                                    <div class="blog-by">
+                                                        <p>El documento de solicitud de adopción es el requisito más importante
+                                                        para que realices una solicitud por una mascota. En este documento se 
+                                                        pide información básica sobre el posible adoptante.</p>
+                                                        <div class="pt-10">
+                                                            <a href="{% url 'descargar_archivo' 'Solicitud_adopción.pdf' %}" download>
+                                                                <button class="btn btn-primary">Descargar Archivo</button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
+
+
 
     
 

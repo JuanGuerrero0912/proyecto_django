@@ -78,6 +78,10 @@ urlpatterns = [
     path('seguimiento_por_perrito_vet/<int:id>', views.seguimiento_por_perrito_vet, name="seguimiento_por_perrito_vet"),
     
     #ADOPTANTE
-    path('registrar_solicitud_adoptante', views.registrar_solicitud_adoptante.as_view(), name="registrar_solicitud_adoptante"),
+    path('solicitud_por_mascota/<int:id>', views.solicitud_por_mascota.as_view(), name="Solicitud_por_mascota_adop"),
+    path('historiales_por_mascota_adoptante/<int:id>', views.ver_historiales_por_mascota.as_view(), name="Ver_historiales_por_mascota"),
+    path('mis_solicitudes', views.mis_solicitudes.as_view(), name="Mis_solicitudes"),
+    path('editar_solicitud_adoptante/<int:id>', views.actualizar_solicitud_de_adoptante.as_view(), name="Editar_solicitud_adoptante"),
+    path('mis_seguimientos', views.mis_seguimientos.as_view(), name="Mis_seguimientos"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

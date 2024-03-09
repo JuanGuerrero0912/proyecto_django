@@ -17,7 +17,7 @@ class Perfil(models.Model):
     rol = models.IntegerField(null = False, blank = False, choices = roles, default= 3)
 
     def __str__(self):
-        return f'Perfil de {self.user.username} con el rol de {self.get_rol_display()}'
+        return f'{self.user.username}, rol {self.get_rol_display()}'
     
     class meta:
         db_table = 'perfiles'

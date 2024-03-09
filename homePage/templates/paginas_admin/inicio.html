@@ -19,6 +19,13 @@
 					</div>
                 </div>
             </div>
+            <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion.jpg');" class="card-box pd-20 height-100-p mb-30">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title text-center">
+                        <h4>Gestiona cada una de las secciones de la fundación</h4>
+                    </div>
+                </div>
+            </div>
             <div class="product-wrap">
                 <div class="product-list">
                     <ul class="row">
@@ -80,6 +87,67 @@
                         </li>
                     </ul>
                 </div>
+                <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion_2.jpg'); height: 70px;" class="card-box pd-20 height-100-p mb-30">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title text-center">
+                            <h4>Historial de registros</h4>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data" > 
+                                        <div id="chart"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div  class="h4 mb-0">{{mascotas}}</div>
+                                        <div class="weight-600 font-14">Mascotas registradas por {{user.username}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart2"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{articulos}}</div>
+                                        <div class="weight-600 font-14">Articulos registrados por {{user.username}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart4"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{entradas}}</div>
+                                        <div class="weight-600 font-14">Entradas registradas por {{user.username}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 mb-30">
+                            <div class="card-box height-100-p widget-style1">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="progress-data">
+                                        <div id="chart3"></div>
+                                    </div>
+                                    <div style="text-align:center" class="widget-data">
+                                        <div class="h4 mb-0">{{salidas}}</div>
+                                        <div class="weight-600 font-14">Salidas registradas por {{user.username}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>

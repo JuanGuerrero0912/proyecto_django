@@ -22,22 +22,6 @@
                         <div class="login-title">
                             <h2 class="text-center text-primary">Ingresa con tu cuenta</h2>
                         </div>
-                        <div class="select-role">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn active">
-                                    <input type="radio" name="admin">
-                                    <div class="icon"><img src="{% static 'inicio/img/maletin.png'%}" class="svg" alt=""></div>
-                                    <span>Soy</span>
-                                    Administrativo
-                                </label>
-                                <label class="btn">
-                                    <input type="radio" name="adoptante">
-                                    <div class="icon"><img src="{% static 'inicio/img/usuario.png'%}" class="svg" alt=""></div>
-                                    <span>Soy</span>
-                                    Adoptante
-                                </label>
-                            </div>
-                        </div>
                         {% if messages %}
         
                             {% for mensaje in messages %}

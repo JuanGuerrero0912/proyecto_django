@@ -19,8 +19,23 @@ from login.forms import CustomUserCreationForms
 
 #-------------------------------------------------------------------------------------
 #ADMINISTRADOR: 
-def Inicio_Admin(request):
-    return render(request, "paginas_admin/inicio.html")
+class Inicio_Admin(View):
+
+    def get(self, request):
+
+        usuario = self.request.user
+        mascotas = Mascota.objects.filter(administrativo = usuario).count()
+        articulos = Articulos.objects.filter(usuario = usuario).count()
+        entradas = Entradas.objects.filter(administrador = usuario).count()
+        salidas = Salidas.objects.filter(administrativo = usuario).count()
+
+
+        return render(request, "paginas_admin/inicio.html", {
+            "mascotas": mascotas,
+            "articulos": articulos,
+            "entradas": entradas,
+            "salidas": salidas
+        })
     
 
 def Lista_usuarios(request):
@@ -461,7 +476,7 @@ def perritos(request):
 
 def perritos_adop(request):
 
-    mascotas = Mascota.objects.all()
+    mascotas = Mascota.objects.filter( estadoMascota = 1 )
     page = request.GET.get('page', 1)
 
     try:

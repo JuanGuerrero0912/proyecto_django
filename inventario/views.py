@@ -184,18 +184,28 @@ class registrar_salida(View):
 
         formulario = SalidasForm(request.POST)
         usuario = self.request.user
+        art = request.POST.get("articulo")
+        cant = request.POST.get("cantidad_salida")
+        cant = int(cant)
 
         if formulario.is_valid():
 
-            salida = formulario.save(commit=False)
-            salida.administrativo = usuario
-            salida.save()
-            messages.success(request, "Salida agregada correctamente")
-            return redirect('Lista_salidas')
+            articulo = Articulos.objects.get(id = art)
+            stock = articulo.get_stock
+            if stock >= cant:
+                salida = formulario.save(commit=False)
+                salida.administrativo = usuario
+                salida.save()
+                messages.success(request, "Salida agregada correctamente")
+                return redirect('Lista_salidas')
+            else:
+                messages.error(request, f"La cantidad de salida es mayor al stock existente. Quedan {stock} unidades de  {articulo.nombre} ")
+
+                return render(request, 'crud_salidas/registrar_salida.html', {"formulario": formulario})
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            
+            messages.error(request, "La salida no se pudo registrar")
 
             return render(request, 'crud_salidas/registrar_salida.html', {"formulario": formulario})
 
@@ -211,20 +221,31 @@ class actualizar_salida(View):
     def post(self, request, id):
 
         salida = Salidas.objects.get(id = id)
+        cant_ant = salida.cantidad_salida
         formulario = SalidasForm(request.POST,instance=salida)
         usuario = self.request.user
+        art = request.POST.get("articulo")
+        cant = request.POST.get("cantidad_salida")
+        cant = int(cant)
 
         if formulario.is_valid():
 
-            salida = formulario.save(commit=False)
-            salida.administrativo = usuario
-            salida.save()
-            messages.success(request, "Salida actualizada correctamente")
-            return redirect('Lista_salidas')
+            articulo = Articulos.objects.get(id = art)
+            stock = articulo.get_stock
+            stock_nue = stock + cant_ant
+            if stock_nue >= cant:
+                salida = formulario.save(commit=False)
+                salida.administrativo = usuario
+                salida.save()
+                messages.success(request, "Salida actualizada correctamente")
+                return redirect('Lista_salidas')
+            else:
+                messages.error(request, f"La cantidad de salida es mayor al stock existente. Quieres actualizar la cantidad que estava en {cant_ant} por {cant}, y solo quedan {stock} existencias")
+
+                return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "La salida no se pudo actualizar")
 
             return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
 
@@ -250,9 +271,17 @@ def habilitar_salida(request, id):
 
     salida = Salidas.objects.get(id = id)
     salida.estado_salida = 1
-    salida.save()
-    messages.success(request, "Salida habilitada correctamente")
-    return redirect('Lista_salidas_Inhabilitadas')
+    cant = salida.cantidad_salida
+    art = salida.articulo.id
+    articulo = Articulos.objects.get(id = art)
+    stock = articulo.get_stock
+    if stock >= cant:
+        salida.save()
+        messages.success(request, "Salida habilitada correctamente")
+        return redirect('Lista_salidas_Inhabilitadas')
+    else:
+        messages.error(request, f"No se puede habilitar esta salida, ya que la cantidad de la salida es de {cant} y la cantidad de existencias es de {stock}")
+        return redirect('Lista_salidas_Inhabilitadas')
 
 #-------------------------------------------------------------------------------------
 
@@ -270,18 +299,27 @@ class registrar_salida_veter(View):
 
         formulario = SalidasForm(request.POST)
         usuario = self.request.user
+        art = request.POST.get("articulo")
+        cant = request.POST.get("cantidad_salida")
+        cant = int(cant)
 
         if formulario.is_valid():
+            articulo = Articulos.objects.get(id = art)
+            stock = articulo.get_stock
+            if stock >= cant:
+                salida = formulario.save(commit=False)
+                salida.administrativo = usuario
+                salida.save()
+                messages.success(request, "Salida agregada correctamente")
+                return redirect('Salidas_veterinario')
+            
+            else:
+                messages.error(request, f"La cantidad de salida es mayor al stock existente. Quedan {stock} unidades de  {articulo.nombre} ")
 
-            salida = formulario.save(commit=False)
-            salida.administrativo = usuario
-            salida.save()
-            messages.success(request, "Salida agregada correctamente")
-            return redirect('Salidas_veterinario')
-        
+                return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
+            
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "La salida no se pudo registrar")
 
             return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
         
@@ -303,19 +341,29 @@ class actualizar_salida_veter(View):
     def post(self, request, id):
 
         salida = Salidas.objects.get(id = id)
+        cant_ant = salida.cantidad_salida
         formulario = SalidasForm(request.POST,instance=salida)
         usuario = self.request.user
+        art = request.POST.get("articulo")
+        cant = request.POST.get("cantidad_salida")
+        cant = int(cant)
 
         if formulario.is_valid():
+            articulo = Articulos.objects.get(id = art)
+            stock = articulo.get_stock
+            stock_nue = stock + cant_ant
+            if stock_nue >= cant:
+                salida = formulario.save(commit=False)
+                salida.administrativo = usuario
+                salida.save()
+                messages.success(request, "Salida actualizada correctamente")
+                return redirect('Salidas_veterinario')
+            
+            else:
+                messages.error(request, f"La cantidad de salida es mayor al stock existente. Quieres actualizar la cantidad que estava en {cant_ant} por {cant}, y solo quedan {stock} existencias")
 
-            salida = formulario.save(commit=False)
-            salida.administrativo = usuario
-            salida.save()
-            messages.success(request, "Salida actualizada correctamente")
-            return redirect('Salidas_veterinario')
-        
+                return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "La salida no se pudo actualizar")
 
             return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})
