@@ -4,7 +4,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>Inicio</title>
+	<title>{% block titulo %} {% endblock titulo %}</title>
 
 	<!-- Site favicon -->
 	
@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/src/plugins/datatables/css/dataTables.bootstrap4.min.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/src/plugins/datatables/css/responsive.bootstrap4.min.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'homePage/vendors/styles/style.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'diseño/styles/style.css'%}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -158,7 +159,7 @@
 						<a href="{% url 'perritos_adop'  %}" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="">Mascotas</span>
 						</a>
-						<a href="#" class="dropdown-toggle">
+						<a href="{% url "Mis_adopciones" %}" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="">Adopciones</span>
 						</a>
 						<a href="{% url "Mis_solicitudes" %}" class="dropdown-toggle">
@@ -167,7 +168,7 @@
 						<a href="{% url "Mis_seguimientos" %}" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="">Mis seguimientos</span>
 						</a>
-						<a href="#" class="dropdown-toggle">
+						<a href="{% url "Mis_donaciones" %}" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="">Donaciones</span>
 						</a>
 				</ul>

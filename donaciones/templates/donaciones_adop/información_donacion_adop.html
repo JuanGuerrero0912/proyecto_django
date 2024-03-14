@@ -1,0 +1,99 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% block titulo %} Donaciones {% endblock titulo %}
+
+{% block contenido %}
+
+
+<div class="main-container">
+    <div class="pd-ltr-20">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="title">
+                        <h4>INFORMACIÓN SOBRE LAS DONACIONES</h4>
+                    </div>
+                    <nav aria-label="breadcrumb" role="navigation">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="{% url "Mis_donaciones" %}">Mis donaciones</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Información general</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="blog-wrap">
+            <div class="container pd-0">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <div class="blog-detail card-box overflow-hidden mb-30">
+                            <div style="text-align: center;" class="blog-caption">
+                                <h4 style="text-align: center" class="mb-10">Toda la información sobre como dondar</h4><br/>
+                                <FONT  COLOR="black">En este blog te comentamos todo lo que necesitas saber para poder donar a la fundación.</FONT>
+
+                            </div>
+                        </div>
+                        <div class="blog-detail card-box overflow-hidden mb-30">
+                            <div class="blog-caption">
+                                <h5 class="mb-10">Comunicate con la fundación</h5><br/>
+                                <ul>
+                                    <li><FONT  COLOR="black">Correo de la fundación: doggyathomecp@gmail.com</FONT></li>
+                                    <li><FONT  COLOR="black">Celular de la fundación: 322 458 7948</FONT></li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                        <div class="blog-detail card-box overflow-hidden mb-30">
+                            <div class="blog-caption">
+                                <h5 class="mb-10">Pacta con la fundación</h5><br/>
+                                <ul>
+                                    <li><FONT  COLOR="black">Se te respondera los más rapido posible</FONT></li>
+                                    <li><FONT  COLOR="black">Una persona de la fundación te indicara como donar</FONT></li>
+                                    <li><FONT  COLOR="black">Indica el diá en el que quieres hacer la donación</FONT></li>           
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog-detail card-box overflow-hidden mb-30">
+                            <div class="blog-caption">
+                                <h5 class="mb-10">La fundación</h5>
+                                <ul>
+                                    <li><FONT  COLOR="black">Tomara los datos de tu donación</FONT></li>    
+                                    <li><FONT  COLOR="black">Esperara a que tu donación sea recibida y la registrara en el sistema</FONT></li>    
+                                    <li><FONT  COLOR="black">Podras observar tus donaciones en el apartado de mis donaciones</FONT></li>    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center" class="col-md-4 col-sm-12">
+                        <div class="mb-30">
+                            <img style="width: 155px; border-radius: 5%" src="{% static 'homePage/vendors/images/lista_dona_adop.jpg'%}" alt=""/>
+                        </div>
+                        <div class=" mb-30">
+                            <div >
+                                <img style="width: 220px; border-radius: 5%" src="{% static 'homePage/vendors/images/comunicate_adop.jpg'%}" alt=""/>
+                            </div>
+                        </div>
+                        <div class=" mb-30">
+                            <div >
+                                <img style="width: 200px; border-radius: 5%" src="{% static 'homePage/vendors/images/pacta_dona.jpg'%}" alt=""/>
+                            </div>
+                        </div>
+                        <div class=" mb-30">
+                            <div >
+                                <img style="width: 200px; border-radius: 5%" src="{% static 'homePage/vendors/images/lista_dona_adop.jpg'%}" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+{% endblock contenido %}

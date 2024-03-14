@@ -8,4 +8,8 @@ urlpatterns = [
     path('inhabilitar_donacion/<int:id>', views.inhabilitar_donacion, name="Inhabilitar_Donacion"),
     path('lista_donaciones_inhabilitadas', views.lista_donaciones_inhabilitadas, name="Lista_donaciones_Inhabilitadas"),
     path('habilitar_donacion/<int:id>', views.habilitar_donacion, name="Habilitar_Donacion"),
+
+    #ULRS DE ADOPTANTE __________________________________________________________________________
+    path('mis_donaciones', views.mis_donaciones.as_view(), name="Mis_donaciones"),
+    path('info_donación', views.mas_información.as_view(), name="Mas_informacion_dona"),
 ]

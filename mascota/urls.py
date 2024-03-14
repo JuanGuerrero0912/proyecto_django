@@ -83,5 +83,6 @@ urlpatterns = [
     path('mis_solicitudes', views.mis_solicitudes.as_view(), name="Mis_solicitudes"),
     path('editar_solicitud_adoptante/<int:id>', views.actualizar_solicitud_de_adoptante.as_view(), name="Editar_solicitud_adoptante"),
     path('mis_seguimientos', views.mis_seguimientos.as_view(), name="Mis_seguimientos"),
+    path('mis_adopciones', views.mis_adopciones.as_view(), name="Mis_adopciones"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

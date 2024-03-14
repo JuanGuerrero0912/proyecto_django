@@ -1,0 +1,73 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block titulo %} Mis adopciones {% endblock titulo %}
+
+{% block contenido %}
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>MIS ADOPCIONES</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">mis adopciones</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-box mb-30">
+                <div class="pd-20"><br>
+                    <h4 style="text-align: center; " class="text-black h4">Mis adopciones</h4><br>
+                </div>       
+                <div class="pb-20" >
+                    <div class="row">
+                            {% for adopcion in entity %}
+                                <div class="col-lg-4  mb-4">
+                                    <div class="card border-0 pb-2 text-center">
+                                        <div class="row">
+                                            <div class="col-6 py-1 text-right ">
+                                                <strong>Mascota</strong>
+                                            </div>
+                                            <div class="col-4 py-1">{{adopcion.mascota.nombre}}</div>
+                                        </div><br/>
+                                        <div class="text-center">
+                                            <a><img class="card-img-top mb-2" style="width: 200px;" src="{{adopcion.mascota.imagen.url}}"alt="" /></a> 
+                                        </div>
+                                        <div style="text-align: left;" class="rogress-ring">                                                  
+                                            <div class="progress blue">
+                                                <span class="progress-left">
+                                                      <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div  class="progress-value">100%</div>
+                                            </div>  
+                                        </div>
+                                        <br>
+                                        <a href="{% url "Ver_historiales_por_mascota" adopcion.mascota.id %}" class="btn btn-primary px-4 mx-auto my-2">
+                                            Historiales medicos
+                                        </a>
+                                    </div>
+                                    
+                                </div>                
+                            {% endfor%}
+                        </div>   
+                </div>
+                {% include "paginas/paginator.html" %}<br>
+            </div>  
+        </div>
+    </div>
+</div>
+
+
+{% endblock contenido %}

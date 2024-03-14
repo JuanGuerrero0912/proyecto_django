@@ -1,0 +1,83 @@
+{% extends "plantilla/plantilla_adoptante.html" %}
+{% load static %}
+
+{% block titulo %} Mis adopciones {% endblock titulo %}
+
+{% block contenido %}
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Mis adopciones</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url "Inicio_Adoptante" %}">Inicio</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Mis adopciones</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 style="text-align: center;" class="text-black h4">Mis donaciones</h4><br>
+                </div>
+                <div class="pb-20">
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tipo Donación</th>
+                                <th>Articulo</th>
+                                <th>Imagen del articulo</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for donacion in donaciones %}
+                                {% if donacion.estado_donacion == 1 %}
+                                    <tr>
+                                        <td>{{donacion.fecha_donacion|date:"d/m/y"}}</td>
+                                        <td>{{donacion.tipo_donacion.tipo_donacion}}</td>
+                                        <td>{{donacion.Articulos.nombre}}</td>
+                                        <td>
+                                            <img src="{{donacion.Articulos.imagen.url}}" width="40"  alt=""/>
+                                        </td>
+                                        <td>{{donacion.cantidad_donacion}}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img style=" border-radius: 8%; margin-top: 4rem;"  src="{% static "homePage/vendors/images/donacion_adop.jpg" %}" > </img>
+                </div>
+                <div class=" col-lg-6">
+                    <div class="pd-30 text-center"><br>
+                        <h2 style="color: ##7FB3D5;" class=" mb-4 ">Para recordar... </h2>
+                        <h4 >Queremos que recuerdes cómo realizar donaciones  
+                            en la fundación, por eso te ofrecemos un espacio 
+                            con más información acerca de los métodos para donar y
+                            como poder ayudar a la fundación. </h4>
+                            <br><br>
+                            <a href="{% url "Mas_informacion_dona" %}" class="btn btn-primary px-4 mx-auto my-2">
+                                Mas información
+                            </a> 
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock contenido %}

@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% block titulo %}Incio{% endblock titulo %}
+
 {% block contenido %}
     <div class="main-container">
         <div class="pd-ltr-20">
@@ -51,7 +53,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Mis adopciones</h5>
                         <p class="card-text">Revisa tus adopciones y recuerda el bello momento en el que recibiste un nuevo miembro para tu hogar.</p>
-                        <a href="#"><button type="button" class="btn btn-primary">Mis adopciones</button></a>
+                        <a href="{% url "Mis_adopciones" %}"><button type="button" class="btn btn-primary">Mis adopciones</button></a>
                     </div>
                 </div>
                 <div class="card card-box">
@@ -59,7 +61,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Mis seguimientos</h5>
                         <p class="card-text">Sigue el paso a paso de tus procesos de adopción, en cualquier momento adoptaras un lindo perrito.</p>
-                        <a href="#"><button type="button" class="btn btn-primary">Mis seguimientos</button></a>
+                        <a href="{% url "Mis_seguimientos" %}"><button type="button" class="btn btn-primary">Mis seguimientos</button></a>
                     </div>
                 </div>
                 <div class="card card-box">
@@ -67,7 +69,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Conocer mascotas</h5>
                         <p class="card-text">Busca una mascota que te alegre el corazón, revisa la lista y dale la oportunidad a un perrito.</p>
-                        <a href="#"><button type="button" class="btn btn-primary">Conocer mascotas</button></a>
+                        <a href="{% url "perritos_adop" %}"><button type="button" class="btn btn-primary">Conocer mascotas</button></a>
                     </div>
                 </div>
             </div>

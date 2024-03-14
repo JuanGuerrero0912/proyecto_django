@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.contrib import messages
 from donaciones.models import Donaciones
 from donaciones.forms import DonacionForms
+from inventario.models import Articulos
 
 # Create your views here.
 
@@ -16,13 +17,10 @@ class registrar_donacion(View):
     def post(self, request):
 
         formulario = DonacionForms(request.POST)
-        usuario = self.request.user
 
         if formulario.is_valid():
 
-            donacion = formulario.save(commit=False)
-            donacion.usuario = usuario
-            donacion.save()
+            formulario.save()
             messages.success(request, "Donación agregada correctamente")
             return redirect('Lista_donaciones')
         
@@ -45,12 +43,9 @@ class actualizar_donacion(View):
 
         donacion = Donaciones.objects.get(id = id)
         formulario = DonacionForms(request.POST,instance=donacion)
-        usuario = self.request.user
 
         if formulario.is_valid():
-            donacion = formulario.save(commit=False)
-            donacion.adoptante = usuario
-            donacion.save()
+            formulario.save()
             messages.success(request, "Donación actualizada correctamente")
             return redirect('Lista_donaciones')
         
@@ -87,3 +82,20 @@ def habilitar_donacion(request, id):
     donacion.save()
     messages.success(request,"Donación habilitada correctamente")
     return redirect('Lista_donaciones_Inhabilitadas')
+
+class mis_donaciones(View):
+
+    def get(self, request):
+
+        usuario = self.request.user
+        donaciones = Donaciones.objects.filter(usuario = usuario)
+
+        return render(request, "donaciones_adop/listado_donaciones_adop.html", {"donaciones": donaciones})
+
+class mas_información(View):
+
+    def get(self, request):
+
+        articulos = Articulos.objects.filter(estado_articulo = 1)
+
+        return render(request, "donaciones_adop/información_donacion_adop.html", {"articulos": articulos})

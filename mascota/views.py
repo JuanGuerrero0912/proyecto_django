@@ -905,3 +905,21 @@ class mis_seguimientos(View):
             pass
 
         return render(request, "crud_adoptante/mis_seguimientos.html", {"entity": seguimientos, "paginator": paginator})
+    
+
+class mis_adopciones(View):
+
+    def get(self, request):
+
+        usuario = self.request.user
+        adopciones = Adopcion.objects.filter(adoptante = usuario)
+
+        page = request.GET.get('page', 1)
+
+        try:
+            paginator = Paginator(adopciones,3)
+            adopciones = paginator.page(page)
+        except:
+            pass
+
+        return render(request, "crud_adoptante/mis_adopciones.html", {"entity": adopciones, "paginator": paginator})
