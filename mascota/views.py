@@ -162,11 +162,14 @@ class registrar_historial(View):
     
     def post(self, request):
 
+        usuario = self.request.user
         formulario = HistorialMedicoForm(request.POST, request.FILES)
 
         if formulario.is_valid():
 
-            formulario.save()
+            historial = formulario.save(commit=False)
+            historial.veterinario = usuario
+            historial.save()
 
             messages.success(request, "Historial agregado correctamente")
             return redirect('Lista_historial_medico')
@@ -188,11 +191,13 @@ class actualizar_historial(View):
     def post(self, request, id):
 
         historial = HistorialMedico.objects.get(id = id)
-        
+        usuario = self.request.user
         formulario = HistorialMedicoForm(request.POST, request.FILES, instance=historial)
 
         if formulario.is_valid():
-            formulario.save()
+            historial = formulario.save(commit=False)
+            historial.veterinario = usuario
+            historial.save()
             messages.success(request, "Historial actualizado correctamente")
             return redirect('Lista_historial_medico')
         
