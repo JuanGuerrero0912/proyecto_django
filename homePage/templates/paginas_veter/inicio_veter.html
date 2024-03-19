@@ -9,10 +9,20 @@
             <div class="card-box pd-20 height-100-p mb-30">
                 <div class="row align-items-center">
                     <div class="col-md-4">
-                        <img src="{% static 'homePage/vendors/images/banner-img.png'%}" alt=""/>
+                        <img src="{% static 'homePage/vendors/images/InicioVeter.jpg'%}" alt=""/>
                     </div>
                     <div class="col-md-8">
-                        <p class="font-18 max-width-600 text-center">Cuentanos que quieres hacer hoy</p>
+						<h4 class="font-20 weight-500 mb-10 text-capitalize">
+							BIENVENID@ <div class="weight-600 font-30 text-blue">{{user.username}}</div>
+						</h4>
+						<p class="font-18 max-width-500">Revisa cada uno de los apartados para mantenerte al día de los registros y actualizaciones, y gestiona de manera correcta las mascotas.</p>
+					</div>
+                </div>
+            </div>
+            <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion.jpg');" class="card-box pd-20 height-100-p mb-30">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title text-center">
+                        <h4>Gestiona las mascotas y salidas de la fundación.</h4>
                     </div>
                 </div>
             </div>
@@ -47,8 +57,53 @@
                                 </div>
                             </div>
                         </li>
-                        
                     </ul>
+                </div>
+            </div>
+            <div style=" background-image: url('/static/homePage/vendors/images/banner_gestion_fundacion_2.jpg'); height: 70px;" class="card-box pd-20 height-100-p mb-30">
+                <div class="col-md-12 col-sm-12">
+                    <div class="title text-center">
+                        <h3>Historial Médico</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-wrap">
+                <div class="container pd-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="blog-list">
+                                <ul>
+                                    <li>
+                                        <div class="row no-gutters">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <div class="blog-img">
+                                                    <img class="bg_img" src="{% static 'homePage/vendors/images/historial_mascota.png'%}" alt=""/>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                                <div class="blog-caption text-center">
+                                                    <br>
+                                                    <h3>Plantilla de Historial Médico</h3>
+                                                    <br>
+                                                    <div class="blog-by">
+                                                        <p>La plantilla de historial medico le permite al veterinario,
+                                                            registrar los datos obtenidos despues de realizar una evaluación acerca
+                                                            del estado de salud de la mascota.
+                                                        </p>
+                                                        <div class="pt-10">
+                                                            <a href="{% url 'descargar_archivo' 'historial_medico.pdf' %}" download>
+                                                                <button class="btn btn-primary">Descargar Archivo</button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
