@@ -36,6 +36,9 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-8">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.nombre}}
+                                    </div>
                                     <label >Nombre de la Mascota:</label>
                                     {{formulario.nombre}}
                                 </div>
@@ -44,6 +47,9 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-8">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.caracteristicas}}
+                                    </div>
                                     <label >Caracteristicas:</label>
                                     {{formulario.caracteristicas}}
                                 </div>
@@ -52,12 +58,18 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.estadoMascota}}
+                                    </div>
                                     <label >Estado de la Mascota:</label>
                                     {{formulario.estadoMascota}}
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.sexo}}
+                                    </div>
                                     <label >Sexo:</label>
                                     {{formulario.sexo}}
                                 </div>
@@ -66,6 +78,9 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.raza}}
+                                    </div>
                                     <label >Raza:</label>
                                     {{formulario.raza}}
                                 </div>
@@ -78,6 +93,9 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.edad_m_a}}
+                                    </div>
                                     <label >Años o Meses:</label>
                                     {{formulario.edad_m_a}}
                                 </div>
@@ -86,6 +104,9 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-8">
                                 <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.imagen}}
+                                    </div>
                                     <label >Foto de la mascota:</label>
                                     {{formulario.imagen}}
                                 </div>

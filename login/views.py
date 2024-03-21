@@ -37,7 +37,7 @@ def interfaz_login(request):
             else:
                 messages.error(request, "Usuario no valido")
         else:
-            messages.error(request, "Información incorrecta")
+            messages.error(request, "Usuario y/o contraseña incorrectos.")
     form = AuthenticationForm()
     return render(request, "paginas_login/login.html", {"form": form})
 
@@ -66,15 +66,18 @@ class VRegistro(View):
             else:
                 messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
-                return render(request, "paginas_login/login.html", {"form": form, "formulario": formulario })
+                return render(request, "paginas_login/registro.html", {"form": form, "formulario": formulario })
         
         else:
+            formulario = Perfil_Registro_Adoptante()
             messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
-            return render(request, "paginas_login/cambiar_contraseña.html", {"form": form, "formulario": formulario})
+            return render(request, "paginas_login/registro.html", {"form": form, "formulario": formulario})
 
 def cerrar_sesion(request):
+    
     logout(request)
+    messages.success(request,"Gracias por utilizar la web de la fundación, esperamos que vuelvas pronto.")
     return redirect('Inicio')
 
 #-------------------------------------------------------------------------------------

@@ -76,7 +76,8 @@
                                             <td>{{salida.articulo.nombre}}</td>
                                             <td>{{salida.articulo.referencia}}</td>
                                             <td>{{salida.fecha_salida|date:"d/m/y"}}</td>
-                                            <td>{{salida.cantidad_salida}}</td>
+                                            {% if salida.cantidad_salida > 0 %}<td style="color: red; font-size: 18px">{{salida.cantidad_salida}}</td>
+                                            {% endif %}
                                             <td>{{salida.administrativo}}</td>
                                             <td>{{salida.get_estado_salida_display}}</td>
                                             <td>

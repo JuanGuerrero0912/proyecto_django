@@ -34,6 +34,7 @@
 	</script>
 </head>
 <body>
+	{% if request.user.is_authenticated and request.user.perfil.rol == 3 %}
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon dw dw-menu"></div>
@@ -212,19 +213,53 @@
 	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	 {% if messages %}
-	 	{% for m in messages %}
-			<script>
-				Swal.fire(
-					{
-						"title": "Felicitaciones",
-						"text": "{{m}}",
-						"icon": "success"
-					}
-				)
-			</script>
+	 	{% for m in messages%}
+			{% if m.tags == "success" %}
+				<script>
+					Swal.fire(
+						{
+							"title": "Felicitaciones",
+							"text": "{{m}}",
+							"icon": "success"
+						}
+					)
+				</script>
+			{% elif m.tags == "error" %}
+				<script>
+					Swal.fire(
+						{
+							"title": "Ocurrio un error",
+							"text": "{{m}}",
+							"icon": "error"
+						}
+					)
+				</script>
+			{% endif %}
 		{% endfor %}
 	 {% endif %}
 
 	 {% block js %}{% endblock js %}
+
+	 {% else %}
+
+	 <div class="error-page d-flex align-items-center flex-wrap justify-content-center pd-20">
+		 <div class="pd-10">
+			 <div class="error-page-wrap text-center">
+				 <h1 style="font-size: 200px;">Acceso denegado</h1>
+				 <br>
+				 <h3>No estas logueado o tu rol no es adoptante.</h3>
+				 <div class="pt-20 mx-auto max-width-200">
+					 <a href="{% url "Login" %}" class="btn btn-primary btn-block btn-lg">Ir al login</a>
+				 </div>
+			 </div>
+		 </div>
+	 </div>
+ 
+	 <script src="{% static 'homePage/vendors/scripts/core.js'%}"></script>
+	 <script src="{% static 'homePage/vendors/scripts/script.min.js'%}"></script>
+	 <script src="{% static 'homePage/vendors/scripts/process.js'%}"></script>
+	 <script src="{% static 'homePage/vendors/scripts/layout-settings.js'%}"></script>
+ 
+ {% endif %}
 </body>
 </html>

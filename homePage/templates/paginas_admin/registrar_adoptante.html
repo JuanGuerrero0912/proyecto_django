@@ -38,6 +38,9 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.username}}
+											</div>
 											<label >Usuario:</label>
 											{{form.username}}
 										</div>
@@ -46,6 +49,9 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.email}}
+											</div>
 											<label >Email:</label>
 											{{form.email}}
 										</div>
@@ -54,12 +60,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.password2}}
+											</div>
 											<label >Contraseña :</label>
 											{{form.password1}}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.password2}}
+											</div>
 											<label >Repetir Contraseña :</label>
 											{{form.password2}}
 										</div>
@@ -71,12 +83,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.first_name}}
+											</div>
 											<label >Nombres :</label>
 											{{form.first_name}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.last_name}}
+											</div>
 											<label >Apellidos :</label>
 											{{form.last_name}}
 										</div>
@@ -85,12 +103,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.tipo_documento}}
+											</div>
 											<label >Tipo de documento :</label>
 											{{formulario.tipo_documento}}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.documento}}
+											</div>
 											<label >Número de documento :</label>
 											{{formulario.documento}}
 										</div>
@@ -102,12 +126,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.celular}}
+											</div>
 											<label >Celular :</label>
 											{{formulario.celular}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.ciudad}}
+											</div>
 											<label >Ciudad :</label>
 											{{formulario.ciudad}}
 										</div>
@@ -116,12 +146,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.direccion}}
+											</div>
 											<label >Dirección :</label>
 											{{formulario.direccion}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.imagen}}
+											</div>
 											<label >Imagen o Icono:</label>
 											{{formulario.imagen}}
 										</div>

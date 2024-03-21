@@ -27,8 +27,8 @@
 				<!-- Default Basic Forms Start -->
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
-						<h4 class="text-blue h4">Nuevo Adoptante</h4>
-						<p class="mb-30">Registrar nuevo Adoptante</p>
+						<h4 class="text-blue h4">Actualizar Adoptante</h4>
+						<p class="mb-30">Actualizar Adoptante</p>
 					</div>
 					<div class="wizard-content">
 						<form class="tab-wizard wizard-circle wizard" method="POST">
@@ -38,12 +38,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.first_name}}
+											</div>
 											<label >Nombres :</label>
 											{{form.first_name}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{form.errors.last_name}}
+											</div>
 											<label >Apellidos :</label>
 											{{form.last_name}}
 										</div>
@@ -52,12 +58,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.tipo_documento}}
+											</div>
 											<label >Tipo de documento :</label>
 											{{formulario.tipo_documento}}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.documento}}
+											</div>
 											<label >Número de documento :</label>
 											{{formulario.documento}}
 										</div>
@@ -69,12 +81,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.celular}}
+											</div>
 											<label >Celular :</label>
 											{{formulario.celular}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.ciudad}}
+											</div>
 											<label >Ciudad :</label>
 											{{formulario.ciudad}}
 										</div>
@@ -83,12 +101,18 @@
 								<div class="row justify-content-md-center">
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.direccion}}
+											</div>
 											<label >Dirección :</label>
 											{{formulario.direccion}}
 										</div>
 									</div>
 									<div class="col-md-8">
 										<div class="form-group">
+											<div style="color: red;">
+												{{formulario.errors.imagen}}
+											</div>
 											<label >Imagen o Icono:</label>
 											{{formulario.imagen}}
 										</div>

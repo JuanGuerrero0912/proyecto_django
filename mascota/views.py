@@ -13,6 +13,7 @@ from django.core.paginator import Paginator
 def mostrar_video(request):
     video_url = '/media/videoAdoptante.mp4' 
     return render(request, 'paginas_adoptante/inicio_adoptante.html', {'video_url': video_url})
+
 # PERRITO:
 class registrar_mascota(View):
     
@@ -30,8 +31,7 @@ class registrar_mascota(View):
             messages.success(request, "Mascota agregada correctamente")
             return redirect('Lista_mascotas')      
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])           
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")       
             return render(request, 'crud_mascotas/registrar_mascota.html', {"formulario": formulario})
         
 class actualizar_mascota(View):
@@ -56,8 +56,7 @@ class actualizar_mascota(View):
             return redirect('Lista_mascotas')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican") 
             
             return render(request, 'crud_mascotas/editar_mascota.html', {"formulario": formulario})
         
@@ -99,8 +98,7 @@ class registrar_adopcion(View):
             messages.success(request, "Adopción agregada correctamente")
             return redirect('Lista_adopciones')      
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])           
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")           
             return render(request, 'crud_mascotas/registrar_adopcion.html', {"formulario": formulario})
         
 class actualizar_adopcion(View):
@@ -122,8 +120,7 @@ class actualizar_adopcion(View):
             return redirect('Lista_adopciones')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")  
             
             return render(request, 'crud_mascotas/editar_adopcion.html', {"formulario": formulario})
         
@@ -175,8 +172,7 @@ class registrar_historial(View):
             return redirect('Lista_historial_medico')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican") 
             
             return render(request, 'crud_mascotas/registrar_historial.html', {"formulario": formulario})
 
@@ -202,8 +198,7 @@ class actualizar_historial(View):
             return redirect('Lista_historial_medico')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican") 
             
             return render(request, 'crud_mascotas/editar_historial.html', {"formulario": formulario})
 
@@ -251,8 +246,7 @@ class registrar_solicitud(View):
             return redirect('Lista_solicitudes_adopcion')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas/registrar_solicitud.html', {"formulario": formulario})
 
@@ -275,8 +269,7 @@ class actualizar_solicitud(View):
             return redirect('Lista_solicitudes_adopcion')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas/editar_solicitud.html', {"formulario": formulario})
 
@@ -400,8 +393,7 @@ class actualizar_seguimiento(View):
             return redirect('Lista_seguimientos_proceso')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas/editar_seguimiento.html', {"formulario": formulario})
 
@@ -457,8 +449,7 @@ class registrar_historial_medico_por_perrito(View):
             return redirect('Historial_Por_Mascota', id = mascota.id)
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas/registrar_historial_por_mascota.html', {"formulario": formulario})
 
@@ -487,8 +478,7 @@ class actualizar_historial_por_mascota(View):
             return redirect('Historial_Por_Mascota', id = mascota.id)
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas/editar_historial_por_mascota.html', {"formulario": formulario})
 
@@ -565,8 +555,8 @@ class registrar_mascota_vete(View):
             messages.success(request, "Mascota agregada correctamente")
             return redirect('Lista_mascotas_vete')      
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])           
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
+
             return render(request, 'crud_mascotas_vet/registrar_mascota.html', {"formulario": formulario})
         
 class actualizar_mascota_vete(View):
@@ -591,8 +581,7 @@ class actualizar_mascota_vete(View):
             return redirect('Lista_mascotas_vete')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas_vet/editar_mascota.html', {"formulario": formulario})
         
@@ -639,8 +628,7 @@ class registrar_historial_vete(View):
             return redirect('Lista_historial_vete')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas_vet/registrar_historial.html', {"formulario": formulario})
 
@@ -666,8 +654,7 @@ class actualizar_historial_vete(View):
             return redirect('Lista_historial_vete')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas_vet/editar_historial.html', {"formulario": formulario})
 
@@ -724,8 +711,7 @@ class registrar_historial_medico_por_perrito_veter(View):
             return redirect('historiales_medicos_por_perrito_vet', id = mascota.id)
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas_vet/registrar_historial_por_mascota_veter.html', {"formulario": formulario})
 
@@ -755,8 +741,7 @@ class actualizar_historial_por_mascota_veter(View):
             return redirect('historiales_medicos_por_perrito_vet', id = mascota.id)
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_mascotas_vet/editar_historial_por_mascota_veter.html', {"formulario": formulario, "mascota": mascota})
 
@@ -834,7 +819,7 @@ class solicitud_por_mascota(View):
         
         else:
 
-            messages.error(request, "Ocurrio un error al registrar tu solicitud, intentalo de nuevo")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             return render(request, "crud_adoptante/solicitud_por_mascota.html", 
                       {"mascota": mascota, "formulario": formulario})
 
@@ -891,7 +876,7 @@ class actualizar_solicitud_de_adoptante(View):
             return redirect("Mis_solicitudes")
         
         else:
-            messages.error(request, "Ocurrio un error al actualizar tu solicitud, intentalo de nuevo")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             return render(request, "crud_adoptante/editar_solicitud_adoptante.html", {"formulario": formulario})
 
 

@@ -50,9 +50,11 @@ class AdopcionForm(forms.ModelForm):
 
         self.fields['mascota'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['adoptante'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
 
 class HistorialMedicoForm(forms.ModelForm):
@@ -66,6 +68,7 @@ class HistorialMedicoForm(forms.ModelForm):
 
         self.fields['mascota'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['diagnostico'].widget.attrs.update({
             'class': 'form-control',
@@ -97,6 +100,7 @@ class SolicitudAdopcionForm(forms.ModelForm):
 
         self.fields['mascota'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['estado_proceso'].widget.attrs.update({
             'class': 'form-control',
@@ -106,6 +110,7 @@ class SolicitudAdopcionForm(forms.ModelForm):
         })
         self.fields['adoptante'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         
 class SeguimientoAdopcionForm(forms.ModelForm):
@@ -119,6 +124,7 @@ class SeguimientoAdopcionForm(forms.ModelForm):
 
         self.fields['solicitud_adopcion'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['fase'].widget.attrs.update({
             'class': 'form-control',

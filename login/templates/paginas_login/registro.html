@@ -22,18 +22,27 @@
                             <section>
                                 <div class="form-wrap max-width-600 mx-auto">
                                     <div class="form-group row">
+                                        <div style="color: red;" >
+											{{form.errors.username}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Usuario </label>
                                         <div class="col-sm-8">
                                             {{form.username}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{form.errors.email}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Email</label>
                                         <div class="col-sm-8">
                                             {{form.email}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{form.errors.password2}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Contraseña</label>
                                         <div class="col-sm-8">
                                             {{form.password1}}
@@ -52,24 +61,36 @@
                             <section>
                                 <div class="form-wrap max-width-600 mx-auto">
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{form.errors.first_name}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Nombres</label>
                                         <div class="col-sm-8">
                                             {{form.first_name}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{form.errors.last_name}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Apellidos</label>
                                         <div class="col-sm-8">
                                             {{form.last_name}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{formulario.errors.tipo_documento}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Tipo de documento</label>
                                         <div class="col-sm-8">
                                             {{formulario.tipo_documento}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{formulario.errors.documento}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Número de documento</label>
                                         <div class="col-sm-8">
                                             {{formulario.documento}}
@@ -82,18 +103,27 @@
                             <section>
                                 <div class="form-wrap max-width-600 mx-auto">
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{formulario.errors.celular}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Celular</label>
                                         <div class="col-sm-8">
                                             {{formulario.celular}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{formulario.errors.ciudad}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Ciudad</label>
                                         <div class="col-sm-8">
                                             {{formulario.ciudad}}
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <div style="color: red;">
+											{{formulario.errors.direccion}}
+										</div>
                                         <label class="col-sm-4 col-form-label">Dirección</label>
                                         <div class="col-sm-8">
                                             {{formulario.direccion}}
@@ -122,19 +152,3 @@
 
 {% endblock contenido %}
 
-{% block alertas %}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	{% if messages %}
-	 	{% for m in messages %}
-			<script>
-				Swal.fire(
-					{
-						"title": "No se pudo crear usuario",
-						"text": "{{m}}",
-						"icon": "error"
-					}
-				)
-			</script>
-		{% endfor %}
-	{% endif %}
-{% endblock alertas %}

@@ -26,7 +26,7 @@ class registrar_donacion(View):
         
         else:
             
-            messages.error(request, "Ocurrio un error al registrar la salida, intentalo de nuevo")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_donaciones/registrar_donacion.html', {"formulario": formulario})
 
@@ -50,8 +50,7 @@ class actualizar_donacion(View):
             return redirect('Lista_donaciones')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_donaciones/editar_donacion.html', {"formulario": formulario})
         

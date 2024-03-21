@@ -76,7 +76,8 @@
                                             <td>{{entrada.articulo.nombre}}</td>
                                             <td>{{entrada.articulo.referencia}}</td>
                                             <td>{{entrada.fecha_entrada|date:"d/m/y"}}</td>
-                                            <td>{{entrada.cantidad_entrada}}</td>
+                                            {% if entrada.cantidad_entrada > 0 %}<td style="color: green; font-size: 18px">{{entrada.cantidad_entrada}}</td>
+                                            {% endif %}
                                             <td>{{entrada.administrador}}</td>
                                             <td>{{entrada.get_estado_entrada_display}}</td>
                                             <td>

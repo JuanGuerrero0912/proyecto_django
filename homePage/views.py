@@ -75,6 +75,7 @@ class Registrar_usuario_administrativo(View):
                 return redirect('Lista_usuarios')
 
         else:
+            formulario = Perfil_Registro()
             messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, "paginas_admin/registrar_usuario.html", {"form": form, "formulario": formulario })
@@ -166,6 +167,7 @@ class registrar_usuario_adoptante(View):
                 return redirect('Lista_adoptantes')
 
         else:
+            formulario = Perfil_Registro_Adoptante()
             messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")          
             return render(request, "paginas_admin/registrar_adoptante.html", {"form": form, "formulario": formulario })
         
@@ -232,9 +234,11 @@ def Lista_adopciones(request):
     mascotas = Mascota.objects.all()
     mascotas_rescatadas = Mascota.objects.filter(estadoRegistro = 1).count()
     adopciones_finalizadas = Adopcion.objects.filter(estado_adopcion = 1).count()
-    adopciones_rechazadas = SolicitudAdopcion.objects.filter(estado_proceso = 3).count()
-    adopciones_proceso = SolicitudAdopcion.objects.filter(estado_proceso = 2).count()
-    porcentaje_adoptados = (mascotas_rescatadas / adopciones_finalizadas) * 100
+    seguimientos1 = SeguimientoAdopcion.objects.filter(estado_fase = 1).count()
+    seguimientos2 = SeguimientoAdopcion.objects.filter(estado_fase = 2).count()
+    seguimientos3 = SeguimientoAdopcion.objects.filter(estado_fase = 3).count()
+
+    seguimientos_totales = seguimientos1 + seguimientos2 + seguimientos3
 
     page = request.GET.get('page', 1)
 
@@ -247,9 +251,7 @@ def Lista_adopciones(request):
                   {"entity": adopciones, "paginator": paginator,
                     "mascotas_rescatadas": mascotas_rescatadas,
                     "adopciones_finalizadas": adopciones_finalizadas,
-                    "adopciones_rechazadas": adopciones_rechazadas,
-                    "adopciones_proceso": adopciones_proceso,
-                    "porcentaje_adoptados": porcentaje_adoptados})
+                    "seguimientos_totales": seguimientos_totales,})
 
 
 def Registrar_adoptante(request):
@@ -444,22 +446,23 @@ class Actualizar_Perfil_Veterinario(View):
         
 class CambioContraseñaVeterinario(PasswordChangeView):
     template_name = "paginas_veter/cambio_contraseña_veterinario.html"
-    success_url = reverse_lazy('Perfil_Veterinario')
-    
+    success_url = reverse_lazy("Perfil_Veterinario")
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['password_changed'] = self.request.session.get('password_changed', False)
-        return context
-    
+
     def form_valid(self, form):
         messages.success(self.request, "Cambio de contraseña exitoso")
         update_session_auth_hash(self.request, form.user)
         self.request.session['password_changed'] = True
         return super().form_valid(form)
-
+    
     def form_invalid(self, form):
         messages.error(self.request, "No se pudo cambiar la contraseña, intentelo nuevamente")
         return super().form_valid(form)
+    
+    
 
 #-------------------------------------------------------------------------------------
 #ADOPTANTE: 

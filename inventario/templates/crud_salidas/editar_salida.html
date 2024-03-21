@@ -36,6 +36,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.articulo}}
+                                </div>
                                 <label >Articulo:</label>
                                 {{formulario.articulo}}
                             </div>
@@ -44,6 +47,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.cantidad_salida}}
+                                </div>
                                 <label >Cantidad del articulo:</label>
                                 {{formulario.cantidad_salida}}
                             </div>

@@ -38,9 +38,11 @@ class EntradasForm(forms.ModelForm):
 
         self.fields['articulo'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['cantidad_entrada'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
 
 class SalidasForm(forms.ModelForm):
@@ -55,7 +57,9 @@ class SalidasForm(forms.ModelForm):
 
         self.fields['articulo'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['cantidad_salida'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })

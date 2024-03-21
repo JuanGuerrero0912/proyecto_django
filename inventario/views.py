@@ -28,8 +28,7 @@ class registrar_articulo(View):
             return redirect('Lista_articulos')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_articulos/registrar_articulo.html', {"formulario": formulario})
 
@@ -57,8 +56,7 @@ class actualizar_articulo(View):
             return redirect('Lista_articulos')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_articulos/editar_articulo.html', {"formulario": formulario})
 
@@ -111,8 +109,7 @@ class registrar_Entrada(View):
             return redirect('Lista_entradas')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_entradas/registrar_entrada.html', {"formulario": formulario})
 
@@ -140,8 +137,7 @@ class actualizar_entrada(View):
             return redirect('Lista_entradas')
         
         else:
-            for msj in formulario.error_messages:
-                messages.error(request, formulario.error_messages[msj])
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
             
             return render(request, 'crud_entradas/registrar_entrada.html', {"formulario": formulario})
 
@@ -205,7 +201,7 @@ class registrar_salida(View):
         
         else:
             
-            messages.error(request, "La salida no se pudo registrar")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
             return render(request, 'crud_salidas/registrar_salida.html', {"formulario": formulario})
 
@@ -245,7 +241,7 @@ class actualizar_salida(View):
                 return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
         
         else:
-            messages.error(request, "La salida no se pudo actualizar")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
             return render(request, 'crud_salidas/editar_salida.html', {"formulario": formulario})
 
@@ -319,7 +315,7 @@ class registrar_salida_veter(View):
                 return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
             
         else:
-            messages.error(request, "La salida no se pudo registrar")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
             return render(request, 'salidas_veterinario/registrar_salida_veter.html', {"formulario": formulario})
         
@@ -364,6 +360,6 @@ class actualizar_salida_veter(View):
 
                 return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})
         else:
-            messages.error(request, "La salida no se pudo actualizar")
+            messages.error(request, "Tienes campos que no cumplen con los requisitos que se te indican")
 
             return render(request, 'salidas_veterinario/editar_salida_veter.html', {"formulario": formulario})

@@ -36,6 +36,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.mascota}}
+                                </div>
                                 <label >Mascota:</label>
                                 {{formulario.mascota}}
                             </div>
@@ -44,6 +47,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.diagnostico}}
+                                </div>
                                 <label >Diagnostico:</label>
                                 {{formulario.diagnostico}}
                             </div>

@@ -52,7 +52,8 @@
                                             <td>{{salida.articulo.referencia}}</td>
                                             <td>{{salida.administrativo}}</td>
                                             <td>{{salida.fecha_salida}}</td>
-                                            <td>{{salida.cantidad_salida}}</td>
+                                            {% if salida.cantidad_salida > 0 %}<td style="color: red; font-size: 18px">{{salida.cantidad_salida}}</td>
+                                            {% endif %}
                                             <td>{{salida.get_estado_salida_display}}</td>
                                             <td>
                                                 <div class="dropdown">

@@ -79,7 +79,8 @@
                                             <td>{{donacion.Articulos.referencia}}</td>
                                             <td>{{donacion.usuario}}</td>
                                             <td>{{donacion.fecha_donacion|date:"d/m/y"}}</td>
-                                            <td>{{donacion.cantidad_donacion}}</td>
+                                            {% if donacion.cantidad_donacion > 0 %}<td style="color: green; font-size: 18px">{{donacion.cantidad_donacion}}</td>
+                                            {% endif %}
                                             <td>{{donacion.get_estado_donacion_display}}</td>
                                             <td>
                                                 <div class="dropdown">

@@ -46,7 +46,7 @@
                                     <dt class="col-sm-2" style="margin-top: 20px;">Actualización:</dt>
                                     <dd class="col-sm-4" style="margin-top: 20px;">{{seguimiento.updated|date:"d/m/y"}}</dd>
                                     <dt class="col-sm-2" style="margin-top: 20px;">Fase:</dt>
-                                    <dd class="col-sm-10" style="margin-top: 20px;">
+                                    <dd class="col-sm-9" style="margin-top: 20px;">
                                         {% if seguimiento.fase == 1  %}
                                         <div class="badge-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="40">50%</div>
                                         {% elif seguimiento.fase == 2 %}
@@ -57,6 +57,7 @@
                                         <div class="badge-success" role="" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                                       {% endif %}
                                     </dd>
+                                    <dd class="col-sm-1" style="margin-top: 20px;"></dd>
                                 </dl>
                             </div>
                         </div>

@@ -13,15 +13,18 @@ class DonacionForms(forms.ModelForm):
 
         self.fields['tipo_donacion'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['Articulos'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
         self.fields['cantidad_donacion'].widget.attrs.update({
             'class': 'form-control',
         })
         self.fields['usuario'].widget.attrs.update({
             'class': 'form-control',
+            'required': 'required',
         })
 
 

@@ -22,15 +22,6 @@
                         <div class="login-title">
                             <h2 class="text-center text-primary">Ingresa con tu cuenta</h2>
                         </div>
-                        {% if messages %}
-        
-                            {% for mensaje in messages %}
-            
-                                {{mensaje}}
-
-                            {% endfor %}
-        
-                        {% endif %}
                         
                         {{form|crispy}}
   
@@ -60,3 +51,4 @@
 </form>
 
 {% endblock contenido %}
+

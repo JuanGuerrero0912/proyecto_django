@@ -36,6 +36,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.solicitud_adopcion}}
+                                </div>
                                 <label >Solicitud de Adopción:</label>
                                 {{formulario.solicitud_adopcion}}
                             </div>
@@ -44,6 +47,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.fase}}
+                                </div>
                                 <label >Fase:</label>
                                 {{formulario.fase}}
                             </div>
@@ -52,6 +58,9 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8">
                             <div class="form-group">
+                                <div style="color: red;">
+                                    {{formulario.errors.estado_fase}}
+                                </div>
                                 <label >Estado de la fase:</label>
                                 {{formulario.estado_fase}}
                             </div>

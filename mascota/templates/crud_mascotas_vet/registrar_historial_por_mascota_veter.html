@@ -34,18 +34,21 @@
                     </div>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label >Diagnostico:</label>
-                                        {{formulario.diagnostico}}
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <div style="color: red;">
+                                        {{formulario.errors.diagnostico}}
                                     </div>
+                                    <label >Diagnostico:</label>
+                                    {{formulario.diagnostico}}
                                 </div>
                             </div>
-                            <div class="row justify-content-md-center">
-                                <input type="submit" name="" value="Registrar" class="btn btn-primary">&emsp;&emsp; 
-                                <a href="{% url "historiales_medicos_por_perrito_vet" mascota.id %}" class="btn btn-danger">Cancelar</a>
-                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <input type="submit" name="" value="Registrar" class="btn btn-primary">&emsp;&emsp; 
+                            <a href="{% url "historiales_medicos_por_perrito_vet" mascota.id %}" class="btn btn-danger">Cancelar</a>
+                        </div>
                     </form>
                 </div>
             </div>
